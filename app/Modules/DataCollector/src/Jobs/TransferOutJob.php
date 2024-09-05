@@ -34,7 +34,7 @@ class TransferOutJob extends UniqueJob
         $dataCollection = DataCollection::withTrashed()->findOrFail($this->dataCollection_id);
 
         $dataCollection->records()
-            ->where('quantity_scanned', '!=', DB::raw(0))
+            ->where('quantity_scanned', '!=', 0)
             ->chunkById(10, function ($records) {
                 $records->each(function (DataCollectionRecord $record) {
                     DataCollectorService::transferOutRecord($record);
@@ -42,7 +42,7 @@ class TransferOutJob extends UniqueJob
             });
 
         $hasMoreRecordsToTransfer = $dataCollection->records()
-            ->where('quantity_scanned', '!=', DB::raw(0))
+            ->where('quantity_scanned', '!=', 0)
             ->exists();
 
         if ($hasMoreRecordsToTransfer) {
