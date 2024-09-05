@@ -180,7 +180,7 @@ class ReportBase extends Model
                 }
 
                 if ($fieldValue instanceof Expression) {
-                    $queryBuilder->addSelect(DB::raw('('.$fieldValue.') as '.$selectFieldName));
+                    $queryBuilder->selectRaw('('.$fieldValue.') as '.$selectFieldName);
 
                     return;
                 }
@@ -249,7 +249,8 @@ class ReportBase extends Model
                     }
 
                     if ($fieldQuery instanceof Expression) {
-                        $query->whereBetween(DB::raw('('.$fieldQuery.')'), [floatval($value[0]), floatval($value[1])]);
+                        // $query->whereBetween(DB::raw('('.$fieldQuery.')'), [floatval($value[0]), floatval($value[1])]);
+                        $query->whereRaw('('.$fieldQuery.') BETWEEN ? AND ?', [floatval($value[0]), floatval($value[1])]);
 
                         return;
                     }
@@ -301,8 +302,12 @@ class ReportBase extends Model
                     }
 
                     if ($fieldQuery instanceof Expression) {
-                        $query->whereBetween(
-                            DB::raw('('.$fieldQuery.')'),
+                        // $query->whereBetween(
+                        //     DB::raw('('.$fieldQuery.')'),
+                        //     [Carbon::parse($value[0]), Carbon::parse($value[1])]
+                        // );
+                        $query->whereRaw(
+                            '('.$fieldQuery.') BETWEEN ? AND ?',
                             [Carbon::parse($value[0]), Carbon::parse($value[1])]
                         );
 
@@ -426,7 +431,8 @@ class ReportBase extends Model
                     }
 
                     if ($fieldQuery instanceof Expression) {
-                        $query->whereBetween(DB::raw('('.$fieldQuery.')'), [floatval($value[0]), floatval($value[1])]);
+                        // $query->whereBetween(DB::raw('('.$fieldQuery.')'), [floatval($value[0]), floatval($value[1])]);
+                        $query->whereRaw('('.$fieldQuery.') BETWEEN ? AND ?', [floatval($value[0]), floatval($value[1])]);
 
                         return;
                     }
