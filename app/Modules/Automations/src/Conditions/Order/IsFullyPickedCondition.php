@@ -18,7 +18,7 @@ class IsFullyPickedCondition extends BaseOrderConditionAbstract
 
         return $query->whereHas('orderProductsTotals', function ($query) use ($expected_value) {
             $query->whereRaw('(orders_products_totals.quantity_ordered > 0)')
-                ->where(DB::raw('(orders_products_totals.quantity_to_pick = 0)'), '=', $expected_value);
+                ->whereRaw('(orders_products_totals.quantity_to_pick = 0) = ?', [$expected_value]);
         });
     }
 }
