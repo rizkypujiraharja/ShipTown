@@ -50,7 +50,7 @@ trait HasTagsTrait
 
         $query->whereHas('tags', function (Builder $query) use ($tags) {
             $tags->each(function ($tag) use ($query) {
-                $query->where(DB::raw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.\"en\"'))"), $tag);
+                $query->whereRaw("JSON_UNQUOTE(JSON_EXTRACT(slug, '$.en')) = ?", [$tag]);
             });
         });
 
