@@ -258,11 +258,11 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index([DB::raw('last_sequence_number DESC')]);
-            $table->index([DB::raw('last_movement_at DESC')]);
-            $table->index([DB::raw('first_received_at DESC')]);
-            $table->index([DB::raw('last_received_at DESC')]);
-            $table->index([DB::raw('first_sold_at DESC')]);
+            $table->index(['last_sequence_number']);
+            $table->index(['last_movement_at']);
+            $table->index(['first_received_at']);
+            $table->index(['last_received_at']);
+            $table->index(['first_sold_at']);
 
             $table->foreign('product_id')
                 ->references('id')
