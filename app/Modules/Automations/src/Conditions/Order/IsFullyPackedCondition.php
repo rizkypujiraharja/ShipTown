@@ -18,7 +18,6 @@ class IsFullyPackedCondition extends BaseOrderConditionAbstract
 
         return $query->whereHas('orderProductsTotals', function ($query) use ($expectedBoolValue) {
             $query->whereRaw('(orders_products_totals.quantity_ordered > 0)')
-                // ->where(DB::raw('(orders_products_totals.quantity_to_ship = 0)'), '=', $expectedBoolValue);
                 ->whereRaw('(orders_products_totals.quantity_to_ship = 0) = ?', [$expectedBoolValue]);
         });
     }
