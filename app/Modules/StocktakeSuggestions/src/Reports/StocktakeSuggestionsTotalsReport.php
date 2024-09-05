@@ -15,14 +15,13 @@ class StocktakeSuggestionsTotalsReport extends Report
 
         $this->report_name = 'Stocktakes Suggestions';
 
-        $this->baseQuery = Warehouse::query();
+        $this->baseQuery = Warehouse::query()
+            ->select('warehouses.code as warehouse_code')
+            ->selectRaw('(SELECT count(DISTINCT inventory_id)
+                        FROM stocktake_suggestions
+                        WHERE stocktake_suggestions.warehouse_id = warehouses.id) as count');
 
         $this->defaultSort = 'warehouse_code';
-
-        $this->fields = [
-            'warehouse_code' => DB::raw('warehouses.code'),
-            'count' => DB::raw('SELECT count(DISTINCT inventory_id) FROM stocktake_suggestions WHERE stocktake_suggestions.warehouse_id = warehouses.id'),
-        ];
 
         $this->casts = [
             'count' => 'integer',
