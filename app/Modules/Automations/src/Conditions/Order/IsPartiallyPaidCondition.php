@@ -16,6 +16,6 @@ class IsPartiallyPaidCondition extends BaseOrderConditionAbstract
 
         $expectedBoolValue = filter_var($expected_value, FILTER_VALIDATE_BOOL);
 
-        return $query->where(DB::raw('((total_paid > 0) AND (total_paid < total_order))'), '=', $expectedBoolValue);
+        return $query->whereRaw('((total_paid > 0) AND (total_paid < total_order)) = ?', [$expectedBoolValue]);
     }
 }
