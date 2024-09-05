@@ -12,11 +12,7 @@ class FixQuantityAvailableJob extends UniqueJob
     public function handle(): void
     {
         $invalidProducts = Product::query()
-            ->where(
-                DB::raw(DB::getTablePrefix().'products.quantity - '.DB::getTablePrefix().'products.quantity_reserved'),
-                '!=',
-                DB::raw(DB::getTablePrefix().'products.quantity_available')
-            )
+            ->whereRaw(DB::getTablePrefix().'products.quantity - '.DB::getTablePrefix().'products.quantity_reserved != '.DB::getTablePrefix().'products.quantity_available')
             ->get()
             ->each(function (Product $product) {
                 Log::warning('Incorrect quantity_available detected', [
