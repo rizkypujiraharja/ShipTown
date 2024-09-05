@@ -110,7 +110,6 @@ class DataCollectorService
         $destinationWarehouse = Warehouse::findOrFail($warehouse_id);
 
         DB::transaction(function () use (
-
             $sourceDataCollection,
             &$destinationDataCollection,
             $destinationWarehouse
@@ -146,7 +145,7 @@ class DataCollectorService
         });
 
         $sourceDataCollection->records()
-            ->where('quantity_scanned', '!=', DB::raw(0))
+            ->where('quantity_scanned', '!=', 0)
             ->get()
             ->each(function (DataCollectionRecord $sourceRecord) use ($destinationDataCollection) {
                 $inventory = Inventory::query()->firstOrCreate([
