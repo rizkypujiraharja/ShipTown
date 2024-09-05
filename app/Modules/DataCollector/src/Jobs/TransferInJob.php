@@ -40,7 +40,7 @@ class TransferInJob extends UniqueJob
             });
 
         $hasMoreRecordsToTransfer = $dataCollection->records()
-            ->where('quantity_scanned', '!=', DB::raw(0))
+            ->where('quantity_scanned', '!=', 0)
             ->exists();
 
         if ($hasMoreRecordsToTransfer) {
