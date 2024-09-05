@@ -21,7 +21,7 @@ class InventorySeeder extends Seeder
     {
         $movements = Inventory::query()
             ->with('prices')
-            ->where('warehouse_code', '!=', DB::raw('999'))
+            ->where('warehouse_code', '!=', '999')
             ->get()
             ->map(function (Inventory $inventory) {
                 $restock_level = fake()->randomElement([1, 6, 6, 6, 12, 12, 12, 12, 24, 24, 24, 36, 72]);
