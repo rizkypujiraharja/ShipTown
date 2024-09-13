@@ -14,7 +14,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function test_basic_functionality()
+    public function test_basic_functionality(): void
     {
         InventoryQuantityIncomingServiceProvider::enableModule();
 
@@ -56,7 +56,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(10, $inventory->fresh()->quantity_incoming);
     }
 
-    public function test_FixIncorrectQuantityIncomingJob()
+    public function test_FixIncorrectQuantityIncomingJob(): void
     {
         InventoryQuantityIncomingServiceProvider::enableModule();
 
@@ -102,7 +102,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(10, $inventory->fresh()->quantity_incoming);
     }
 
-    public function test_if_zeroed_when_incorrectly_assigned()
+    public function test_if_zeroed_when_incorrectly_assigned(): void
     {
         InventoryQuantityIncomingServiceProvider::enableModule();
 
@@ -135,7 +135,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(0, $inventory->fresh()->quantity_incoming);
     }
 
-    public function test_RecalculateInventoryQuantityIncomingJob()
+    public function test_RecalculateInventoryQuantityIncomingJob(): void
     {
         InventoryQuantityIncomingServiceProvider::enableModule();
 

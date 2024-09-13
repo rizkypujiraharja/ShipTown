@@ -13,7 +13,7 @@ use Tests\TestCase;
 
 class RepopulateStatisticsTableJobTest extends TestCase
 {
-    public function testBasic()
+    public function testBasic(): void
     {
         $product1 = Product::factory()->create();
         $product2 = Product::factory()->create();

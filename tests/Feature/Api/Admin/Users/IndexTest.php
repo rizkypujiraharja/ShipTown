@@ -9,7 +9,7 @@ use Tests\TestCase;
 class IndexTest extends TestCase
 {
     /** @test */
-    public function test_index_call_returns_ok()
+    public function test_index_call_returns_ok(): void
     {
         /** @var User $user */
         $user = User::factory()->create();

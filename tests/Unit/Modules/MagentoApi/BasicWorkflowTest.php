@@ -28,7 +28,7 @@ class BasicWorkflowTest extends TestCase
     }
 
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         if (empty(env('TEST_MODULES_MAGENTO2MSI_BASE_URL'))) {
             $this->markTestSkipped('Magento base url not set');

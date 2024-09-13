@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 
 class OrderStatusesSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         OrderStatus::updateOrCreate([
             'code' => 'complete',

@@ -17,10 +17,8 @@ class BasicIntegrationTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function test_successful_order_to_pick_integration()
+    public function test_successful_order_to_pick_integration(): void
     {
         /** @var Order $order */
         $order = Order::factory()->create();
@@ -66,10 +64,8 @@ class BasicIntegrationTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testExample()
+    public function testExample(): void
     {
         $boxtop = new ApiClient;
 

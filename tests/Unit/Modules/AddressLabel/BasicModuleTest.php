@@ -10,7 +10,7 @@ use Tests\TestCase;
 class BasicModuleTest extends TestCase
 {
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         /** @var Order $order */
         $order = Order::factory()->create();

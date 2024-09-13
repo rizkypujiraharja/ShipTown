@@ -17,7 +17,7 @@ class PacklistPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBasics()
+    public function testBasics(): void
     {
         $this->basicUserAccessTest($this->uri, true);
         $this->basicAdminAccessTest($this->uri, true);
@@ -27,7 +27,7 @@ class PacklistPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testPressStartAutopilot()
+    public function testPressStartAutopilot(): void
     {
         /** @var User $user */
         $user = User::factory()->create();

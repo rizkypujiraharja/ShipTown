@@ -9,7 +9,7 @@ use Tests\TestCase;
 class IndexTest extends TestCase
 {
     /** @test */
-    public function test_index_call_returns_ok()
+    public function test_index_call_returns_ok(): void
     {
         Passport::actingAs(
             User::factory()->admin()->create()
@@ -20,14 +20,14 @@ class IndexTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function test_index_call_should_be_loggedin()
+    public function test_index_call_should_be_loggedin(): void
     {
         $response = $this->get(route('api.mail-templates.index'));
 
         $response->assertRedirect(route('login'));
     }
 
-    public function test_index_call_should_loggedin_as_admin()
+    public function test_index_call_should_loggedin_as_admin(): void
     {
         Passport::actingAs(
             User::factory()->create()

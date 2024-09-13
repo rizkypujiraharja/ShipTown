@@ -10,10 +10,8 @@ class OrdersByAgeWidgetTest extends TestCase
 {
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testIfRuns()
+    public function testIfRuns(): void
     {
         Order::factory()->create();
 

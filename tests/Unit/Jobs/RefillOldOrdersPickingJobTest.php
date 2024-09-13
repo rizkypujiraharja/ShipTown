@@ -12,10 +12,8 @@ class RefillOldOrdersPickingJobTest extends TestCase
 {
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testExample()
+    public function testExample(): void
     {
         /** @var Order $order */
         $order = Order::factory()->create([

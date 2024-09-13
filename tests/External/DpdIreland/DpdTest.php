@@ -17,7 +17,7 @@ class DpdTest extends TestCase
     /**
      * @test
      */
-    public function if_env_variables_are_set()
+    public function if_env_variables_are_set(): void
     {
         $this->assertNotEmpty(config('dpd.test_token'), 'TEST_DPD_TOKEN is not set');
         $this->assertNotEmpty(config('dpd.test_user'), 'TEST_DPD_USER is not set');
@@ -27,7 +27,7 @@ class DpdTest extends TestCase
     /**
      * @test
      */
-    public function if_authenticates()
+    public function if_authenticates(): void
     {
         $auth = Client::getCachedAuthorization();
         $this->assertEquals('OK', $auth['authorization_response']['Status']);
@@ -38,7 +38,7 @@ class DpdTest extends TestCase
      *
      * @throws ConsignmentValidationException
      */
-    public function if_record_id_matches()
+    public function if_record_id_matches(): void
     {
         $consignment = new Consignment([
             'DeliveryAddress' => [
@@ -73,7 +73,7 @@ class DpdTest extends TestCase
     /**
      * @test
      */
-    public function if_authorization_is_cached()
+    public function if_authorization_is_cached(): void
     {
         $auth1 = Client::getCachedAuthorization();
         $auth2 = Client::getCachedAuthorization();
@@ -85,7 +85,7 @@ class DpdTest extends TestCase
     /**
      * @test
      */
-    public function successfully_generate_preadvice()
+    public function successfully_generate_preadvice(): void
     {
         $consignment = new Consignment([
             'RecordID' => 1,

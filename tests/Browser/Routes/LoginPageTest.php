@@ -13,7 +13,7 @@ class LoginPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBasics()
+    public function testBasics(): void
     {
         User::factory()->create();
 

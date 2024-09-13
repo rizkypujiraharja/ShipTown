@@ -63,7 +63,7 @@ class MultibuyPercentDiscountTest extends TestCase
     }
 
     /** @test */
-    public function testExample()
+    public function testExample(): void
     {
         /** @var DataCollection $dataCollection */
         $dataCollection = DataCollection::factory()->create([

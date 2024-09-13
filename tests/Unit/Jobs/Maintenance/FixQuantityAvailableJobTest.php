@@ -14,7 +14,7 @@ class FixQuantityAvailableJobTest extends TestCase
     /**
      * @test
      */
-    public function testExample()
+    public function testExample(): void
     {
         Product::factory()->count(10)->create();
 

@@ -25,12 +25,11 @@ class UpdateMissingTypeAndIdJob implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
      *
      * @throws GuzzleException
      * @throws Exception
      */
-    public function handle()
+    public function handle(): void
     {
         DB::statement('UPDATE modules_api2cart_product_links SET is_in_sync = 0 WHERE is_in_sync IS NULL');
 

@@ -18,10 +18,8 @@ class ResyncSyncErrorsTaggedJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Product::withAllTags(['SYNC ERROR'])
             ->each(function (Product $product) {

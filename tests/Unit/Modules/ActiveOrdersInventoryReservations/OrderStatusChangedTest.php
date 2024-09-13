@@ -25,7 +25,7 @@ class OrderStatusChangedTest extends TestCase
     }
 
     /** @test */
-    public function test_if_releases_quantity_when_status_changed()
+    public function test_if_releases_quantity_when_status_changed(): void
     {
         // prepare database
         $warehouse = Warehouse::factory()->create();

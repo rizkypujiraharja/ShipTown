@@ -12,7 +12,7 @@ class ConfirmPageTest extends DuskTestCase
 {
     private string $uri = '';
 
-    public function testIncomplete()
+    public function testIncomplete(): void
     {
         $this->markTestIncomplete('This test has not been implemented yet.');
     }

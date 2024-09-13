@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class SnsControllerTest extends TestCase
 {
-    public function testIfAwsCredentialsAreSet()
+    public function testIfAwsCredentialsAreSet(): void
     {
         $this->assertNotEmpty(env('AWS_ACCESS_KEY_ID'), 'AWS_ACCESS_KEY_ID is not set');
         $this->assertNotEmpty(env('AWS_SECRET_ACCESS_KEY'), 'AWS_SECRET_ACCESS_KEY is not set');
@@ -16,7 +16,7 @@ class SnsControllerTest extends TestCase
         $this->assertNotEmpty(env('AWS_USER_CODE'), 'AWS_USER_CODE is not set');
     }
 
-    public function testTopicCreateSubscribeDelete()
+    public function testTopicCreateSubscribeDelete(): void
     {
         $this->actingAs(
             User::factory()->create()

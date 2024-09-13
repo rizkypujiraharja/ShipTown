@@ -16,7 +16,7 @@ class DecreaseQuantityTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_if_decreases_quantity_when_product_shipped()
+    public function test_if_decreases_quantity_when_product_shipped(): void
     {
         /** @var Warehouse $warehouse */
         $warehouse = Warehouse::factory()->create();

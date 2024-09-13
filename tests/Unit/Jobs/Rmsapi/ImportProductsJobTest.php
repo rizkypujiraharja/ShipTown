@@ -10,11 +10,10 @@ use Tests\TestCase;
 class ImportProductsJobTest extends TestCase
 {
     /**
-     * @return void
      *
      * @throws \Exception
      */
-    public function testBatchSaving()
+    public function testBatchSaving(): void
     {
 
         // cleanup data

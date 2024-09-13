@@ -34,7 +34,7 @@ class BasicModuleTest extends TestCase
     //        $this->assertEquals(0, $inventory->quantity);
     //    }
 
-    public function test_basic()
+    public function test_basic(): void
     {
         InventoryTotalsServiceProvider::enableModule();
 

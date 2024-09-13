@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 
 class RestockingReportSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         /** @var Warehouse $destination_warehouse */
         /** @var Warehouse $source_warehouse */

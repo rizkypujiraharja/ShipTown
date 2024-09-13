@@ -20,7 +20,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         $warehouse = Warehouse::factory()->create();
         $testData = User::factory()->make()->toArray();
@@ -31,7 +31,7 @@ class StoreTest extends TestCase
         $response->assertStatus(201);
     }
 
-    public function test_add_deleted_user_return_ok()
+    public function test_add_deleted_user_return_ok(): void
     {
         /** @var User $user */
         $user = User::factory()->create();

@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class IntegrationTest extends TestCase
 {
-    public function test_if_store_returns_ok_response()
+    public function test_if_store_returns_ok_response(): void
     {
         $address = OrderAddress::factory()->create([
             'company' => 'TEST COMPANY',

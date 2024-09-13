@@ -19,7 +19,7 @@ class GenerateLabelDocumentJobTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function test_print_new_label()
+    public function test_print_new_label(): void
     {
         if (Carbon::make($this->testSkippingExpiryDate)->isFuture()) {
             $this->markTestSkipped();

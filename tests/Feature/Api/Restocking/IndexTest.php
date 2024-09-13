@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
-    public function test_product_has_tags_containing_filter()
+    public function test_product_has_tags_containing_filter(): void
     {
         /** @var Warehouse $warehouse */
         $warehouse = Warehouse::factory()->create();
@@ -41,7 +41,7 @@ class IndexTest extends TestCase
         $this->assertCount(1, $response->json('data'));
     }
 
-    public function test_product_has_tags_filter()
+    public function test_product_has_tags_filter(): void
     {
         /** @var Warehouse $warehouse */
         $warehouse = Warehouse::factory()->create();
@@ -72,7 +72,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_index_call_returns_ok()
+    public function test_index_call_returns_ok(): void
     {
         ray()->showApp();
 

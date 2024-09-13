@@ -27,7 +27,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testBasicFunctionality()
+    public function testBasicFunctionality(): void
     {
         if (empty(config('aws.credentials.secret'))) {
             $this->markTestSkipped('SQS_QUEUE is not set.');
@@ -71,7 +71,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfNoErrorsDuringEvents()
+    public function testIfNoErrorsDuringEvents(): void
     {
         EveryMinuteEvent::dispatch();
         EveryFiveMinutesEvent::dispatch();

@@ -29,6 +29,7 @@ class DispatchSaveInventoryDashboardReport extends UniqueJob
             return;
         }
 
+        $queryGrammar = DB::connection()->getQueryGrammar();
         $sql = "
             INSERT INTO modules_reports_inventory_dashboard_records (
                 warehouse_id, warehouse_code, missing_restock_levels, wh_products_available, 
@@ -38,12 +39,12 @@ class DispatchSaveInventoryDashboardReport extends UniqueJob
             SELECT
                 inventory.warehouse_id,
                 inventory.warehouse_code,
-                {$fields['missing_restock_levels']} as missing_restock_levels,
-                {$fields['wh_products_available']} as wh_products_available,
-                {$fields['wh_products_out_of_stock']} as wh_products_out_of_stock,
-                {$fields['wh_products_required']} as wh_products_required,
-                {$fields['wh_products_incoming']} as wh_products_incoming,
-                {$fields['wh_products_stock_level_ok']} as wh_products_stock_level_ok,
+                " . $fields['missing_restock_levels']->getValue($queryGrammar) . " as missing_restock_levels,
+                " . $fields['wh_products_available']->getValue($queryGrammar) . " as wh_products_available,
+                " . $fields['wh_products_out_of_stock']->getValue($queryGrammar) . " as wh_products_out_of_stock,
+                " . $fields['wh_products_required']->getValue($queryGrammar) . " as wh_products_required,
+                " . $fields['wh_products_incoming']->getValue($queryGrammar) . " as wh_products_incoming,
+                " . $fields['wh_products_stock_level_ok']->getValue($queryGrammar) . " as wh_products_stock_level_ok,
                 NOW(), NOW()
             FROM inventory
             RIGHT JOIN inventory as inventory_source ON inventory_source.product_id = inventory.product_id

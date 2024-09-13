@@ -15,7 +15,7 @@ class UpdateOrderStatusTest extends TestCase
     /**
      * @throws GuzzleException
      */
-    public function testIfJobRunsWithoutExceptions()
+    public function testIfJobRunsWithoutExceptions(): void
     {
         // we set key to api2cart demo store
         $api2cartConnection = new Api2cartConnection([

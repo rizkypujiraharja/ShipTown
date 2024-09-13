@@ -72,9 +72,6 @@ class QuantityDiscount extends Model
         return (bool) count($ranges);
     }
 
-    /**
-     * @return QueryBuilder
-     */
     public static function getSpatieQueryBuilder(): QueryBuilder
     {
         return QueryBuilder::for(QuantityDiscount::class)

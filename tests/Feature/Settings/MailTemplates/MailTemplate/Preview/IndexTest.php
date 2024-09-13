@@ -25,13 +25,13 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_if_uri_set()
+    public function test_if_uri_set(): void
     {
         $this->assertNotEmpty($this->uri);
     }
 
     /** @test */
-    public function test_guest_call()
+    public function test_guest_call(): void
     {
         $response = $this->get($this->uri);
 
@@ -39,7 +39,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_user_call()
+    public function test_user_call(): void
     {
         $this->actingAs($this->user, 'web');
 
@@ -49,7 +49,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_admin_call()
+    public function test_admin_call(): void
     {
         $this->user->assignRole('admin');
 

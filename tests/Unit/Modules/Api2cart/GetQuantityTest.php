@@ -41,20 +41,16 @@ class GetQuantityTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testEmptyInventoryWarehouseIds()
+    public function testEmptyInventoryWarehouseIds(): void
     {
         $this->assertEquals(0, ProductTransformer::toApi2cartPayload($this->productLink)['quantity']);
     }
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testSetInventoryWarehouseIds()
+    public function testSetInventoryWarehouseIds(): void
     {
         Warehouse::query()
             ->select('id')

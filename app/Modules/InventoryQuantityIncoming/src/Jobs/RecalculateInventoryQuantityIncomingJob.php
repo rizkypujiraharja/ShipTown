@@ -29,10 +29,8 @@ class RecalculateInventoryQuantityIncomingJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $inventoryRecords = DB::select('
             SELECT inventory.id as id,

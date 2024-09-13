@@ -27,7 +27,7 @@ class ConfigurationChangedTest extends TestCase
     }
 
     /** @test */
-    public function test_if_releases_quantity_when_status_changed()
+    public function test_if_releases_quantity_when_status_changed(): void
     {
         // prepare database
         $warehouse1 = Warehouse::factory()->create();
@@ -64,7 +64,7 @@ class ConfigurationChangedTest extends TestCase
     }
 
     /** @test */
-    public function test_if_works_when_alias_is_used()
+    public function test_if_works_when_alias_is_used(): void
     {
         // prepare database
         $warehouse1 = Warehouse::factory()->create();

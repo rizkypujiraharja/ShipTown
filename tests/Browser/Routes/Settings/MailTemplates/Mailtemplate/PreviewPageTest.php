@@ -12,7 +12,7 @@ class PreviewPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testPage()
+    public function testPage(): void
     {
         $this->markTestIncomplete();
     }

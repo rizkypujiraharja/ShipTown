@@ -71,7 +71,7 @@ class SplitBundleSkuActionTest extends TestCase
     //        $this->assertEquals(200, $this->order->orderTotals()->first()->total_ordered);
     //    }
 
-    public function test_incorrect_inputs()
+    public function test_incorrect_inputs(): void
     {
         $action = new SplitBundleSkuAction($this->order);
 

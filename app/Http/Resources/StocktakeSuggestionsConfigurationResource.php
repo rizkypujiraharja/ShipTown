@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin \App\Modules\StocktakeSuggestions\src\Models\StocktakeSuggestionsConfiguration */
 class StocktakeSuggestionsConfigurationResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

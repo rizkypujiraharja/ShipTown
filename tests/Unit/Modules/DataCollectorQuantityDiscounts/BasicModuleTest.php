@@ -15,7 +15,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testBasicFunctionality()
+    public function testBasicFunctionality(): void
     {
         $this->assertTrue(true, 'Each quantity discounts has its own tests');
     }

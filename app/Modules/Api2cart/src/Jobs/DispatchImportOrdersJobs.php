@@ -18,10 +18,8 @@ class DispatchImportOrdersJobs implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         foreach (Api2cartConnection::all() as $api2cartConnection) {
             ImportOrdersJobs::dispatch($api2cartConnection);

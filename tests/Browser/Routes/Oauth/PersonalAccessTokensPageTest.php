@@ -6,7 +6,7 @@ use Tests\DuskTestCase;
 
 class PersonalAccessTokensPageTest extends DuskTestCase
 {
-    public function test_auto_pass()
+    public function test_auto_pass(): void
     {
         $this->assertTrue(true, 'Default laravel passport route. Testing in vendor package');
     }

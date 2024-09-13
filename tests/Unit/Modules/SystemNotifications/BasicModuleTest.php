@@ -20,13 +20,13 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testBasicFunctionality()
+    public function testBasicFunctionality(): void
     {
         $this->assertTrue(true, 'Module does not have any functionality yet');
     }
 
     /** @test */
-    public function testIfNoErrorsDuringEvents()
+    public function testIfNoErrorsDuringEvents(): void
     {
         EveryMinuteEvent::dispatch();
         EveryFiveMinutesEvent::dispatch();

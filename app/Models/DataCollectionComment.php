@@ -18,10 +18,7 @@ class DataCollectionComment extends BaseModel
         'comment',
     ];
 
-    /**
-     * @return BelongsTo
-     */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

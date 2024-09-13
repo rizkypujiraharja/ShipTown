@@ -36,9 +36,6 @@ class DpdAddress
         ];
     }
 
-    /**
-     * @return mixed
-     */
     public function getOnlyCorrectPostCode(): string
     {
         $countryCode = $this->address->get('CountryCode', '');

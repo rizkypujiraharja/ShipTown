@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function test_in_stock_since()
+    public function test_in_stock_since(): void
     {
         StocktakeSuggestionsServiceProvider::enableModule();
 
@@ -45,7 +45,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(0, StocktakeSuggestion::query()->count());
     }
 
-    public function test_in_stock_since_doesnt_add_suggestion()
+    public function test_in_stock_since_doesnt_add_suggestion(): void
     {
         StocktakeSuggestionsServiceProvider::enableModule();
 
@@ -66,7 +66,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(0, StocktakeSuggestion::query()->count());
     }
 
-    public function test_outdated_counts_suggestion_adding()
+    public function test_outdated_counts_suggestion_adding(): void
     {
         StocktakeSuggestionsServiceProvider::enableModule();
 
@@ -87,7 +87,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(1, StocktakeSuggestion::query()->count());
     }
 
-    public function test_outdated_counts_suggestion()
+    public function test_outdated_counts_suggestion(): void
     {
         StocktakeSuggestionsServiceProvider::enableModule();
 
@@ -125,7 +125,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(2, StocktakeSuggestion::count());
     }
 
-    public function test_outdated_counts_job()
+    public function test_outdated_counts_job(): void
     {
         StocktakeSuggestionsConfiguration::updateOrCreate([], ['min_count_date' => now()->subDay()]);
 
@@ -164,7 +164,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         Warehouse::factory()->create();
 

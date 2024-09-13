@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function test_if_updates_totals()
+    public function test_if_updates_totals(): void
     {
         OrderTotalsServiceProvider::enableModule();
 
@@ -32,7 +32,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         OrderTotalsServiceProvider::enableModule();
 

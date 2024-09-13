@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class ProductLinesCountTest extends TestCase
 {
-    public function testIfProductLineCountIsPopulatedCorrectly()
+    public function testIfProductLineCountIsPopulatedCorrectly(): void
     {
         /** @var Order $order */
         $order = Order::factory()->create();

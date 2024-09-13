@@ -12,11 +12,8 @@ class RefillPickingIfEmpty
 {
     /**
      * Handle the event.
-     *
-     *
-     * @return void
      */
-    public function handle(OrderUpdatedEvent $event)
+    public function handle(OrderUpdatedEvent $event): void
     {
         if ($event->getOrder()->isAttributeChanged('status_code')
             and ($event->getOrder()->getPreviousOrderStatus()->code === 'picking')) {

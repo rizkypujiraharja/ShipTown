@@ -179,7 +179,7 @@ class ReportBase extends Model
                 }
 
                 if ($fieldValue instanceof Expression) {
-                    $queryBuilder->addSelect(DB::raw('('.$fieldValue.') as '.$selectFieldName));
+                    $queryBuilder->addSelect(DB::raw('('.$fieldValue->getValue($queryBuilder->getGrammar()).') as '.$selectFieldName));
 
                     return;
                 }
@@ -218,7 +218,13 @@ class ReportBase extends Model
             ->each(function ($record, $alias) use (&$allowedFilters) {
                 $filterName = $alias.'_contains';
 
-                $allowedFilters[] = AllowedFilter::partial($filterName, $record);
+                if ($record instanceof Expression) {
+                    $allowedFilters[] = AllowedFilter::callback($filterName, function ($query, $value) use ($record) {
+                        $query->where(new Expression('('.$record->getValue(DB::connection()->getQueryGrammar()).')'), 'LIKE', "%{$value}%");
+                    });
+                } else {
+                    $allowedFilters[] = AllowedFilter::partial($filterName, $record);
+                }
             });
 
         return $allowedFilters;

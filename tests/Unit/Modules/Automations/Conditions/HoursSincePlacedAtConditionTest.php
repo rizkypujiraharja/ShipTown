@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class HoursSincePlacedAtConditionTest extends TestCase
 {
-    public function testConditionTrue()
+    public function testConditionTrue(): void
     {
         $select = DB::select('select now() as now');
 
@@ -31,7 +31,7 @@ class HoursSincePlacedAtConditionTest extends TestCase
         $this->assertEquals(1, $query->count(), 'We expect 1 order to be returned');
     }
 
-    public function testConditionFalse()
+    public function testConditionFalse(): void
     {
         $select = DB::select('select now() as now');
 
@@ -48,7 +48,7 @@ class HoursSincePlacedAtConditionTest extends TestCase
         $this->assertEquals(0, $query->count(), 'We expect 0 orders to be returned');
     }
 
-    public function testEmptyInput()
+    public function testEmptyInput(): void
     {
         Order::factory()->create();
 
@@ -63,7 +63,7 @@ class HoursSincePlacedAtConditionTest extends TestCase
         $this->assertEquals(0, $query->count(), 'We expect 0 orders to be returned');
     }
 
-    public function testInvalidInput()
+    public function testInvalidInput(): void
     {
         Order::factory()->create();
 

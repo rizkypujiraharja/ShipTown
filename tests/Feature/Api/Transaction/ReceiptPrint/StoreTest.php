@@ -45,7 +45,7 @@ class StoreTest extends TestCase
 
         $this->transaction = DataCollection::factory()->create([
             'name' => 'Test Transaction',
-            'type' => 'App\Models\DataCollectionTransaction',
+            'type' => \App\Models\DataCollectionTransaction::class,
             'warehouse_id' => $inventory->warehouse_id,
             'warehouse_code' => $inventory->warehouse_code,
 //            'shipping_address_id' => $shippingAddress->id,
@@ -62,7 +62,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function testIfCallReturnsOk()
+    public function testIfCallReturnsOk(): void
     {
         $response = $this->actingAs($this->adminUser, 'api')->postJson($this->uri,
             ['id' => $this->transaction->id, 'printer_id' => 1]);
@@ -80,7 +80,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function testUserAccess()
+    public function testUserAccess(): void
     {
         $user = User::factory()->create();
 

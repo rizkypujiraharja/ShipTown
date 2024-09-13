@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    public function testBasicTest()
+    public function testBasicTest(): void
     {
         $this->assertTrue(true);
     }

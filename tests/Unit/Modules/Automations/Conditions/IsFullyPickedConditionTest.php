@@ -30,7 +30,7 @@ class IsFullyPickedConditionTest extends TestCase
         $orderProduct1->update(['quantity_picked' => $orderProduct1->quantity_ordered]);
     }
 
-    public function test_condition_query_scope()
+    public function test_condition_query_scope(): void
     {
         $query = Order::query();
 
@@ -39,7 +39,7 @@ class IsFullyPickedConditionTest extends TestCase
         $this->assertEquals(1, $query->count());
     }
 
-    public function test_condition_false_query_scope()
+    public function test_condition_false_query_scope(): void
     {
         $query = Order::query();
 

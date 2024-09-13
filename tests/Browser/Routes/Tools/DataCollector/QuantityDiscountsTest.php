@@ -16,7 +16,7 @@ class QuantityDiscountsTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBuy1get1FreeQuantityDiscount()
+    public function testBuy1get1FreeQuantityDiscount(): void
     {
         $this->markTestSkipped('Please ensure following test works');
 

@@ -8,7 +8,7 @@ use Spatie\Tags\Tag;
 
 class ConnectionSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         if (empty(env('TEST_MODULES_MAGENTO2MSI_BASE_URL'))) {
             return;

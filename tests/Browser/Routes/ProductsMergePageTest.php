@@ -32,7 +32,7 @@ class ProductsMergePageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testUserAccess()
+    public function testUserAccess(): void
     {
         $this->browse(function (Browser $browser) {
             /** @var User $user */
@@ -53,7 +53,7 @@ class ProductsMergePageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testAdminAccess()
+    public function testAdminAccess(): void
     {
         $this->browse(function (Browser $browser) {
             /** @var User $admin */
@@ -73,7 +73,7 @@ class ProductsMergePageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testGuestAccess()
+    public function testGuestAccess(): void
     {
         User::factory()->create();
 

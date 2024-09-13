@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class FetchUpdatedOrdersJobTest extends TestCase
 {
-    public function testIfJobRunsWithoutExceptions()
+    public function testIfJobRunsWithoutExceptions(): void
     {
         $this->expectNotToPerformAssertions();
 

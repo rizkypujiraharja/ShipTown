@@ -7,7 +7,7 @@ use App\Models\InventoryMovement;
 
 class InventoryMovementObserver
 {
-    public function created(InventoryMovement $inventoryMovement)
+    public function created(InventoryMovement $inventoryMovement): void
     {
         InventoryMovementCreatedEvent::dispatch($inventoryMovement);
     }

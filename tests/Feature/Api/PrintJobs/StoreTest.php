@@ -10,7 +10,7 @@ class StoreTest extends TestCase
     private string $uri = '/api/print-jobs';
 
     /** @test */
-    public function testIfCallReturnsOk()
+    public function testIfCallReturnsOk(): void
     {
         $user = User::factory()->create();
 

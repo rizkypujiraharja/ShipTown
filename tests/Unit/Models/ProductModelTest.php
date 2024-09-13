@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class ProductModelTest extends TestCase
 {
-    public function test_if_dispatched_tag_attached_event()
+    public function test_if_dispatched_tag_attached_event(): void
     {
         Event::fake(ProductTagAttachedEvent::class);
 
@@ -22,7 +22,7 @@ class ProductModelTest extends TestCase
         Event::assertDispatched(ProductTagAttachedEvent::class);
     }
 
-    public function testIfQuantityAvailableBelow0NotAllowed()
+    public function testIfQuantityAvailableBelow0NotAllowed(): void
     {
         $product_before = Product::firstOrCreate(['sku' => '0123456']);
 
@@ -41,10 +41,8 @@ class ProductModelTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testIfReservesCorrectly()
+    public function testIfReservesCorrectly(): void
     {
         $product_before = Product::firstOrCreate(['sku' => '0123456']);
 

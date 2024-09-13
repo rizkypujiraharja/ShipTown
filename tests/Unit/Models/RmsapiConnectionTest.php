@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class RmsapiConnectionTest extends TestCase
 {
-    public function testEncryptsPassword()
+    public function testEncryptsPassword(): void
     {
         $config = new RmsapiConnection;
         $config->password = 'foo';

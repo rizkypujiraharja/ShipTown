@@ -28,50 +28,32 @@ class RequestResponse
         $this->response_content = $response->getBody()->getContents();
     }
 
-    /**
-     * @return string
-     */
-    public function getAsJson()
+    public function getAsJson(): string
     {
         return $this->response_content;
     }
 
-    /**
-     * @return ResponseInterface
-     */
-    public function getResponseRaw()
+    public function getResponseRaw(): ResponseInterface
     {
         return $this->response;
     }
 
-    /**
-     * @return bool
-     */
-    public function isSuccess()
+    public function isSuccess(): bool
     {
         return $this->response->getStatusCode() == 200;
     }
 
-    /**
-     * @return bool
-     */
-    public function isNotSuccess()
+    public function isNotSuccess(): bool
     {
         return ! $this->isSuccess();
     }
 
-    /**
-     * @return array
-     */
-    public function asArray()
+    public function asArray(): array
     {
         return json_decode($this->response_content, true);
     }
 
-    /**
-     * @return array
-     */
-    public function getResult()
+    public function getResult(): array
     {
         return $this->asArray()['data'];
     }

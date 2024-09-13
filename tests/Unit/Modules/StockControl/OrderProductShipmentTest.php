@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class OrderProductShipmentTest extends TestCase
 {
-    public function testExample()
+    public function testExample(): void
     {
         StockControlServiceProvider::enableModule();
 

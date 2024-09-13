@@ -16,7 +16,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         $data = [
             'order_number' => '0123456789',
@@ -46,7 +46,7 @@ class StoreTest extends TestCase
         $this->assertDatabaseHas('orders', ['order_number' => $data['order_number']]);
     }
 
-    public function testCorrectProductsSections()
+    public function testCorrectProductsSections(): void
     {
         $data = [
             'order_number' => '001241',
@@ -66,7 +66,7 @@ class StoreTest extends TestCase
             ->assertJsonValidationErrors(['products.0.price']);
     }
 
-    public function testIfMissingOrderNumberIsNotAllowed()
+    public function testIfMissingOrderNumberIsNotAllowed(): void
     {
         $data = [
             //'order_number'      => '001241',
@@ -93,7 +93,7 @@ class StoreTest extends TestCase
             ->assertStatus(422);
     }
 
-    public function testIfMissingProductsSectionIsNotAllowed()
+    public function testIfMissingProductsSectionIsNotAllowed(): void
     {
         $data = [
             'order_number' => '001241',

@@ -19,10 +19,8 @@ class RecalculateQuantityToShipJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $records = OrderProduct::query()
             ->whereRaw('quantity_to_ship != quantity_ordered - quantity_shipped')

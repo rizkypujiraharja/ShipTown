@@ -22,7 +22,7 @@ class DashboardPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBasics()
+    public function testBasics(): void
     {
         $this->basicUserAccessTest($this->uri, true);
         $this->basicAdminAccessTest($this->uri, true);
@@ -32,7 +32,7 @@ class DashboardPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testUserAccess()
+    public function testUserAccess(): void
     {
         $this->browse(function (Browser $browser) {
             /** @var User $user */

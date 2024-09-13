@@ -12,7 +12,7 @@ use Tests\TestCase;
 class IndexTest extends TestCase
 {
     /** @test */
-    public function test_pagination_call_returns_ok()
+    public function test_pagination_call_returns_ok(): void
     {
         $user = User::factory()->create();
 
@@ -35,7 +35,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_index_call_returns_ok()
+    public function test_index_call_returns_ok(): void
     {
         $user = User::factory()->create();
 

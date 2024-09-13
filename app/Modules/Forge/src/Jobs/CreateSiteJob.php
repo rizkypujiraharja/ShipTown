@@ -30,10 +30,8 @@ class CreateSiteJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $token = env('LARAVEL_FORGE_TOKEN');
         $serverId = env('LARAVEL_FORGE_SERVER_ID');

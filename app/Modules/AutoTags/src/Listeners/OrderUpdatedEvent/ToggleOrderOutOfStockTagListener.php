@@ -9,11 +9,8 @@ class ToggleOrderOutOfStockTagListener
 {
     /**
      * Handle the event.
-     *
-     *
-     * @return void
      */
-    public function handle(OrderUpdatedEvent $event)
+    public function handle(OrderUpdatedEvent $event): void
     {
         $order = $event->getOrder();
 

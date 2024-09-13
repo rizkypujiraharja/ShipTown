@@ -29,7 +29,7 @@ class OrderObserver
         }
     }
 
-    public function created(Order $order)
+    public function created(Order $order): void
     {
         // we will not dispatch CreatedEvent here
         // please use OrderService method
@@ -39,7 +39,7 @@ class OrderObserver
         // OrderCreatedEvent::dispatch();
     }
 
-    public function updated(Order $order)
+    public function updated(Order $order): void
     {
         OrderUpdatedEvent::dispatch($order);
     }

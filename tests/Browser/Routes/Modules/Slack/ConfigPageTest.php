@@ -14,7 +14,7 @@ class ConfigPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testPage()
+    public function testPage(): void
     {
         /** @var User $user */
         $user = User::factory()->create();
@@ -32,7 +32,7 @@ class ConfigPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBasics()
+    public function testBasics(): void
     {
         $this->basicUserAccessTest($this->uri, false);
         $this->basicAdminAccessTest($this->uri, true);

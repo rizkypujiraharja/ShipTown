@@ -60,7 +60,7 @@ class MultiAutomationsTest extends TestCase
         OrderStatus::create(['name' => 'status3', 'code' => 'status3']);
     }
 
-    public function testExample()
+    public function testExample(): void
     {
         OrderProduct::factory()->count(10)->create();
 

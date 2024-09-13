@@ -19,10 +19,8 @@ class ClearPackerIdJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $maxHoursOfInactivity = 12;
 

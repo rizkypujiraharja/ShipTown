@@ -36,11 +36,10 @@ class SyncVariant implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
      *
      * @throws GuzzleException
      */
-    public function handle()
+    public function handle(): void
     {
         if ($this->product_link->api2cart_product_type != 'variant') {
             return;

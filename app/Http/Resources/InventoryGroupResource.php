@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin \App\Modules\InventoryGroups\src\Models\InventoryGroup */
 class InventoryGroupResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

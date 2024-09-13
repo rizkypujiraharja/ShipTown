@@ -11,10 +11,8 @@ class PrintNodeClientSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         if (env('TEST_MODULES_PRINTNODE_API_KEY')) {
             $client = Client::firstOrNew();

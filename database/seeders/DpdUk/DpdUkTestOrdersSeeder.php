@@ -13,10 +13,8 @@ class DpdUkTestOrdersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         if (empty(env('TEST_DPDUK_USERNAME'))) {
             return;

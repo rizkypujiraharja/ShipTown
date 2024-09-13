@@ -13,10 +13,8 @@ class OrderAddressResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param  Request  $request
      */
-    public function toArray($request): array
+    public function toArray(Request $request): array
     {
         return [
             'address1' => $this->address1,

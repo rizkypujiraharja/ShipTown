@@ -30,7 +30,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_EveryMinuteEvent_heartbeat()
+    public function test_EveryMinuteEvent_heartbeat(): void
     {
         DispatchEveryMinuteEventJob::dispatch();
 
@@ -40,7 +40,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_FiveMinutesEvent_heartbeat()
+    public function test_FiveMinutesEvent_heartbeat(): void
     {
         DispatchEveryFiveMinutesEventJob::dispatch();
 
@@ -50,7 +50,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_TenMinutesEvent_heartbeat()
+    public function test_TenMinutesEvent_heartbeat(): void
     {
         EveryTenMinutesEvent::dispatch();
 
@@ -60,7 +60,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_hourlyEvent_heartbeat()
+    public function test_hourlyEvent_heartbeat(): void
     {
         DispatchEveryHourEventJobs::dispatch();
 
@@ -70,7 +70,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_dailyEvent_heartbeat()
+    public function test_dailyEvent_heartbeat(): void
     {
         EveryDayEvent::dispatch();
 

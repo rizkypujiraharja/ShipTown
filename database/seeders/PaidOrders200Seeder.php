@@ -12,10 +12,8 @@ class PaidOrders200Seeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Order::factory()
             ->count(20)

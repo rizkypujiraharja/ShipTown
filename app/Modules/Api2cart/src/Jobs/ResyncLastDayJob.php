@@ -19,10 +19,8 @@ class ResyncLastDayJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Api2cartConnection::all()
             ->each(function (Api2cartConnection $connection) {

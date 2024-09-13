@@ -14,7 +14,7 @@ class RegisterPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testPage()
+    public function testPage(): void
     {
         User::query()->delete();
 

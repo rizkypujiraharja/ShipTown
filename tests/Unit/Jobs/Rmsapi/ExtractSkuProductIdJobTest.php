@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class ExtractSkuProductIdJobTest extends TestCase
 {
-    public function testIfAllSkuArePopulated()
+    public function testIfAllSkuArePopulated(): void
     {
         Warehouse::factory()->create();
 

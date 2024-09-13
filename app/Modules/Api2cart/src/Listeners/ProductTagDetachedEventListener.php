@@ -10,11 +10,8 @@ class ProductTagDetachedEventListener
 {
     /**
      * Handle the event.
-     *
-     *
-     * @return void
      */
-    public function handle(ProductTagDetachedEvent $event)
+    public function handle(ProductTagDetachedEvent $event): void
     {
         if ($event->tag() === 'Available Online') {
             Api2cartConnection::query()

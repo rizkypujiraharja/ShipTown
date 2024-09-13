@@ -9,10 +9,8 @@ class FulfilmentCenterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         /** @var Warehouse $fulfilmentCenter */
         $fulfilmentCenter = Warehouse::firstOrCreate(['code' => '99'], ['name' => 'Warehouse']);

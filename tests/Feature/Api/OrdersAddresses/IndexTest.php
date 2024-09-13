@@ -11,7 +11,7 @@ class IndexTest extends TestCase
     private string $uri = 'api/orders-addresses/';
 
     /** @test */
-    public function testIfCallReturnsOk()
+    public function testIfCallReturnsOk(): void
     {
         /** @var User $user */
         $user = User::factory()->create();

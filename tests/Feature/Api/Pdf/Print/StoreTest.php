@@ -8,7 +8,7 @@ use Tests\TestCase;
 class StoreTest extends TestCase
 {
     /** @test */
-    public function store_returns_user_printer_id_missing_error()
+    public function store_returns_user_printer_id_missing_error(): void
     {
         $user = User::factory()->create();
 
@@ -23,7 +23,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function store_returns_an_ok_response()
+    public function store_returns_an_ok_response(): void
     {
         $user = User::factory()->create();
 

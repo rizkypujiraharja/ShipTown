@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function testTransferInScannedAction()
+    public function testTransferInScannedAction(): void
     {
         $product = Product::factory()->create();
         $warehouse = Warehouse::factory()->create();
@@ -54,7 +54,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals(0, $record->total_transferred_out);
     }
 
-    public function testTransferOutScannedAction()
+    public function testTransferOutScannedAction(): void
     {
         $product = Product::factory()->create();
         $warehouse = Warehouse::factory()->create();
@@ -90,7 +90,7 @@ class BasicModuleTest extends TestCase
         $this->assertEquals($inventory->quantity, $quantityBefore - $record->total_transferred_out);
     }
 
-    public function testTransferToScannedAction()
+    public function testTransferToScannedAction(): void
     {
         $product = Product::factory()->create();
         $sourceWarehouse = Warehouse::factory()->create();

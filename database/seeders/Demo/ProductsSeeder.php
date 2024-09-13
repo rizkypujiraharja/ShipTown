@@ -11,10 +11,8 @@ class ProductsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
 
         //        Product::query()->updateOrCreate(['sku' => '1'], ['name' => 'Tennis Racket']);

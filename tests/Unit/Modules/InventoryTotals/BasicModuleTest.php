@@ -14,7 +14,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function testIfRecordsAreRecreated()
+    public function testIfRecordsAreRecreated(): void
     {
         $warehouse = Warehouse::factory()->create();
         $product = Product::factory()->create();
@@ -34,7 +34,7 @@ class BasicModuleTest extends TestCase
         $this->assertDatabaseHas('inventory_totals_by_warehouse_tag', ['product_id' => $product->getKey()]);
     }
 
-    public function testIfRecordCreatedWhenTagAttachedToWarehouse()
+    public function testIfRecordCreatedWhenTagAttachedToWarehouse(): void
     {
         $warehouse = Warehouse::factory()->create();
         $product = Product::factory()->create();
@@ -44,7 +44,7 @@ class BasicModuleTest extends TestCase
         $this->assertDatabaseHas('inventory_totals_by_warehouse_tag', ['product_id' => $product->getKey()]);
     }
 
-    public function test_sales_totals()
+    public function test_sales_totals(): void
     {
         $warehouse = Warehouse::factory()->create();
 
@@ -59,7 +59,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         InventoryTotalsServiceProvider::enableModule();
 

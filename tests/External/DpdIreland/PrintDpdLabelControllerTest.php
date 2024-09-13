@@ -20,7 +20,7 @@ class PrintDpdLabelControllerTest extends TestCase
     /**
      * @test
      */
-    public function storeReturnsOkResponse()
+    public function storeReturnsOkResponse(): void
     {
         $address = OrderAddress::factory()->create([
             'company' => 'TEST COMPANY',

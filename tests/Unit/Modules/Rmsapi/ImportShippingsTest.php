@@ -16,7 +16,7 @@ use Tests\TestCase;
 class ImportShippingsTest extends TestCase
 {
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         /** @var Product $product */
         $product = Product::factory()->create();

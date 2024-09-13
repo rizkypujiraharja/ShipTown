@@ -14,7 +14,7 @@ class UsersPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testIfPageLoads()
+    public function testIfPageLoads(): void
     {
         $this->browse(function (Browser $browser) {
             /** @var User $admin */

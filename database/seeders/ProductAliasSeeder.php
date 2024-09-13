@@ -9,10 +9,8 @@ class ProductAliasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         ProductAlias::factory()->count(10)->create();
 

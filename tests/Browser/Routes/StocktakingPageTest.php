@@ -18,7 +18,7 @@ class StocktakingPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBasics()
+    public function testBasics(): void
     {
         $this->basicUserAccessTest($this->uri, true);
         $this->basicAdminAccessTest($this->uri, true);
@@ -28,7 +28,7 @@ class StocktakingPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testIfPageDisplaysCorrectly()
+    public function testIfPageDisplaysCorrectly(): void
     {
         $this->browse(function (Browser $browser) {
             /** @var User $user */
@@ -50,7 +50,7 @@ class StocktakingPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testSuccessfulStocktakeAction()
+    public function testSuccessfulStocktakeAction(): void
     {
         $this->browse(function (Browser $browser) {
             $user = User::factory()->create();
@@ -87,7 +87,7 @@ class StocktakingPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testIfNegativeQuantityNotAllowed()
+    public function testIfNegativeQuantityNotAllowed(): void
     {
         $this->browse(function (Browser $browser) {
             Warehouse::factory()->create();
@@ -128,7 +128,7 @@ class StocktakingPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testIfAliasScans()
+    public function testIfAliasScans(): void
     {
         $this->browse(function (Browser $browser) {
             Warehouse::factory()->create();
@@ -169,7 +169,7 @@ class StocktakingPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testIfNotifiesWhenProductNotFound()
+    public function testIfNotifiesWhenProductNotFound(): void
     {
         $this->browse(function (Browser $browser) {
             Warehouse::factory()->create();

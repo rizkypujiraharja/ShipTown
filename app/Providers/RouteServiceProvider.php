@@ -19,12 +19,12 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        $this->configureRateLimiting();
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
 
         $this->routes(function () {
             $this->mapPublicRoutes();
@@ -40,10 +40,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * These routes are PUBLICLY accessible !!!!
      * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
      */
-    protected function mapPublicRoutes()
+    protected function mapPublicRoutes(): void
     {
         Route::middleware(['web'])
             ->group(base_path('routes/public.php'));
@@ -53,10 +51,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "web" user routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapWebRoutes(): void
     {
         Route::middleware(['web', 'auth', 'twofactor'])
             ->group(base_path('routes/web.php'));
@@ -66,25 +62,11 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "api" user routes for the application.
      *
      * These routes are typically stateless.
-     *
-     * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiRoutes(): void
     {
         Route::middleware(['auth:api', 'bindings'])
             ->prefix('api')
             ->group(base_path('routes/api.php'));
-    }
-
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting()
-    {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
     }
 }

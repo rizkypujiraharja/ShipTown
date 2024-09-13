@@ -14,7 +14,7 @@ class JobsDispatchTests extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_if_dispatches_import_jobs()
+    public function test_if_dispatches_import_jobs(): void
     {
         Bus::fake();
 

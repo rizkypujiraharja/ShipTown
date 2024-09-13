@@ -23,7 +23,7 @@ class DestroyTest extends TestCase
     }
 
     /** @test */
-    public function test_delete_call_returns_ok()
+    public function test_delete_call_returns_ok(): void
     {
         Passport::actingAs(
             User::factory()->admin()->create()
@@ -34,7 +34,7 @@ class DestroyTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function test_delete_call_should_be_loggedin()
+    public function test_delete_call_should_be_loggedin(): void
     {
         $response = $this->simulationTest();
 

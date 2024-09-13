@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         if (empty(env('SCURRI_USERNAME'))) {
             $this->markTestSkipped('SCURRI_USERNAME is not set');
@@ -33,7 +33,7 @@ class BasicModuleTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function test_address1_too_long_scenario()
+    public function test_address1_too_long_scenario(): void
     {
         if (empty(env('SCURRI_USERNAME'))) {
             $this->markTestSkipped('SCURRI_USERNAME is not set');

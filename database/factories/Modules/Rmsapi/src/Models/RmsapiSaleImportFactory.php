@@ -27,7 +27,7 @@ class RmsapiSaleImportFactory extends Factory
             'type' => 'rms_sale',
             'sku' => $product->sku,
             'quantity' => $this->faker->numberBetween(1, 100) * -1,
-            'transaction_time' => $this->faker->dateTime,
+            'transaction_time' => $this->faker->dateTime(),
             'transaction_number' => $this->faker->numberBetween(100000, 200000),
             'transaction_entry_id' => $this->faker->numberBetween(700000, 900000),
             'comment' => '',

@@ -11,7 +11,7 @@ class MagentoApiPageTest extends DuskTestCase
 {
     private string $uri = '/settings/modules/magento-api';
 
-    public function testBasics()
+    public function testBasics(): void
     {
         EventServiceProviderBase::enableModule();
 
@@ -20,7 +20,7 @@ class MagentoApiPageTest extends DuskTestCase
         $this->basicGuestAccessTest($this->uri);
     }
 
-    public function testPage()
+    public function testPage(): void
     {
         EventServiceProviderBase::enableModule();
 

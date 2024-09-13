@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
-    public function test_show_call_returns_ok()
+    public function test_show_call_returns_ok(): void
     {
         $order = Order::factory()->create();
 
@@ -49,7 +49,7 @@ class IndexTest extends TestCase
         ]);
     }
 
-    public function test_show_call_not_found()
+    public function test_show_call_not_found(): void
     {
         $user = User::factory()->create();
 

@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         if (empty(env('TEST_DPDUK_USERNAME'))) {
             $this->markTestSkipped('TEST_DPDUK_USERNAME is not set');

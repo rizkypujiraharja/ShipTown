@@ -101,10 +101,7 @@ class CsvImportController extends Controller
     }
 
     /**
-     * @param string $tempTableName
-     * @param \Closure $callback
      * @param $data
-     * @return void
      */
     public function fromArray(string $tempTableName, \Closure $callback, $data): void
     {

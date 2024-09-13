@@ -16,10 +16,8 @@ class BasicModuleTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function test_basic_functionality()
+    public function test_basic_functionality(): void
     {
         AutoStatusPickingServiceProvider::enableModule();
         InventoryReservationsEventServiceProviderBase::enableModule();

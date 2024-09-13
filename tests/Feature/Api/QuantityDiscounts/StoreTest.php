@@ -11,7 +11,7 @@ class StoreTest extends TestCase
     private string $uri = 'api/quantity-discounts/';
 
     /** @test */
-    public function testIfCallReturnsOk()
+    public function testIfCallReturnsOk(): void
     {
         /** @var User $user */
         $user = User::factory()->create();

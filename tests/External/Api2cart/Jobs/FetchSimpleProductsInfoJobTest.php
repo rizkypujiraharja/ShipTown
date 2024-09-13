@@ -17,11 +17,10 @@ class FetchSimpleProductsInfoJobTest extends TestCase
     /**
      * A basic feature test example.
      *
-     * @return void
      *
      * @throws RequestException
      */
-    public function testExample()
+    public function testExample(): void
     {
         /** @var Warehouse $warehouse */
         $warehouse = Warehouse::factory()->create();

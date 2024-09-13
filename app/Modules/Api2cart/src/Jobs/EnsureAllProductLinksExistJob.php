@@ -19,10 +19,8 @@ class EnsureAllProductLinksExistJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $tag = Tag::findFromString('Available Online');
 

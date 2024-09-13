@@ -10,10 +10,8 @@ class ProductTagsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Tag::query()->firstOrCreate(['name' => 'slow']);
         Tag::query()->firstOrCreate(['name' => 'discontinued']);

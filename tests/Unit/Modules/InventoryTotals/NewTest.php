@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class NewTest extends TestCase
 {
-    public function testBasic()
+    public function testBasic(): void
     {
         /** @var Warehouse $warehouse1 */
         $warehouse1 = Warehouse::factory()->create();

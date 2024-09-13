@@ -28,7 +28,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfUpdatesInventoryReservationWhenOrderProductsIsModifiedOnActiveOrder()
+    public function testIfUpdatesInventoryReservationWhenOrderProductsIsModifiedOnActiveOrder(): void
     {
         // prepare database
         $warehouse = Warehouse::factory()->create();
@@ -83,7 +83,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfDeletesInventoryReservationWhenOrderProductsIsDeletedFromActiveOrder()
+    public function testIfDeletesInventoryReservationWhenOrderProductsIsDeletedFromActiveOrder(): void
     {
         // prepare database
         $warehouse = Warehouse::factory()->create();
@@ -142,7 +142,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfReservesInventoryWhenOrderProductsIsAddedToActiveOrder()
+    public function testIfReservesInventoryWhenOrderProductsIsAddedToActiveOrder(): void
     {
         // prepare database
         $warehouse = Warehouse::factory()->create();
@@ -195,7 +195,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfNoErrorsDuringEvents()
+    public function testIfNoErrorsDuringEvents(): void
     {
         EveryMinuteEvent::dispatch();
         EveryFiveMinutesEvent::dispatch();

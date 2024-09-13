@@ -5,11 +5,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
-        if (! Schema::hasTable('oauth_auth_codes')) {
+        if (!Schema::hasTable('oauth_auth_codes')) {
             Schema::create('oauth_auth_codes', function (Blueprint $table) {
                 $table->string('id', 100)->primary();
                 $table->foreignId('user_id')->index();
@@ -20,7 +19,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('oauth_access_tokens')) {
+        if (!Schema::hasTable('oauth_access_tokens')) {
             Schema::create('oauth_access_tokens', function (Blueprint $table) {
                 $table->string('id', 100)->primary();
                 $table->foreignId('user_id')->nullable()->index();
@@ -33,7 +32,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('oauth_refresh_tokens')) {
+        if (!Schema::hasTable('oauth_refresh_tokens')) {
             Schema::create('oauth_refresh_tokens', function (Blueprint $table) {
                 $table->string('id', 100)->primary();
                 $table->string('access_token_id', 100)->index();
@@ -42,7 +41,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('oauth_clients')) {
+        if (!Schema::hasTable('oauth_clients')) {
             Schema::create('oauth_clients', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('user_id')->nullable()->index();
@@ -57,7 +56,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('oauth_personal_access_clients')) {
+        if (!Schema::hasTable('oauth_personal_access_clients')) {
             Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('client_id');
@@ -96,21 +95,22 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::connection(config('activitylog.database_connection'))->create(config('activitylog.table_name'), function (Blueprint $table) {
-            $table->id();
-            $table->string('log_name')->nullable()->index();
-            $table->text('description');
-            $table->foreignId('subject_id')->nullable();
-            $table->string('subject_type')->nullable();
-            $table->string('event')->nullable();
-            $table->foreignId('causer_id')->nullable();
-            $table->string('causer_type')->nullable();
-            $table->json('properties')->nullable();
-            $table->uuid('batch_uuid')->nullable();
-            $table->timestamps();
-            $table->index(['subject_id', 'subject_type'], 'subject');
-            $table->index(['causer_id', 'causer_type'], 'causer');
-        });
+        Schema::connection(config('activitylog.database_connection'))->create(config('activitylog.table_name'),
+            function (Blueprint $table) {
+                $table->id();
+                $table->string('log_name')->nullable()->index();
+                $table->text('description');
+                $table->foreignId('subject_id')->nullable();
+                $table->string('subject_type')->nullable();
+                $table->string('event')->nullable();
+                $table->foreignId('causer_id')->nullable();
+                $table->string('causer_type')->nullable();
+                $table->json('properties')->nullable();
+                $table->uuid('batch_uuid')->nullable();
+                $table->timestamps();
+                $table->index(['subject_id', 'subject_type'], 'subject');
+                $table->index(['causer_id', 'causer_type'], 'causer');
+            });
 
         Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email')->index();
@@ -235,11 +235,11 @@ return new class extends Migration
             $table->decimal('quantity_incoming', 20)->default(0)->index();
 
             $table->decimal('quantity_required', 20)
-                ->storedAs('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point '.
-                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)'.
+                ->storedAs('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point ' .
+                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)' .
                     'ELSE 0 END')
-                ->comment('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point '.
-                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)'.
+                ->comment('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point ' .
+                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)' .
                     'ELSE 0 END')->index();
 
             $table->decimal('reorder_point', 20)->default(0)->index();
@@ -258,12 +258,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->index([DB::raw('last_sequence_number DESC')]);
-            $table->index([DB::raw('last_movement_at DESC')]);
-            $table->index([DB::raw('first_received_at DESC')]);
-            $table->index([DB::raw('last_received_at DESC')]);
-            $table->index([DB::raw('first_sold_at DESC')]);
-
             $table->foreign('product_id')
                 ->references('id')
                 ->on('products')
@@ -274,6 +268,12 @@ return new class extends Migration
                 ->references('id')
                 ->onDelete('cascade');
         });
+
+        DB::statement('CREATE INDEX last_sequence_number_desc_index ON inventory (last_sequence_number DESC)');
+        DB::statement('CREATE INDEX last_movement_at_desc_index ON inventory (last_movement_at DESC)');
+        DB::statement('CREATE INDEX first_received_at_desc_index ON inventory (first_received_at DESC)');
+        DB::statement('CREATE INDEX last_received_at_desc_index ON inventory (last_received_at DESC)');
+        DB::statement('CREATE INDEX first_sold_at_desc_index ON inventory (first_sold_at DESC)');
 
         Schema::create('orders_statuses', function (Blueprint $table) {
             $table->id();
@@ -840,7 +840,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('level')->default('error')->index();
             $table->string('error_message', 255)->nullable();
-            $table->timestamp('expires_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('expires_at')->useCurrent();
             $table->timestamps();
         });
 
@@ -1165,14 +1165,14 @@ return new class extends Migration
                 ->on('inventory');
         });
 
-        if (! Schema::hasColumn(config('activitylog.table_name'), 'event')) {
+        if (!Schema::hasColumn(config('activitylog.table_name'), 'event')) {
             Schema::connection(config('activitylog.database_connection'))
                 ->table(config('activitylog.table_name'), function (Blueprint $table) {
                     $table->string('event')->nullable()->after('subject_type');
                 });
         }
 
-        if (! Schema::hasColumn(config('activitylog.table_name'), 'batch_uuid')) {
+        if (!Schema::hasColumn(config('activitylog.table_name'), 'batch_uuid')) {
             Schema::connection(config('activitylog.database_connection'))
                 ->table(config('activitylog.table_name'), function (Blueprint $table) {
                     $table->uuid('batch_uuid')->nullable()->after('properties');
@@ -1181,9 +1181,9 @@ return new class extends Migration
 
         Schema::create('modules_queue_monitor_jobs', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->nullable()->unique();
+            $table->uuid()->nullable()->unique();
             $table->string('job_class')->index();
-            $table->timestamp('dispatched_at')->default(DB::raw('CURRENT_TIMESTAMP'))->index();
+            $table->timestamp('dispatched_at')->useCurrent()->index();
             $table->timestamp('processing_at')->nullable();
             $table->timestamp('processed_at')->nullable();
             $table->bigInteger('seconds_dispatching')
@@ -1393,7 +1393,7 @@ return new class extends Migration
             throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
-        if (! Schema::hasTable('permissions')) {
+        if (!Schema::hasTable('permissions')) {
             Schema::create($tableNames['permissions'], function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('name');
@@ -1402,7 +1402,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('roles')) {
+        if (!Schema::hasTable('roles')) {
             Schema::create($tableNames['roles'], function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('name');
@@ -1411,33 +1411,36 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('model_has_permissions')) {
-            Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
-                $table->unsignedBigInteger('permission_id');
+        if (!Schema::hasTable('model_has_permissions')) {
+            Schema::create($tableNames['model_has_permissions'],
+                function (Blueprint $table) use ($tableNames, $columnNames) {
+                    $table->unsignedBigInteger('permission_id');
 
-                $table->string('model_type');
-                $table->unsignedBigInteger($columnNames['model_morph_key']);
-                $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
+                    $table->string('model_type');
+                    $table->unsignedBigInteger($columnNames['model_morph_key']);
+                    $table->index([$columnNames['model_morph_key'], 'model_type'],
+                        'model_has_permissions_model_id_model_type_index');
 
-                $table->foreign('permission_id')
-                    ->references('id')
-                    ->on($tableNames['permissions'])
-                    ->onDelete('cascade');
+                    $table->foreign('permission_id')
+                        ->references('id')
+                        ->on($tableNames['permissions'])
+                        ->onDelete('cascade');
 
-                $table->primary(
-                    ['permission_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_permissions_permission_model_type_primary'
-                );
-            });
+                    $table->primary(
+                        ['permission_id', $columnNames['model_morph_key'], 'model_type'],
+                        'model_has_permissions_permission_model_type_primary'
+                    );
+                });
         }
 
-        if (! Schema::hasTable('model_has_roles')) {
+        if (!Schema::hasTable('model_has_roles')) {
             Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
                 $table->unsignedBigInteger('role_id');
 
                 $table->string('model_type');
                 $table->unsignedBigInteger($columnNames['model_morph_key']);
-                $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
+                $table->index([$columnNames['model_morph_key'], 'model_type'],
+                    'model_has_roles_model_id_model_type_index');
 
                 $table->foreign('role_id')
                     ->references('id')
@@ -1451,7 +1454,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('role_has_permissions')) {
+        if (!Schema::hasTable('role_has_permissions')) {
             Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
                 $table->unsignedBigInteger('permission_id');
                 $table->unsignedBigInteger('role_id');
@@ -1469,7 +1472,7 @@ return new class extends Migration
                 $table->primary(['permission_id', 'role_id'], 'role_has_permissions_permission_id_role_id_primary');
             });
         }
-        if (! Schema::hasTable('telescope_entries')) {
+        if (!Schema::hasTable('telescope_entries')) {
             Schema::create('telescope_entries', function (Blueprint $table) {
                 $table->bigIncrements('sequence');
                 $table->uuid('uuid');
@@ -1485,7 +1488,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('telescope_entries_tags')) {
+        if (!Schema::hasTable('telescope_entries_tags')) {
             Schema::create('telescope_entries_tags', function (Blueprint $table) {
                 $table->uuid('entry_uuid');
                 $table->string('tag')->index();
@@ -1499,7 +1502,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('telescope_monitoring')) {
+        if (!Schema::hasTable('telescope_monitoring')) {
             Schema::create('telescope_monitoring', function (Blueprint $table) {
                 $table->string('tag');
             });

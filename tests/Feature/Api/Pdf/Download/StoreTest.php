@@ -11,7 +11,7 @@ class StoreTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function store_returns_an_ok_response()
+    public function store_returns_an_ok_response(): void
     {
         $user = User::factory()->create();
 

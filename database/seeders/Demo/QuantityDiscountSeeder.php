@@ -15,7 +15,7 @@ use Illuminate\Database\Seeder;
 
 class QuantityDiscountSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $quantityDiscount1 = QuantityDiscount::factory()
             ->create([

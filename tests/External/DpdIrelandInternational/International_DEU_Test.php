@@ -15,7 +15,7 @@ class International_DEU_Test extends TestCase
 {
     use SeedDpdTestConfiguration;
 
-    public function test_normal_overnight_consignment_single_parcel()
+    public function test_normal_overnight_consignment_single_parcel(): void
     {
         $address = OrderAddress::factory()->create([
             'company' => 'DPD Test',

@@ -221,11 +221,6 @@ class Product extends BaseModel
         $this->quantity_available = $this->quantity - $this->quantity_reserved;
     }
 
-    /**
-     * @param float $quantity
-     *
-     * @return $this
-     */
     public function reserveStock(float $quantity): Product
     {
         $this->quantity_reserved += $quantity;
@@ -234,9 +229,6 @@ class Product extends BaseModel
         return $this;
     }
 
-    /**
-     * @return HasMany
-     */
     public function inventoryTotals(): HasMany
     {
         return $this->hasMany(InventoryTotal::class);
@@ -254,9 +246,6 @@ class Product extends BaseModel
 
     /**
      * @param mixed $query
-     * @param string $text
-     *
-     * @return mixed
      */
     public function scopeWhereHasText($query, string $text): mixed
     {
@@ -319,10 +308,6 @@ class Product extends BaseModel
             ->where(['warehouse_id' => $user->warehouse_id]);
     }
 
-    /**
-     * @param string|null $warehouse_code
-     * @return HasMany
-     */
     public function prices(string $warehouse_code = null): HasMany
     {
         return $this->hasMany(ProductPrice::class)
@@ -335,9 +320,6 @@ class Product extends BaseModel
             ->keyBy('warehouse_code');
     }
 
-    /**
-     * @return HasMany
-     */
     public function aliases(): HasMany
     {
         return $this->hasMany(ProductAlias::class);
@@ -350,9 +332,6 @@ class Product extends BaseModel
             ->first();
     }
 
-    /**
-     * @return bool
-     */
     public function isInStock(): bool
     {
         return $this->quantity_available > 0;

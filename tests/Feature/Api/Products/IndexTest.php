@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
-    public function testProductHasTagsFilter()
+    public function testProductHasTagsFilter(): void
     {
         ray()->showQueries();
         $tagName = 'fdsaj & fdajJ';
@@ -59,7 +59,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_index_call_returns_ok()
+    public function test_index_call_returns_ok(): void
     {
         Product::query()->forceDelete();
         Product::factory()->create();

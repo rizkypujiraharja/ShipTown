@@ -10,7 +10,7 @@ use Tests\TestCase;
 class DestroyTest extends TestCase
 {
     /** @test */
-    public function test_delete_config()
+    public function test_delete_config(): void
     {
         $connection = DpdIreland::query()->create([
             'live' => false,

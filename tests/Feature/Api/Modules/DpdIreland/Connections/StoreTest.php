@@ -8,7 +8,7 @@ use Tests\TestCase;
 class StoreTest extends TestCase
 {
     /** @test */
-    public function test_success_config_create()
+    public function test_success_config_create(): void
     {
         /** @var User $user * */
         $user = User::factory()->create();
@@ -34,7 +34,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_failing_config_create()
+    public function test_failing_config_create(): void
     {
         /** @var User $user * */
         $user = User::factory()->create();

@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class SendEmailToCustomerActionTest extends TestCase
 {
-    public function test_successful_notification()
+    public function test_successful_notification(): void
     {
         $order = Order::factory()->create();
         $orderShipment = ShippingLabel::factory()->create();
@@ -34,7 +34,7 @@ class SendEmailToCustomerActionTest extends TestCase
         $this->assertTrue($actionSucceeded, 'Action failed');
     }
 
-    public function test_success_when_template_specified()
+    public function test_success_when_template_specified(): void
     {
         /** @var MailTemplate $template */
         $template = MailTemplate::factory()->create([

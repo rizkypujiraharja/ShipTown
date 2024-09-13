@@ -15,11 +15,10 @@ class ImportProductsJobTest extends TestCase
     /**
      * A basic feature test example.
      *
-     * @return void
      *
      * @throws \Exception
      */
-    public function testIfJobRuns()
+    public function testIfJobRuns(): void
     {
         Bus::fake();
         Event::fake();

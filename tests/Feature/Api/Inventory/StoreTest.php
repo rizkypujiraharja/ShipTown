@@ -19,7 +19,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         /** @var Warehouse $warehouse */
         $warehouse = Warehouse::factory()->create();
@@ -54,14 +54,14 @@ class StoreTest extends TestCase
         ]);
     }
 
-    public function testIfCantPostWithoutData()
+    public function testIfCantPostWithoutData(): void
     {
         $response = $this->postJson(url('api/inventory'), []);
 
         $response->assertStatus(422);
     }
 
-    public function testQuantityUpdate()
+    public function testQuantityUpdate(): void
     {
         Passport::actingAs(
             User::factory()->create()

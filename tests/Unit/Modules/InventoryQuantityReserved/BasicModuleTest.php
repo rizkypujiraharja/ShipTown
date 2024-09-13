@@ -28,7 +28,7 @@ class BasicModuleTest extends TestCase
     /** @test */
 
     /** @test */
-    public function correctQtyReservedAfterRecalculateInventoryRecordsJobTest()
+    public function correctQtyReservedAfterRecalculateInventoryRecordsJobTest(): void
     {
         $warehouse = Warehouse::factory()->create();
         $product = Product::factory()->create();
@@ -67,7 +67,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfNoErrorsDuringEvents()
+    public function testIfNoErrorsDuringEvents(): void
     {
         EveryMinuteEvent::dispatch();
         EveryFiveMinutesEvent::dispatch();

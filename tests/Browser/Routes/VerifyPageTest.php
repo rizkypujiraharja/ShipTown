@@ -22,7 +22,7 @@ class VerifyPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testPage()
+    public function testPage(): void
     {
 
         /** @var User $user */
@@ -49,7 +49,7 @@ class VerifyPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function test_if_guest_not_allowed()
+    public function test_if_guest_not_allowed(): void
     {
         User::query()->delete();
 

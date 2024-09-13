@@ -13,10 +13,8 @@ class SalesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Inventory::query()->update(['recount_required' => true]);
 

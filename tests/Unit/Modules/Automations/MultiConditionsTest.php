@@ -47,7 +47,7 @@ class MultiConditionsTest extends TestCase
         ]);
     }
 
-    public function testExample()
+    public function testExample(): void
     {
         RunEnabledAutomationsJob::dispatchSync();
 

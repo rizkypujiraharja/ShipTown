@@ -11,7 +11,7 @@
         "production": "npm version patch --force --no-git-tag-version && mix --production"
     },
     "devDependencies": {
-        "axios": "^0.25",
+        "axios": "^1.6.4",
         "bootstrap": "^4.6.1",
         "jquery": "^3.5.1",
         "laravel-mix": "^6.0.12",

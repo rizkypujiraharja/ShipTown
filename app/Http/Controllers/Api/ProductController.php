@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductsRequest;
 use App\Http\Resources\ProductResource;
@@ -18,7 +19,7 @@ class ProductController extends Controller
         return ProductResource::collection($query);
     }
 
-    public function store(StoreProductsRequest $request)
+    public function store(StoreProductsRequest $request): JsonResponse
     {
         $product = Product::query()->updateOrCreate(
             ['sku' => $request->sku],

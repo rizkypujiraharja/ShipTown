@@ -20,7 +20,7 @@ class TestShipmentService extends ShippingServiceAbstract
 class StoreTest extends TestCase
 {
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         $user = User::factory()->create();
         $order = Order::factory()->create();

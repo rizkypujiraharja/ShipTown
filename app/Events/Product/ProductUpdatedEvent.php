@@ -34,10 +34,8 @@ class ProductUpdatedEvent implements ShouldQueue
 
     /**
      * Get the channels the event should broadcast on.
-     *
-     * @return Channel
      */
-    public function broadcastOn()
+    public function broadcastOn(): Channel
     {
         return new PrivateChannel('channel-name');
     }

@@ -10,11 +10,8 @@ class ProductTagAttachedEventListener
 {
     /**
      * Handle the event.
-     *
-     *
-     * @return void
      */
-    public function handle(ProductTagAttachedEvent $event)
+    public function handle(ProductTagAttachedEvent $event): void
     {
         if ($event->tag === 'Available Online') {
             Magento2msiConnection::query()

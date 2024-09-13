@@ -16,7 +16,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_bulkupdate_call_returns_ok()
+    public function test_bulkupdate_call_returns_ok(): void
     {
         Configuration::create([
             'business_name' => 'Some name',

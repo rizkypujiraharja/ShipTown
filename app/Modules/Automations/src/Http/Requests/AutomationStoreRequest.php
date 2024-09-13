@@ -10,20 +10,16 @@ class AutomationStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return $this->user()->hasRole('admin');
     }
 
     /**
      * Get the condition rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $available_conditions_classes = AutomationService::availableConditions()->pluck('class');
         $available_action_classes = AutomationService::availableActions()->pluck('class');
@@ -42,10 +38,8 @@ class AutomationStoreRequest extends FormRequest
 
     /**
      * Get custom attributes for validator errors.
-     *
-     * @return array
      */
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'conditions.*.condition_class' => 'condition',

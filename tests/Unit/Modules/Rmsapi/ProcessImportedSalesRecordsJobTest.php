@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class ProcessImportedSalesRecordsJobTest extends TestCase
 {
-    public function testIfDuplicatesNotAllowed()
+    public function testIfDuplicatesNotAllowed(): void
     {
         // prepare
         /** @var RmsapiSaleImport $saleRecord */
@@ -49,7 +49,7 @@ class ProcessImportedSalesRecordsJobTest extends TestCase
         ]);
     }
 
-    public function testIfImportsSale()
+    public function testIfImportsSale(): void
     {
         // prepare
         /** @var RmsapiSaleImport $saleRecord */
@@ -75,7 +75,7 @@ class ProcessImportedSalesRecordsJobTest extends TestCase
         ]);
     }
 
-    public function testIfSkipsOrderProductShipmentsTransactions()
+    public function testIfSkipsOrderProductShipmentsTransactions(): void
     {
         /** @var RmsapiConnection $rmsapiConnection */
         $rmsapiConnection = RmsapiConnection::factory()->create();

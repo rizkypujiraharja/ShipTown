@@ -16,10 +16,8 @@ class RefillWebPickingStatusListJobTest extends TestCase
 {
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testExample()
+    public function testExample(): void
     {
         AutoStatusPickingServiceProvider::enableModule();
         InventoryReservationsEventServiceProviderBase::enableModule();

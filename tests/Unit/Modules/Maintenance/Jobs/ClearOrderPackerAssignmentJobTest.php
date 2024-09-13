@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class ClearOrderPackerAssignmentJobTest extends TestCase
 {
-    public function testIfDoesNotUpdateLessThan12HoursOfInactivity()
+    public function testIfDoesNotUpdateLessThan12HoursOfInactivity(): void
     {
         // prepare
         Order::query()->forceDelete();
@@ -38,10 +38,8 @@ class ClearOrderPackerAssignmentJobTest extends TestCase
 
     /**
      * A basic feature test.
-     *
-     * @return void
      */
-    public function testIfClearsPackersAfter12hoursInactivity()
+    public function testIfClearsPackersAfter12hoursInactivity(): void
     {
         Order::query()->forceDelete();
 

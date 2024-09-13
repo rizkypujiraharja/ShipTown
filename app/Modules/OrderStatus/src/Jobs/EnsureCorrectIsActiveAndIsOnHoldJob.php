@@ -16,10 +16,8 @@ class EnsureCorrectIsActiveAndIsOnHoldJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         Order::query()
             ->leftJoin('orders_statuses', 'orders.status_code', '=', 'orders_statuses.code')

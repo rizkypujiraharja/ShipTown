@@ -26,10 +26,8 @@ class OversoldProductMail extends TemplateMailable
 
     /**
      * Build the message.
-     *
-     * @return $this
      */
-    public function build()
+    public function build(): static
     {
         /** @var MailTemplate $template */
         $template = MailTemplate::query()->where(['mailable' => self::class])->first();

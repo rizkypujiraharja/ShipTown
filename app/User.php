@@ -133,10 +133,7 @@ class User extends Authenticatable
             ]);
     }
 
-    /**
-     * @return void
-     */
-    public function generateTwoFactorCode()
+    public function generateTwoFactorCode(): void
     {
         $this->timestamps = false;
         $this->two_factor_code = rand(100000, 999999);
@@ -144,10 +141,7 @@ class User extends Authenticatable
         $this->save();
     }
 
-    /**
-     * @return void
-     */
-    public function resetTwoFactorCode()
+    public function resetTwoFactorCode(): void
     {
         $this->timestamps = false;
         $this->two_factor_code = null;

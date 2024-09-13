@@ -15,10 +15,8 @@ class EnsureProductSkusPresentInAliasesJob implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         DB::statement('
             DELETE FROM products_aliases

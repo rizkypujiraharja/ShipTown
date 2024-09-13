@@ -20,7 +20,7 @@ class DpdIntegrationJobTest extends TestCase
     /**
      * @test
      */
-    public function if_env_variables_are_set()
+    public function if_env_variables_are_set(): void
     {
         $this->assertNotEmpty(env('TEST_DPD_TOKEN'), 'TEST_DPD_TOKEN is not set');
         $this->assertNotEmpty(env('TEST_DPD_USER'), 'TEST_DPD_USER is not set');
@@ -30,7 +30,7 @@ class DpdIntegrationJobTest extends TestCase
     /**
      * @test
      */
-    public function if_authenticates()
+    public function if_authenticates(): void
     {
         $auth = Client::getCachedAuthorization();
         $this->assertEquals('OK', $auth['authorization_response']['Status']);
@@ -39,7 +39,7 @@ class DpdIntegrationJobTest extends TestCase
     /**
      * @test
      */
-    public function if_record_id_matches()
+    public function if_record_id_matches(): void
     {
         $address = OrderAddress::factory()->create([
             'company' => 'DPD Test',

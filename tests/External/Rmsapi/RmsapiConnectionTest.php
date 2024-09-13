@@ -12,7 +12,7 @@ class RmsapiConnectionTest extends TestCase
     /**
      * @throws GuzzleException
      */
-    public function test_if_fetches_products()
+    public function test_if_fetches_products(): void
     {
         $connection = RmsapiConnection::factory()->create([
             'location_id' => env('TEST_RMSAPI_WAREHOUSE_CODE'),

@@ -9,11 +9,10 @@ class EnvVariablesTest extends TestCase
     /**
      * A basic feature test example.
      *
-     * @return void
      *
      * @throws \Exception
      */
-    public function test_if_variables_set()
+    public function test_if_variables_set(): void
     {
         $this->assertNotEmpty(env('TEST_RMSAPI_WAREHOUSE_CODE'), 'TEST_RMSAPI_WAREHOUSE_CODE .env not set');
         $this->assertNotEmpty(env('TEST_RMSAPI_URL'), 'TEST_RMSAPI_URL .env not set');

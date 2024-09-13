@@ -9,10 +9,8 @@ class PicksSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         Pick::factory()->count(rand(50, 100))->create();
     }

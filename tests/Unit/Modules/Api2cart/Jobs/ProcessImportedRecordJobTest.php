@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class ProcessImportedRecordJobTest extends TestCase
 {
-    public function test()
+    public function test(): void
     {
         Api2cartConnection::factory()->create();
 

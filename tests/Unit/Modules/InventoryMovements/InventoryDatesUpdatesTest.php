@@ -27,7 +27,7 @@ class InventoryDatesUpdatesTest extends TestCase
     }
 
     /** @test */
-    public function testTransferInType()
+    public function testTransferInType(): void
     {
         /** @var InventoryMovement $movement */
         $movement = InventoryMovement::query()->create([
@@ -53,7 +53,7 @@ class InventoryDatesUpdatesTest extends TestCase
     }
 
     /** @test */
-    public function testStocktakeType()
+    public function testStocktakeType(): void
     {
         /** @var InventoryMovement $movement */
         $movement = InventoryMovement::query()->create([
@@ -81,7 +81,7 @@ class InventoryDatesUpdatesTest extends TestCase
     }
 
     /** @test */
-    public function testSaleType()
+    public function testSaleType(): void
     {
         /** @var InventoryMovement $movement */
         $movement = InventoryMovement::query()->create([

@@ -109,10 +109,6 @@ class DpdUkService
         return str_replace(array_keys($replaceArray), array_values($replaceArray), $subject);
     }
 
-    /**
-     * @param ShippingLabel $orderShipment
-     * @return string
-     */
     private function generateTrackingUrl(ShippingLabel $orderShipment): string
     {
         $baseUlr = 'https://track.dpd.co.uk/search';

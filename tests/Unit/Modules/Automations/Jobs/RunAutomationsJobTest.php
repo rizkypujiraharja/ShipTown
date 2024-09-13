@@ -67,10 +67,8 @@ class RunAutomationsJobTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function test_basic_automation()
+    public function test_basic_automation(): void
     {
         $this->assertCount(5, Order::query()->where(['status_code' => 'paid'])->get());
 

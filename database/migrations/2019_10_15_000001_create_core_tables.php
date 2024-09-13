@@ -39,7 +39,7 @@ return new class extends Migration
                 $table->text('user_agent')->nullable();
                 $table->text('payload');
                 $table->integer('last_activity');
-                $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+                $table->timestamp('created_at')->useCurrent();
 
                 $table->foreign('user_id')
                     ->references('id')

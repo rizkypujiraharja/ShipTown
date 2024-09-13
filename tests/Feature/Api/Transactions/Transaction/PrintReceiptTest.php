@@ -1,9 +1,10 @@
 <?php
 
-namespace Feature\Api\Transactions\Transaction;
+namespace Tests\Feature\Api\Transactions\Transaction;
 
 use App\Models\DataCollection;
 use App\Models\DataCollectionRecord;
+use App\Models\DataCollectionTransaction;
 use App\Models\Warehouse;
 use App\User;
 use Spatie\Permission\Models\Role;
@@ -15,7 +16,7 @@ class PrintReceiptTest extends TestCase
     private string $uri = '/api/transaction/receipt-print';
 
     /** @test */
-    public function test_printReceipt_route()
+    public function test_printReceipt_route(): void
     {
         $warehouse = Warehouse::query()->inRandomOrder()->first() ?? Warehouse::factory()->create();
 
@@ -30,7 +31,7 @@ class PrintReceiptTest extends TestCase
         /** @var DataCollection $dataCollectionToUpdate */
         $dataCollectionToUpdate = DataCollection::factory()->create([
             'name' => 'Test Transaction',
-            'type' => 'App\Models\DataCollectionTransaction',
+            'type' => DataCollectionTransaction::class,
             'warehouse_id' => $user->warehouse_id,
             'warehouse_code' => $user->warehouse_code,
         ]);
@@ -45,17 +46,14 @@ class PrintReceiptTest extends TestCase
         $response = $this->actingAs($user, 'api')->postJson($this->uri, [
             'id' => $dataCollectionToUpdate->id,
             'printer_id' => 1,
-            'epl' => true,
         ]);
 
         $receiptRawText = base64_decode($response->json('data.content'));
 
-        ray($receiptRawText);
-
         $response->assertSuccessful();
 
         // todo fix and more assertions
-        $this->assertTrue(Str::contains($receiptRawText, 'SKU    Name                     Qty.  Price'));
+        $this->assertTrue(Str::contains($receiptRawText, 'SKU         Name                     Qty.  Price'));
         $this->assertDatabaseHas(
             'data_collections',
             [

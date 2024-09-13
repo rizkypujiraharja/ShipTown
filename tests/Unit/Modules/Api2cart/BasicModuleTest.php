@@ -15,10 +15,8 @@ class BasicModuleTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testIfDispatchesJobs()
+    public function testIfDispatchesJobs(): void
     {
         Api2cartServiceProvider::enableModule();
 

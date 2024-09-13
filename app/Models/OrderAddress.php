@@ -170,21 +170,12 @@ class OrderAddress extends BaseModel
         $this->last_name = explode(' ', $value)[1];
     }
 
-    /**
-     * @return QueryBuilder
-     */
     public static function getSpatieQueryBuilder(): QueryBuilder
     {
         return QueryBuilder::for(OrderAddress::class)
             ->allowedFilters([AllowedFilter::scope('search', 'whereHasText')]);
     }
 
-    /**
-     * @param mixed $query
-     * @param string $text
-     *
-     * @return mixed
-     */
     public function scopeWhereHasText(mixed $query, string $text): mixed
     {
         return $query->where('company', $text)

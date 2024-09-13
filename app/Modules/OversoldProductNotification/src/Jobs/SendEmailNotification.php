@@ -32,10 +32,8 @@ class SendEmailNotification implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $mail = new OversoldProductMail([
             'product' => Product::find($this->product_id)->toArray(),

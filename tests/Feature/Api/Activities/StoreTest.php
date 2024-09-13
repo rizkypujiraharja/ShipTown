@@ -9,7 +9,7 @@ use Tests\TestCase;
 class StoreTest extends TestCase
 {
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         $order = Order::factory()->create();
         $user = User::factory()->create();

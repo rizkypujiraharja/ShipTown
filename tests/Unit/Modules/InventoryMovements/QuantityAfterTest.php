@@ -28,7 +28,7 @@ class QuantityAfterTest extends TestCase
         $this->inventory = Inventory::find($product->getKey(), $warehouse->getKey());
     }
 
-    public function testThatDoesntChangeStocktakeQuantityAfter()
+    public function testThatDoesntChangeStocktakeQuantityAfter(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::sell($this->inventory, -5);
@@ -53,7 +53,7 @@ class QuantityAfterTest extends TestCase
         $this->assertEquals($stocktakeMovement->quantity_after, $quantityAfterOriginal, 'Movement03');
     }
 
-    public function testIncorrectQuantityAfter()
+    public function testIncorrectQuantityAfter(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::sell($this->inventory, -5);
@@ -82,7 +82,7 @@ class QuantityAfterTest extends TestCase
         $this->assertEquals(7, $inventoryMovement03->quantity_after, 'Movement03');
     }
 
-    public function testBasicScenario()
+    public function testBasicScenario(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::stocktake($this->inventory, 5);

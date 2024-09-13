@@ -29,7 +29,7 @@ class InventoryObserver
         }
     }
 
-    public function updated(Inventory $inventory)
+    public function updated(Inventory $inventory): void
     {
         InventoryUpdatedEvent::dispatch($inventory);
     }

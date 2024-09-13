@@ -17,7 +17,7 @@ class BasicModuleTest extends TestCase
         EventServiceProviderBase::enableModule();
     }
 
-    public function test_if_reserves_correctly()
+    public function test_if_reserves_correctly(): void
     {
         $this->assertTrue(true);
     }

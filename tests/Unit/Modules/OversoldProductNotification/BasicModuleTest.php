@@ -16,10 +16,8 @@ class BasicModuleTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testExample()
+    public function testExample(): void
     {
         Mail::fake();
 

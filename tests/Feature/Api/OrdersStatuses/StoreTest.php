@@ -23,7 +23,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         Passport::actingAs(
             User::factory()->admin()->create()
@@ -34,14 +34,14 @@ class StoreTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function test_store_call_should_be_loggedin()
+    public function test_store_call_should_be_loggedin(): void
     {
         $response = $this->simulationTest();
 
         $response->assertRedirect(route('login'));
     }
 
-    public function test_store_call_should_loggedin_as_admin()
+    public function test_store_call_should_loggedin_as_admin(): void
     {
         Passport::actingAs(
             User::factory()->create()
@@ -52,7 +52,7 @@ class StoreTest extends TestCase
         $response->assertForbidden();
     }
 
-    public function test_code_cannot_duplicate()
+    public function test_code_cannot_duplicate(): void
     {
         Passport::actingAs(
             User::factory()->admin()->create()
@@ -66,7 +66,7 @@ class StoreTest extends TestCase
         ]);
     }
 
-    public function test_add_deleted_status_return_ok()
+    public function test_add_deleted_status_return_ok(): void
     {
         Passport::actingAs(
             User::factory()->admin()->create()

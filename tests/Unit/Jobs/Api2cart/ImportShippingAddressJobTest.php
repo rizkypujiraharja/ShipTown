@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class ImportShippingAddressJobTest extends TestCase
 {
-    public function testExample()
+    public function testExample(): void
     {
         Order::query()->forceDelete();
         OrderAddress::query()->forceDelete();

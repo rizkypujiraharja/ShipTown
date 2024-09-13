@@ -29,7 +29,7 @@ class QuantityDeltaTest extends TestCase
         $this->inventory = Inventory::find($product->getKey(), $warehouse->getKey());
     }
 
-    public function testIncorrectQuantityDeltaScenario()
+    public function testIncorrectQuantityDeltaScenario(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::sell($this->inventory, -5);
@@ -53,7 +53,7 @@ class QuantityDeltaTest extends TestCase
         $this->assertEquals($stocktakeMovement->quantity_delta, $stocktakeMovement->quantity_after - $stocktakeMovement->quantity_before, 'Movement03');
     }
 
-    public function testBasicScenario()
+    public function testBasicScenario(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::sell($this->inventory, -5);

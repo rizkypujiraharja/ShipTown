@@ -20,7 +20,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function test_module_basic_functionality()
+    public function test_module_basic_functionality(): void
     {
         if (env('TEST_MODULES_MAGENTO_BASE_URL') === null) {
             $this->markTestSkipped('Magento base url not set');
@@ -30,7 +30,7 @@ class BasicModuleTest extends TestCase
     }
 
     /** @test */
-    public function testIfNoErrorsDuringEvents()
+    public function testIfNoErrorsDuringEvents(): void
     {
         EveryMinuteEvent::dispatch();
         EveryFiveMinutesEvent::dispatch();

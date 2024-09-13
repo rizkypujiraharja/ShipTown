@@ -18,7 +18,7 @@ class IndexTest extends TestCase
     }
 
     /** @test */
-    public function test_if_uri_set()
+    public function test_if_uri_set(): void
     {
         $this->assertNotEmpty($this->uri);
     }

@@ -19,7 +19,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_store_new_product_return_ok()
+    public function test_store_new_product_return_ok(): void
     {
         $params = [
             'sku' => 'TestSku',
@@ -44,7 +44,7 @@ class StoreTest extends TestCase
         ]);
     }
 
-    public function test_store_available_product_return_ok()
+    public function test_store_available_product_return_ok(): void
     {
         $product = Product::factory()->create();
         $params = [

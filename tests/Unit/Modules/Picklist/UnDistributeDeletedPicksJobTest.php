@@ -18,7 +18,7 @@ class UnDistributeDeletedPicksJobTest extends TestCase
     }
 
     /** @test */
-    public function testBasicFunctionality()
+    public function testBasicFunctionality(): void
     {
         $pick = Pick::factory()->create();
 
@@ -33,7 +33,7 @@ class UnDistributeDeletedPicksJobTest extends TestCase
         $this->assertDatabaseHas('picks', ['is_distributed' => true, 'quantity_distributed' => 0, 'deleted_at' => $pick->deleted_at]);
     }
 
-    public function testIfDoesntTouchActiveRecords()
+    public function testIfDoesntTouchActiveRecords(): void
     {
         $pick = Pick::factory()->create();
 

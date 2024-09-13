@@ -15,10 +15,8 @@ class SyncProductsToApi2cartTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testExample()
+    public function testExample(): void
     {
         /** @var Warehouse $warehouse */
         $warehouse = Warehouse::factory()->create(['code' => '99', 'name' => '99']);

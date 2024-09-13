@@ -14,7 +14,7 @@ use Tests\TestCase;
 
 class BasicModuleTest extends TestCase
 {
-    public function test_if_env_variables_are_set()
+    public function test_if_env_variables_are_set(): void
     {
         $this->assertNotEmpty(config('aws.credentials.key'), 'AWS_ACCESS_KEY_ID env var not set');
         $this->assertNotEmpty(config('aws.credentials.secret'), 'AWS_SECRET_ACCESS_KEY env var not set');
@@ -24,7 +24,7 @@ class BasicModuleTest extends TestCase
         $this->assertNotEmpty(env('AWS_DEFAULT_REGION'), 'AWS_DEFAULT_REGION env var not set');
     }
 
-    public function test_if_publishes_inventory_movements()
+    public function test_if_publishes_inventory_movements(): void
     {
         WebhooksConfiguration::updateOrCreate([], [
             'topic_arn' => env('TEST_SNS_TOPIC_ARN'),

@@ -16,7 +16,7 @@ class PrintNodeTest extends TestCase
         $this->actingAs($admin, 'api');
     }
 
-    public function test_if_api_key_set()
+    public function test_if_api_key_set(): void
     {
         $apiKey = config('printnode.test_api_key');
 
@@ -27,7 +27,7 @@ class PrintNodeTest extends TestCase
         $this->assertNotEmpty($apiKey, 'TEST_MODULES_PRINTNODE_API_KEY env key is not set');
     }
 
-    public function test_get_clients()
+    public function test_get_clients(): void
     {
         $apiKey = config('printnode.test_api_key');
 
@@ -42,7 +42,7 @@ class PrintNodeTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function test_get_printers()
+    public function test_get_printers(): void
     {
         $apiKey = config('printnode.test_api_key');
 
@@ -57,7 +57,7 @@ class PrintNodeTest extends TestCase
         $response->assertSuccessful();
     }
 
-    public function test_store_printjob()
+    public function test_store_printjob(): void
     {
         $apiKey = config('printnode.test_api_key');
 

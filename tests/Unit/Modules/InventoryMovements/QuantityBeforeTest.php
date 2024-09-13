@@ -29,7 +29,7 @@ class QuantityBeforeTest extends TestCase
         $this->inventory = Inventory::find($product->getKey(), $warehouse->getKey());
     }
 
-    public function testIncorrectStockTakeQuantityBefore()
+    public function testIncorrectStockTakeQuantityBefore(): void
     {
         ray()->showQueries();
 
@@ -65,7 +65,7 @@ class QuantityBeforeTest extends TestCase
         ]);
     }
 
-    public function testIncorrectQuantityBefore()
+    public function testIncorrectQuantityBefore(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::sell($this->inventory, -5);
@@ -98,7 +98,7 @@ class QuantityBeforeTest extends TestCase
         ]);
     }
 
-    public function testBasicScenario()
+    public function testBasicScenario(): void
     {
         $inventoryMovement01 = InventoryService::adjust($this->inventory, 20);
         $inventoryMovement02 = InventoryService::sell($this->inventory, -5);

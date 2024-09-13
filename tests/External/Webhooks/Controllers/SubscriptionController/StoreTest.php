@@ -33,7 +33,7 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function test_store_call_returns_ok()
+    public function test_store_call_returns_ok(): void
     {
         $response = $this->postJson(route('api.modules.webhooks.subscriptions.store'), [
             'endpoint' => 'https://test.com',

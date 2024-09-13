@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class IsFullyPaidConditionTest extends TestCase
 {
-    public function test_if_order_without_products_is_considered_unpaid()
+    public function test_if_order_without_products_is_considered_unpaid(): void
     {
         Order::query()->forceDelete();
 
@@ -31,7 +31,7 @@ class IsFullyPaidConditionTest extends TestCase
         ray($query->get()->toArray());
     }
 
-    public function test_partially_paid()
+    public function test_partially_paid(): void
     {
         Order::query()->forceDelete();
 
@@ -53,7 +53,7 @@ class IsFullyPaidConditionTest extends TestCase
         $this->assertCount(1, $query->get(), 'Order has not been returned as unpaid');
     }
 
-    public function test_order_not_paid()
+    public function test_order_not_paid(): void
     {
         Order::query()->forceDelete();
 
@@ -74,7 +74,7 @@ class IsFullyPaidConditionTest extends TestCase
         $this->assertCount(1, $query->get(), 'Order has not been returned as unpaid');
     }
 
-    public function test_order_0_total_0_paid()
+    public function test_order_0_total_0_paid(): void
     {
         Order::query()->forceDelete();
 
@@ -96,7 +96,7 @@ class IsFullyPaidConditionTest extends TestCase
         $this->assertCount(1, $query->get(), 'Order has not been returned as paid');
     }
 
-    public function test_order_0_total_but_paid()
+    public function test_order_0_total_but_paid(): void
     {
         Order::query()->forceDelete();
 
@@ -116,7 +116,7 @@ class IsFullyPaidConditionTest extends TestCase
         $this->assertEquals(1, $query->count(), 'Order has not been returned as paid');
     }
 
-    public function test_order_fully_paid()
+    public function test_order_fully_paid(): void
     {
         Order::query()->forceDelete();
 
@@ -136,7 +136,7 @@ class IsFullyPaidConditionTest extends TestCase
         $this->assertEquals(1, $query->count(), 'Order has not been returned as paid');
     }
 
-    public function test_order_paid_with_discounts()
+    public function test_order_paid_with_discounts(): void
     {
         Order::query()->forceDelete();
 

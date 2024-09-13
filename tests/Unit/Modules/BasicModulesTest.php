@@ -15,7 +15,7 @@ use Tests\TestCase;
 class BasicModulesTest extends TestCase
 {
     /** @test */
-    public function testBasicFunctionality()
+    public function testBasicFunctionality(): void
     {
         try {
             $enabled_modules = Module::query()
