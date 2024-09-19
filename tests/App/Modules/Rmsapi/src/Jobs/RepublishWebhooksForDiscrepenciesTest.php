@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Modules\Rmsapi\src\Jobs;
+namespace Tests\App\Modules\Rmsapi\src\Jobs;
 
+use App\Modules\Rmsapi\src\Jobs\RepublishWebhooksForDiscrepencies;
 use Tests\TestCase;
 
 class RepublishWebhooksForDiscrepenciesTest extends TestCase

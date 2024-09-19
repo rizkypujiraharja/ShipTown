@@ -1,6 +1,6 @@
 <?php
 
-namespace Coverage;
+namespace Tests\Coverage;
 
 use Tests\TestCase;
 
