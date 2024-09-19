@@ -10,5 +10,5 @@ class {{ class }} extends TestCase
     public function test_job()
     {
         $this->assertTrue(true, 'This test has not been implemented yet');
-    }
+}
 }
