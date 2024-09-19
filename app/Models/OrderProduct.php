@@ -94,20 +94,23 @@ class OrderProduct extends BaseModel
         'quantity_shipped',
     ];
 
-    protected $casts = [
-        'is_shipped' => 'boolean',
-        'price' => 'float',
-        'quantity_ordered' => 'float',
-        'quantity_split' => 'float',
-        'total_price' => 'float',
-        'quantity_shipped' => 'float',
-        'quantity_to_ship' => 'float',
-        'quantity_to_pick' => 'float',
-        'quantity_picked' => 'float',
-        'quantity_skipped_picking' => 'float',
-        'quantity_not_picked' => 'float',
-        'inventory_source_quantity' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_shipped' => 'boolean',
+            'price' => 'float',
+            'quantity_ordered' => 'float',
+            'quantity_split' => 'float',
+            'total_price' => 'float',
+            'quantity_shipped' => 'float',
+            'quantity_to_ship' => 'float',
+            'quantity_to_pick' => 'float',
+            'quantity_picked' => 'float',
+            'quantity_skipped_picking' => 'float',
+            'quantity_not_picked' => 'float',
+            'inventory_source_quantity' => 'float',
+        ];
+    }
 
     /**
      * @param  Builder|QueryBuilder  $query

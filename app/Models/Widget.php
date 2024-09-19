@@ -34,7 +34,10 @@ class Widget extends BaseModel
         'name',
     ];
 
-    protected $casts = [
-        'config' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'config' => 'array',
+        ];
+    }
 }

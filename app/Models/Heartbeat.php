@@ -25,13 +25,16 @@ class Heartbeat extends Model
         'expires_at',
     ];
 
-    protected $casts = [
-        'expires_at' => 'datetime',
-    ];
-
     protected $attributes = [
         'level' => 'error',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'expires_at' => 'datetime',
+        ];
+    }
 
     public function scopeExpired($query)
     {

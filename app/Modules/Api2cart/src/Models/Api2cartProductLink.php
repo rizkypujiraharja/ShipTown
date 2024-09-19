@@ -80,14 +80,20 @@ class Api2cartProductLink extends BaseModel
     ];
 
     /**
-     * @var string[]
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
-    protected $casts = [
-        'sale_price_start_date' => 'datetime',
-        'sale_price_end_date' => 'datetime',
-        'api2cart_product_id' => 'integer',
-        'last_pushed_response' => 'array',
-        'last_fetched_data' => 'array',    ];
+    protected function casts(): array
+    {
+        return [
+            'sale_price_start_date' => 'datetime',
+            'sale_price_end_date' => 'datetime',
+            'api2cart_product_id' => 'integer',
+            'last_pushed_response' => 'array',
+            'last_fetched_data' => 'array',
+        ];
+    }
 
     public function setLastFetchedDataAttribute($value)
     {

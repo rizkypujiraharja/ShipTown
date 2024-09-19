@@ -22,7 +22,10 @@ class InventoryDashboardRecords extends Model
         'wh_products_stock_level_ok',
     ];
 
-    protected $casts = [
-        'data' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'data' => 'array',
+        ];
+    }
 }

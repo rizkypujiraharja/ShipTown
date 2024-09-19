@@ -21,8 +21,9 @@ class BarcodeGeneratorController extends Controller
         $content_type = 'image/svg+xml';
         $filename = 'barcode.svg';
 
+        $barcode = new DNS1D();
         return new Response(
-            DNS1D::getBarcodeSVG($content, $barcode_type, $width, $height, $color, $show_code),
+            $barcode->getBarcodeSVG($content, $barcode_type, $width, $height, $color, $show_code),
             200,
             [
                 'Content-Type' => $content_type,

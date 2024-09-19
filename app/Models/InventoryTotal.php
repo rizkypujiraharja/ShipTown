@@ -26,9 +26,12 @@ class InventoryTotal extends Model
         'quantity_incoming',
     ];
 
-    protected $casts = [
-        'recount_required' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'recount_required' => 'boolean',
+        ];
+    }
 
     public function product(): BelongsTo
     {

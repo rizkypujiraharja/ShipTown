@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Makeable\LaravelFactory\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int inventory_id

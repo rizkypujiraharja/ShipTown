@@ -29,10 +29,6 @@ class RmsapiShippingImports extends Model
         'raw_import',
     ];
 
-    protected $casts = [
-        'raw_import' => 'array',
-    ];
-
     // we use attributes to set default values
     // we won't use database default values
     // as this is then not populated
@@ -40,4 +36,11 @@ class RmsapiShippingImports extends Model
     protected $attributes = [
         'raw_import' => '{}',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'raw_import' => 'array',
+        ];
+    }
 }

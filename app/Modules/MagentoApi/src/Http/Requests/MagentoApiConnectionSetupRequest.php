@@ -11,7 +11,7 @@ class MagentoApiConnectionSetupRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->hasRole('admin');
+        return auth()->user()->hasRole('admin');
     }
 
     /**

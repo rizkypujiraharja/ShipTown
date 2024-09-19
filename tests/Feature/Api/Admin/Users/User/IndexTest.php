@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api\Admin\Users\User;
 
 use App\User;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class IndexTest extends TestCase
@@ -12,8 +13,7 @@ class IndexTest extends TestCase
     {
         $user = User::factory()->create()->assignRole('admin');
 
-        $response = $this->actingAs($user, 'api')
-            ->getJson(route('users.show', $user->id));
+        $response = $this->actingAs($user, 'api')->getJson(route('users.show', $user->id));
 
         $response->assertOk();
 

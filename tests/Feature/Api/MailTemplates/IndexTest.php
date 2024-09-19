@@ -29,9 +29,7 @@ class IndexTest extends TestCase
 
     public function test_index_call_should_loggedin_as_admin(): void
     {
-        Passport::actingAs(
-            User::factory()->create()
-        );
+        Passport::actingAs(User::factory()->create());
 
         $response = $this->get(route('api.mail-templates.index'));
 

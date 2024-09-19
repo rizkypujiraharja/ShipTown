@@ -25,7 +25,10 @@ class InventoryTotalByWarehouseTag extends BaseModel
         'calculated_at',
     ];
 
-    protected $casts = [
-        'recalc_required' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'recalc_required' => 'boolean',
+        ];
+    }
 }

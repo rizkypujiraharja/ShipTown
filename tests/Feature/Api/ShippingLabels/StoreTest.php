@@ -13,7 +13,7 @@ class TestShipmentService extends ShippingServiceAbstract
 {
     public function ship(int $order_id): Collection
     {
-        return collect([]);
+        return collect();
     }
 }
 

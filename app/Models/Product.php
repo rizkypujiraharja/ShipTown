@@ -137,13 +137,16 @@ class Product extends BaseModel
         'quantity_available' => 0,
     ];
 
-    protected $casts = [
-        'sale_price_start_date' => 'datetime',
-        'sale_price_end_date' => 'datetime',
-        'quantity' => 'float',
-        'quantity_reserved' => 'float',
-        'quantity_available' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'sale_price_start_date' => 'datetime',
+            'sale_price_end_date' => 'datetime',
+            'quantity' => 'float',
+            'quantity_reserved' => 'float',
+            'quantity_available' => 'float',
+        ];
+    }
 
     public function save(array $options = [])
     {

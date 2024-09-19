@@ -38,6 +38,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class AppInstall extends Command
 {
@@ -455,9 +456,11 @@ class AppInstall extends Command
         $defaultAdminPermissions = ['manage users', 'list users', 'invite users', 'list roles'];
 
         foreach ($defaultAdminPermissions as $permissionName) {
-            $permission = Permission::firstOrCreate(['name' => $permissionName]);
+            $permission = Permission::firstOrCreate(['name' => $permissionName, 'guard_name' => 'web']);
             $admin->givePermissionTo($permission);
         }
+
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
     }
 
     private function createDefaultMailTemplateShipmentNotification(): void

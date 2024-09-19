@@ -1,4 +1,4 @@
-name: PHP 8.1 - Unit Tests
+name: PHP 8.3 - Unit Tests
 on: [push, pull_request]
 
 env:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
       - name: Prepare The Environment
         run: cp .env.example .env
       - name: Create Database

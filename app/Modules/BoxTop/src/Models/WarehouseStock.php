@@ -36,9 +36,14 @@ class WarehouseStock extends Model
     ];
 
     /**
-     * @var string[]
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
-    protected $casts = [
-        'Attributes' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'Attributes' => 'array',
+        ];
+    }
 }

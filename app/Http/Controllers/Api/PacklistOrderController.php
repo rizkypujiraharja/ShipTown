@@ -18,7 +18,7 @@ class PacklistOrderController extends Controller
     {
         // we clear packer ID from other orders first
         Order::query()
-            ->where(['packer_user_id' => Auth::id()])
+            ->where(['packer_user_id' => Auth::guard('api')->id()])
             ->whereNull('packed_at')
             ->get()
             ->each(function (Order $order) {
@@ -36,14 +36,14 @@ class PacklistOrderController extends Controller
             ->where(['id' => $order->id])
             ->where(['updated_at' => $order->updated_at])
             ->whereNull('packer_user_id')
-            ->update(['packer_user_id' => Auth::id()]);
+            ->update(['packer_user_id' => Auth::guard('api')->id()]);
 
         if ($rowsUpdated === 0) {
             $this->respondBadRequest('Order could not be reserved, try again');
         }
 
         // we update it once again trough Eloquent for events etc
-        $order->update(['packer_user_id' => Auth::id()]);
+        $order->update(['packer_user_id' => Auth::guard('api')->id()]);
         $order->log('received order for packing');
 
         return $orderList;

@@ -1,4 +1,4 @@
-name: PHP 8.1 - Dusk
+name: PHP 8.3 - Dusk
 on: [push, pull_request]
 
 env:

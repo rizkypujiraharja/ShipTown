@@ -40,10 +40,13 @@ class QuantityDiscount extends Model
         'configuration',
     ];
 
-    protected $casts = [
-        'id' => 'integer',
-        'configuration' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+            'configuration' => 'array',
+        ];
+    }
 
     public function getQuantityAtFullPriceAttribute(): float
     {

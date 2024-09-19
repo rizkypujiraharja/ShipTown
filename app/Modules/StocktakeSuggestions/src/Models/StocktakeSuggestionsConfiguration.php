@@ -19,7 +19,10 @@ class StocktakeSuggestionsConfiguration extends Model
         'min_count_date',
     ];
 
-    protected $casts = [
-        'min_count_date' => 'date',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'min_count_date' => 'date',
+        ];
+    }
 }

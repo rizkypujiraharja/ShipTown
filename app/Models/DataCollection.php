@@ -68,14 +68,17 @@ class DataCollection extends BaseModel
         'currently_running_task',
     ];
 
-    protected $casts = [
-        'total_quantity_scanned' => 'double',
-        'total_cost' => 'double',
-        'total_full_price' => 'double',
-        'total_discount' => 'double',
-        'total_sold_price' => 'double',
-        'total_profit' => 'double',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'total_quantity_scanned' => 'double',
+            'total_cost' => 'double',
+            'total_full_price' => 'double',
+            'total_discount' => 'double',
+            'total_sold_price' => 'double',
+            'total_profit' => 'double',
+        ];
+    }
 
     public function records(): HasMany
     {

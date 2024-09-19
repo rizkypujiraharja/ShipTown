@@ -3,14 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
-        if (! Schema::hasTable('users')) {
+        if (!Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
                 $table->integer('printer_id')->nullable();
@@ -31,7 +28,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('sessions')) {
+        if (!Schema::hasTable('sessions')) {
             Schema::create('sessions', function (Blueprint $table) {
                 $table->string('id')->unique();
                 $table->foreignId('user_id')->nullable();
@@ -48,7 +45,7 @@ return new class extends Migration
             });
         }
 
-        if (! Schema::hasTable('navigation_menu')) {
+        if (!Schema::hasTable('navigation_menu')) {
             Schema::create('navigation_menu', function (Blueprint $table) {
                 $table->id();
                 $table->string('name', 100);
@@ -59,107 +56,161 @@ return new class extends Migration
         }
 
         $this->installSpatiePermissions();
-        $this->createDefaultUserRoles();
-    }
-
-    private function createDefaultUserRoles(): void
-    {
-        Role::findOrCreate('user');
-        $admin = Role::findOrCreate('admin');
-
-        $defaultAdminPermissions = ['manage users', 'list users', 'invite users', 'list roles'];
-
-        foreach ($defaultAdminPermissions as $permissionName) {
-            $permission = Permission::firstOrCreate(['name' => $permissionName]);
-            $admin->givePermissionTo($permission);
-        }
     }
 
     private function installSpatiePermissions(): void
     {
+        $teams = config('permission.teams');
         $tableNames = config('permission.table_names');
         $columnNames = config('permission.column_names');
+        $pivotRole = $columnNames['role_pivot_key'] ?? 'role_id';
+        $pivotPermission = $columnNames['permission_pivot_key'] ?? 'permission_id';
 
         if (empty($tableNames)) {
             throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
-
-        if (! Schema::hasTable('permissions')) {
-            Schema::create($tableNames['permissions'], function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('name');
-                $table->string('guard_name');
-                $table->timestamps();
-            });
+        if ($teams && empty($columnNames['team_foreign_key'] ?? null)) {
+            throw new \Exception('Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
-        if (! Schema::hasTable('roles')) {
-            Schema::create($tableNames['roles'], function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('name');
-                $table->string('guard_name');
-                $table->timestamps();
-            });
-        }
+        Schema::create($tableNames['permissions'], function (Blueprint $table) {
+            //$table->engine('InnoDB');
+            $table->bigIncrements('id'); // permission id
+            $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
+            $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
+            $table->timestamps();
 
-        if (! Schema::hasTable('model_has_permissions')) {
-            Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
-                $table->unsignedBigInteger('permission_id');
+            $table->unique(['name', 'guard_name']);
+        });
+
+        Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
+            //$table->engine('InnoDB');
+            $table->bigIncrements('id'); // role id
+            if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
+                $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
+                $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
+            }
+            $table->string('name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
+            $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
+            $table->timestamps();
+            if ($teams || config('permission.testing')) {
+                $table->unique([$columnNames['team_foreign_key'], 'name', 'guard_name']);
+            } else {
+                $table->unique(['name', 'guard_name']);
+            }
+        });
+
+        Schema::create($tableNames['model_has_permissions'],
+            function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
+                $table->unsignedBigInteger($pivotPermission);
 
                 $table->string('model_type');
                 $table->unsignedBigInteger($columnNames['model_morph_key']);
-                $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
+                $table->index([$columnNames['model_morph_key'], 'model_type'],
+                    'model_has_permissions_model_id_model_type_index');
 
-                $table->foreign('permission_id')
-                    ->references('id')
+                $table->foreign($pivotPermission)
+                    ->references('id') // permission id
                     ->on($tableNames['permissions'])
                     ->onDelete('cascade');
+                if ($teams) {
+                    $table->unsignedBigInteger($columnNames['team_foreign_key']);
+                    $table->index($columnNames['team_foreign_key'], 'model_has_permissions_team_foreign_key_index');
 
-                $table->primary(
-                    ['permission_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_permissions_permission_model_type_primary'
-                );
+                    $table->primary([
+                        $columnNames['team_foreign_key'],
+                        $pivotPermission,
+                        $columnNames['model_morph_key'],
+                        'model_type'
+                    ],
+                        'model_has_permissions_permission_model_type_primary');
+                } else {
+                    $table->primary([$pivotPermission, $columnNames['model_morph_key'], 'model_type'],
+                        'model_has_permissions_permission_model_type_primary');
+                }
             });
-        }
 
-        if (! Schema::hasTable('model_has_roles')) {
-            Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
-                $table->unsignedBigInteger('role_id');
+        Schema::create($tableNames['model_has_roles'],
+            function (Blueprint $table) use ($tableNames, $columnNames, $pivotRole, $teams) {
+                $table->unsignedBigInteger($pivotRole);
 
                 $table->string('model_type');
                 $table->unsignedBigInteger($columnNames['model_morph_key']);
-                $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
+                $table->index([$columnNames['model_morph_key'], 'model_type'],
+                    'model_has_roles_model_id_model_type_index');
 
-                $table->foreign('role_id')
-                    ->references('id')
+                $table->foreign($pivotRole)
+                    ->references('id') // role id
                     ->on($tableNames['roles'])
                     ->onDelete('cascade');
+                if ($teams) {
+                    $table->unsignedBigInteger($columnNames['team_foreign_key']);
+                    $table->index($columnNames['team_foreign_key'], 'model_has_roles_team_foreign_key_index');
 
-                $table->primary(
-                    ['role_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_role_model_type_primary'
-                );
+                    $table->primary([
+                        $columnNames['team_foreign_key'],
+                        $pivotRole,
+                        $columnNames['model_morph_key'],
+                        'model_type'
+                    ],
+                        'model_has_roles_role_model_type_primary');
+                } else {
+                    $table->primary([$pivotRole, $columnNames['model_morph_key'], 'model_type'],
+                        'model_has_roles_role_model_type_primary');
+                }
             });
-        }
 
-        if (! Schema::hasTable('role_has_permissions')) {
-            Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
-                $table->unsignedBigInteger('permission_id');
-                $table->unsignedBigInteger('role_id');
+        Schema::create($tableNames['role_has_permissions'],
+            function (Blueprint $table) use ($tableNames, $pivotRole, $pivotPermission) {
+                $table->unsignedBigInteger($pivotPermission);
+                $table->unsignedBigInteger($pivotRole);
 
-                $table->foreign('permission_id')
-                    ->references('id')
+                $table->foreign($pivotPermission)
+                    ->references('id') // permission id
                     ->on($tableNames['permissions'])
                     ->onDelete('cascade');
 
-                $table->foreign('role_id')
-                    ->references('id')
+                $table->foreign($pivotRole)
+                    ->references('id') // role id
                     ->on($tableNames['roles'])
                     ->onDelete('cascade');
 
-                $table->primary(['permission_id', 'role_id'], 'role_has_permissions_permission_id_role_id_primary');
+                $table->primary([$pivotPermission, $pivotRole], 'role_has_permissions_permission_id_role_id_primary');
             });
-        }
+
+        Schema::create('telescope_entries', function (Blueprint $table) {
+            $table->bigIncrements('sequence');
+            $table->uuid('uuid');
+            $table->uuid('batch_id');
+            $table->string('family_hash')->nullable();
+            $table->boolean('should_display_on_index')->default(true);
+            $table->string('type', 20);
+            $table->longText('content');
+            $table->dateTime('created_at')->nullable();
+
+            $table->unique('uuid');
+            $table->index('batch_id');
+            $table->index('family_hash');
+            $table->index('created_at');
+            $table->index(['type', 'should_display_on_index']);
+        });
+
+        Schema::create('telescope_entries_tags', function (Blueprint $table) {
+            $table->uuid('entry_uuid');
+            $table->string('tag');
+
+            $table->primary(['entry_uuid', 'tag']);
+            $table->index('tag');
+
+            $table->foreign('entry_uuid')
+                ->references('uuid')
+                ->on('telescope_entries')
+                ->onDelete('cascade');
+        });
+
+        Schema::create('telescope_monitoring', function (Blueprint $table) {
+            $table->string('tag')->primary();
+        });
 
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)

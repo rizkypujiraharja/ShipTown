@@ -19,8 +19,11 @@ class Configuration extends BaseModel
         'disable_2fa',
     ];
 
-    protected $casts = [
-        'ecommerce_connected' => 'boolean',
-        'disable_2fa' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'ecommerce_connected' => 'boolean',
+            'disable_2fa' => 'boolean',
+        ];
+    }
 }

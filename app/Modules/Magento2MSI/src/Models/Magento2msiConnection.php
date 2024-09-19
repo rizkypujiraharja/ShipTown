@@ -29,13 +29,16 @@ class Magento2msiConnection extends BaseModel
         'api_access_token',
     ];
 
-    protected $casts = [
-        'api_access_token' => 'encrypted',
-    ];
-
     protected $hidden = [
         'api_access_token',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'api_access_token' => 'encrypted',
+        ];
+    }
 
     public static function getSpatieQueryBuilder(): QueryBuilder
     {

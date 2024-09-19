@@ -13,7 +13,6 @@ use Throwable;
 
 abstract class DuskTestCase extends BaseTestCase
 {
-    use CreatesApplication;
     use ResetsDatabase;
 
     protected int $shortDelay = 300;

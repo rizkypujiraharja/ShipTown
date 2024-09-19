@@ -43,8 +43,6 @@ class ReportBase extends Model
 
     protected array $fieldAliases = [];
 
-    protected $casts = [];
-
     public function getRecords(): Collection|array
     {
         $records = $this->getFinalQuery()->get();

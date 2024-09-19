@@ -39,9 +39,12 @@ class Automation extends BaseModel
         'enabled' => false,
     ];
 
-    protected $casts = [
-        'enabled' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'enabled' => 'boolean',
+        ];
+    }
 
     public static function enabled(): Builder
     {

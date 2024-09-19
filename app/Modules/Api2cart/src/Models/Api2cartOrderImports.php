@@ -59,13 +59,6 @@ class Api2cartOrderImports extends BaseModel
         'raw_import',
     ];
 
-    /**
-     * @var string[]
-     */
-    protected $casts = [
-        'raw_import' => 'array',
-    ];
-
     // we use attributes to set default values
     // we wont use database default values
     // as this is then not populated
@@ -76,6 +69,18 @@ class Api2cartOrderImports extends BaseModel
     protected $attributes = [
         'raw_import' => '{}',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'raw_import' => 'array',
+        ];
+    }
 
     public function save(array $options = []): bool
     {

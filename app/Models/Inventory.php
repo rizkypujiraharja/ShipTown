@@ -102,29 +102,32 @@ class Inventory extends BaseModel
         'reorder_point' => 0,
     ];
 
-    protected $casts = [
-        'recount_required' => 'boolean',
-        'quantity' => 'float',
-        'quantity_reserved' => 'float',
-        'quantity_available' => 'float',
-        'quantity_incoming' => 'float',
-        'restock_level' => 'float',
-        'reorder_point' => 'float',
-        'quantity_required' => 'float',
-        'occurred_at' => 'datetime',
-        'first_movement_at' => 'datetime',
-        'last_movement_at' => 'datetime',
-        'first_received_at' => 'datetime',
-        'last_received_at' => 'datetime',
-        'first_sold_at' => 'datetime',
-        'last_sold_at' => 'datetime',
-        'first_counted_at' => 'datetime',
-        'last_counted_at' => 'datetime',
-        'in_stock_since' => 'datetime',
-        'deleted_at' => 'datetime',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'recount_required' => 'boolean',
+            'quantity' => 'float',
+            'quantity_reserved' => 'float',
+            'quantity_available' => 'float',
+            'quantity_incoming' => 'float',
+            'restock_level' => 'float',
+            'reorder_point' => 'float',
+            'quantity_required' => 'float',
+            'occurred_at' => 'datetime',
+            'first_movement_at' => 'datetime',
+            'last_movement_at' => 'datetime',
+            'first_received_at' => 'datetime',
+            'last_received_at' => 'datetime',
+            'first_sold_at' => 'datetime',
+            'last_sold_at' => 'datetime',
+            'first_counted_at' => 'datetime',
+            'last_counted_at' => 'datetime',
+            'in_stock_since' => 'datetime',
+            'deleted_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
 
     public static function getSpatieQueryBuilder(): QueryBuilder
     {

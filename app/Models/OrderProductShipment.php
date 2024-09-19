@@ -46,9 +46,12 @@ class OrderProductShipment extends BaseModel
         'quantity_shipped',
     ];
 
-    protected $casts = [
-        'quantity_shipped' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'quantity_shipped' => 'float',
+        ];
+    }
 
     public function inventory(): HasOne
     {

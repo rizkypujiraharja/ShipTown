@@ -66,14 +66,17 @@ class InventoryMovement extends BaseModel
         'previous_movement_id',
     ];
 
-    protected $casts = [
-        'occurred_at' => 'datetime',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'quantity_before' => 'float',
-        'quantity_delta' => 'float',
-        'quantity_after' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'occurred_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'quantity_before' => 'float',
+            'quantity_delta' => 'float',
+            'quantity_after' => 'float',
+        ];
+    }
 
     public function inventory(): BelongsTo
     {

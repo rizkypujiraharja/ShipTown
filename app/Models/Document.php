@@ -31,10 +31,13 @@ class Document extends Model
         'base64_content_encrypted',
     ];
 
-    protected $casts = [
-        'type' => 'string',
-        'base64_content' => 'string',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'type' => 'string',
+            'base64_content' => 'string',
+        ];
+    }
 
     public function getBase64ContentAttribute(): string
     {

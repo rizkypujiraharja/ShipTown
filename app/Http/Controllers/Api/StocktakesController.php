@@ -18,7 +18,7 @@ class StocktakesController extends Controller
 
         $inventoryMovement = InventoryService::stocktake($inventory, $request->get('new_quantity'), [
             'description' => 'stocktake',
-            'user_id' => Auth::id(),
+            'user_id' => Auth::guard('api')->id(),
         ]);
 
         return InventoryMovementResource::collection([$inventoryMovement]);

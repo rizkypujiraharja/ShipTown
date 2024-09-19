@@ -21,6 +21,10 @@ class JobFailedListener
 
         $jobStartTime = Cache::pull($key);
 
-        Log::info('Job failed', ['job' => $jobName, 'duration' => now()->diffInSeconds($jobStartTime), 'exception' => $event->exception]);
+        Log::info('Job failed', [
+            'job' => $jobName,
+            'duration' => (int)now()->diffInSeconds($jobStartTime),
+            'exception' => $event->exception
+        ]);
     }
 }

@@ -56,25 +56,25 @@ use Spatie\Tags\Tag;
  * @property Carbon|null $deleted_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read bool     $is_packed
- * @property-read bool     $is_paid
- * @property-read bool     $is_not_paid
- * @property-read bool     $is_picked
- * @property-read bool     $isPaid
- * @property-read bool     $isNotPaid
+ * @property-read bool $is_packed
+ * @property-read bool $is_paid
+ * @property-read bool $is_not_paid
+ * @property-read bool $is_picked
+ * @property-read bool $isPaid
+ * @property-read bool $isNotPaid
  * @property-read int $age_in_days
  * @property OrderStatus $orderStatus
  * @property OrderStatus $order_status
- * @property-read OrderAddress|null          $shippingAddress
- * @property-read OrderAddress|null          $billingAddress
- * @property-read OrderProductTotal          $orderProductsTotals
- * @property-read User|null                  $packer
- * @property-read Collection|Tag[]           $tags
- * @property-read Collection|OrderComment[]  $orderComments
- * @property-read Collection|OrderProduct[]  $orderProducts
+ * @property-read OrderAddress|null $shippingAddress
+ * @property-read OrderAddress|null $billingAddress
+ * @property-read OrderProductTotal $orderProductsTotals
+ * @property-read User|null $packer
+ * @property-read Collection|Tag[] $tags
+ * @property-read Collection|OrderComment[] $orderComments
+ * @property-read Collection|OrderProduct[] $orderProducts
  * @property-read Collection|OrderShipment[] $orderShipments
- * @property-read Collection|Activity[]      $activities
- * @property-read Collection|Packlist[]      $packlist
+ * @property-read Collection|Activity[] $activities
+ * @property-read Collection|Packlist[] $packlist
  *
  * @method static Builder|Order addInventorySource($inventory_location_id)
  * @method static Builder|Order hasPacker($expected)
@@ -157,23 +157,6 @@ class Order extends BaseModel
         'packer_user_id',
     ];
 
-    protected $casts = [
-        'is_active' => 'boolean',
-        'is_on_hold' => 'boolean',
-        'is_editing' => 'boolean',
-        'is_fully_paid' => 'boolean',
-        'total_products' => 'float',
-        'total_shipping' => 'float',
-        'total_paid' => 'float',
-        'total_discounts' => 'float',
-        'total_order' => 'float',
-        'total_outstanding' => 'float',
-        'order_placed_at' => 'datetime',
-        'picked_at' => 'datetime',
-        'packed_at' => 'datetime',
-        'order_closed_at' => 'datetime',
-    ];
-
     // we use attributes to set default values
     // we will not use db default values
     // as this is then not populated
@@ -189,6 +172,26 @@ class Order extends BaseModel
         'is_packed',
         'age_in_days',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+            'is_on_hold' => 'boolean',
+            'is_editing' => 'boolean',
+            'is_fully_paid' => 'boolean',
+            'total_products' => 'float',
+            'total_shipping' => 'float',
+            'total_paid' => 'float',
+            'total_discounts' => 'float',
+            'total_order' => 'float',
+            'total_outstanding' => 'float',
+            'order_placed_at' => 'datetime',
+            'picked_at' => 'datetime',
+            'packed_at' => 'datetime',
+            'order_closed_at' => 'datetime',
+        ];
+    }
 
     public static function active(): Builder
     {
@@ -244,16 +247,16 @@ class Order extends BaseModel
 
     public function scopeWhereHasText($query, $text): mixed
     {
-        return $query->where('order_number', 'like', '%'.$text.'%')
+        return $query->where('order_number', 'like', '%' . $text . '%')
             ->orWhere('status_code', '=', $text)
             ->orWhereHas('orderShipments', function ($query) use ($text) {
-                return $query->where('shipping_number', 'like', '%'.$text.'%');
+                return $query->where('shipping_number', 'like', '%' . $text . '%');
             });
     }
 
     public function getAgeInDaysAttribute(): int
     {
-        return Carbon::now()->ceilDay()->diffInDays($this->order_placed_at);
+        return (int)Carbon::now()->ceilDay()->diffInDays($this->order_placed_at);
     }
 
     public function scopePackedBetween(mixed $query, string $fromDateTime, string $toDateTime): mixed
@@ -320,7 +323,7 @@ class Order extends BaseModel
 
     public function isNotStatusCode(string $expected): bool
     {
-        return ! $this->isStatusCode($expected);
+        return !$this->isStatusCode($expected);
     }
 
     public function isStatusCode(string $expected): bool
@@ -330,7 +333,7 @@ class Order extends BaseModel
 
     public function isStatusCodeNotIn(array $statusCodes): bool
     {
-        return ! $this->isStatusCodeIn($statusCodes);
+        return !$this->isStatusCodeIn($statusCodes);
     }
 
     public function isStatusCodeIn(array $statusCodes): bool

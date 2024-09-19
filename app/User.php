@@ -111,11 +111,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'ask_for_shipping_number' => 'bool',
-        'two_factor_expires_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'ask_for_shipping_number' => 'bool',
+            'two_factor_expires_at' => 'datetime',
+        ];
+    }
 
     public static function getSpatieQueryBuilder(): QueryBuilder
     {

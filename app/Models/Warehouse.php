@@ -43,9 +43,12 @@ class Warehouse extends BaseModel
         'address_id',
     ];
 
-    protected $casts = [
-        'id' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'id' => 'integer',
+        ];
+    }
 
     public static function getSpatieQueryBuilder(): QueryBuilder
     {

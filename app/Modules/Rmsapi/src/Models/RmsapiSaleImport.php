@@ -59,10 +59,6 @@ class RmsapiSaleImport extends BaseModel
         'raw_import',
     ];
 
-    protected $casts = [
-        'raw_import' => 'array',
-    ];
-
     // we use attributes to set default values
     // we won't use database default values
     // as this is then not populated
@@ -70,6 +66,13 @@ class RmsapiSaleImport extends BaseModel
     protected $attributes = [
         'raw_import' => '{}',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'raw_import' => 'array',
+        ];
+    }
 
     public function rmsapiConnection(): BelongsTo
     {

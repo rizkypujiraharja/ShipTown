@@ -40,19 +40,22 @@ class OrderStatus extends BaseModel
         'sync_ecommerce',
     ];
 
-    protected $casts = [
-        'order_active' => 'boolean',
-        'order_on_hold' => 'boolean',
-        'hidden' => 'boolean',
-        'sync_ecommerce' => 'boolean',
-    ];
-
     protected $attributes = [
         'order_active' => true,
         'order_on_hold' => false,
         'hidden' => false,
         'sync_ecommerce' => false,
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'order_active' => 'boolean',
+            'order_on_hold' => 'boolean',
+            'hidden' => 'boolean',
+            'sync_ecommerce' => 'boolean',
+        ];
+    }
 
     public static function getSpatieQueryBuilder(): QueryBuilder
     {

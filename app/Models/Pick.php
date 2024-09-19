@@ -70,11 +70,14 @@ class Pick extends Model
         'order_product_ids',
     ];
 
-    protected $casts = [
-        'is_distributed' => 'boolean',
-        'picked_at' => 'datetime',
-        'order_product_ids' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_distributed' => 'boolean',
+            'picked_at' => 'datetime',
+            'order_product_ids' => 'array',
+        ];
+    }
 
     /**
      * @param  Builder|QueryBuilder  $query

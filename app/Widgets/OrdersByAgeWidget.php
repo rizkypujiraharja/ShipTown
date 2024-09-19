@@ -40,7 +40,7 @@ class OrdersByAgeWidget extends AbstractWidget
             'config' => $this->config,
             'orders_per_days_age' => $orders_counts->map(function ($var) {
                 return [
-                    'days_age' => Carbon::make($var->date)->diffInDays(),
+                    'days_age' => (int) Carbon::make($var->date)->diffInDays(),
                     'order_count' => $var->order_count,
                 ];
             }),

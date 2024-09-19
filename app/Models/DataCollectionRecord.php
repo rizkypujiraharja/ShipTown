@@ -77,27 +77,30 @@ class DataCollectionRecord extends Model
         'total_cost',
     ];
 
-    protected $casts = [
-        'product_id' => 'int',
-        'total_transferred_id' => 'double',
-        'total_transferred_out' => 'double',
-        'quantity_requested' => 'double',
-        'quantity_scanned' => 'double',
-        'quantity_to_scan' => 'double',
-        'unit_cost' => 'float',
-        'unit_sold_price' => 'float',
-        'unit_discount' => 'float',
-        'unit_full_price' => 'float',
-        'price_source' => 'string',
-        'price_source_id' => 'int',
-        'total_discount' => 'float',
-        'total_cost' => 'float',
-        'total_price' => 'float',
-        'total_sold_price' => 'float',
-        'total_full_price' => 'float',
-        'total_cost_price' => 'float',
-        'total_profit' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'product_id' => 'int',
+            'total_transferred_id' => 'double',
+            'total_transferred_out' => 'double',
+            'quantity_requested' => 'double',
+            'quantity_scanned' => 'double',
+            'quantity_to_scan' => 'double',
+            'unit_cost' => 'float',
+            'unit_sold_price' => 'float',
+            'unit_discount' => 'float',
+            'unit_full_price' => 'float',
+            'price_source' => 'string',
+            'price_source_id' => 'int',
+            'total_discount' => 'float',
+            'total_cost' => 'float',
+            'total_price' => 'float',
+            'total_sold_price' => 'float',
+            'total_full_price' => 'float',
+            'total_cost_price' => 'float',
+            'total_profit' => 'float',
+        ];
+    }
 
     public function replicate(?array $except = null): self
     {

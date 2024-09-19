@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Dompdf\Dompdf;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Auth;
 use Mustache_Engine;
 
 class PdfService

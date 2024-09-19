@@ -92,16 +92,19 @@ class OrderAddress extends BaseModel
         'region',
     ];
 
-    protected $casts = [
-        'phone_encrypted' => 'encrypted',
-    ];
-
     protected $appends = [
         'first_name',
         'last_name',
         'phone',
         'email',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'phone_encrypted' => 'encrypted',
+        ];
+    }
 
     public function getFirstNameAttribute(): string
     {

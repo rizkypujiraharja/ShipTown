@@ -19,9 +19,12 @@ class Configuration extends BaseModel
         'quantity_before_stocktake_job_last_movement_id_checked',
     ];
 
-    protected $casts = [
-        'quantity_before_job_last_movement_id_checked' => 'integer',
-        'quantity_before_basic_job_last_movement_id_checked' => 'integer',
-        'quantity_before_stocktake_job_last_movement_id_checked' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'quantity_before_job_last_movement_id_checked' => 'integer',
+            'quantity_before_basic_job_last_movement_id_checked' => 'integer',
+            'quantity_before_stocktake_job_last_movement_id_checked' => 'integer',
+        ];
+    }
 }

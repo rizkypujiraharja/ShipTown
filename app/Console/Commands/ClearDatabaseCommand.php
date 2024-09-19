@@ -7,6 +7,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Tags\Tag;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class ClearDatabaseCommand extends Command
@@ -46,8 +48,8 @@ class ClearDatabaseCommand extends Command
 
     public static function resetDatabase(): void
     {
-        \Spatie\Tags\Tag::query()->forceDelete();
-        \Spatie\Activitylog\Models\Activity::query()->forceDelete();
+        Tag::query()->forceDelete();
+        Activity::query()->forceDelete();
 
         App\Modules\InventoryTotals\src\Models\Configuration::query()->forceDelete();
         App\Modules\InventoryTotals\src\Models\InventoryTotal::query()->forceDelete();
@@ -103,24 +105,7 @@ class ClearDatabaseCommand extends Command
         DB::table('modules_queue_monitor_jobs')->delete();
 
         App\Models\Configuration::query()->updateOrCreate([], ['disable_2fa' => true]);
-
-        // now re-register all the roles and permissions (clears cache and reloads relations)
-        app()->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
-
         App\Modules\InventoryMovements\src\InventoryMovementsServiceProvider::enableModule();
         App\Modules\InventoryReservations\src\EventServiceProviderBase::enableModule();
-    }
-
-    private static function setVariable(string $key, string $value): void
-    {
-        $path = base_path('.env');
-
-        if (file_exists($path)) {
-            file_put_contents($path, str_replace(
-                $key.'='.env($key),
-                $key.'='.$value,
-                file_get_contents($path)
-            ));
-        }
     }
 }

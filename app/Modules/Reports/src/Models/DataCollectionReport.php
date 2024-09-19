@@ -20,11 +20,11 @@ class DataCollectionReport extends Report
             ->leftJoin('data_collections', 'data_collections.id', '=', 'data_collection_records.data_collection_id')
             ->leftJoin('inventory', function ($query) {
                 return $query->on('data_collection_records.product_id', '=', 'inventory.product_id')
-                    ->where('inventory.warehouse_id', Auth::user()->warehouse_id);
+                    ->where('inventory.warehouse_id', Auth::guard('api')->user()->warehouse_id);
             })
             ->leftJoin('products_prices', function ($query) {
                 return $query->on('data_collection_records.product_id', '=', 'products_prices.product_id')
-                    ->where('products_prices.warehouse_id', Auth::user()->warehouse_id);
+                    ->where('products_prices.warehouse_id', Auth::guard('api')->user()->warehouse_id);
             })
             ->leftJoin('inventory_movements_statistics', function ($query) {
                 return $query->on('inventory_movements_statistics.inventory_id', '=', 'inventory.id')

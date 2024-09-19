@@ -22,7 +22,10 @@ class Webhook extends Model
         'message' => '{}',
     ];
 
-    protected $casts = [
-        'message' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'message' => 'array',
+        ];
+    }
 }

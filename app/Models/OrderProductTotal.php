@@ -40,20 +40,6 @@ class OrderProductTotal extends Model
         'max_updated_at',
     ];
 
-    protected $casts = [
-        'count' => 'integer',
-        'quantity_ordered' => 'float',
-        'quantity_split' => 'float',
-        'total_price' => 'float',
-        'quantity_picked' => 'float',
-        'quantity_skipped_picking' => 'float',
-        'quantity_not_picked' => 'float',
-        'quantity_shipped' => 'float',
-        'quantity_to_pick' => 'float',
-        'quantity_to_ship' => 'float',
-        'max_updated_at' => 'timestamp',
-    ];
-
     protected $attributes = [
         'count' => 0,
         'quantity_ordered' => 0,
@@ -67,4 +53,21 @@ class OrderProductTotal extends Model
         'quantity_to_ship' => 0,
         'max_updated_at' => '2000-01-01 00:00:00',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'count' => 'integer',
+            'quantity_ordered' => 'float',
+            'quantity_split' => 'float',
+            'total_price' => 'float',
+            'quantity_picked' => 'float',
+            'quantity_skipped_picking' => 'float',
+            'quantity_not_picked' => 'float',
+            'quantity_shipped' => 'float',
+            'quantity_to_pick' => 'float',
+            'quantity_to_ship' => 'float',
+            'max_updated_at' => 'timestamp',
+        ];
+    }
 }

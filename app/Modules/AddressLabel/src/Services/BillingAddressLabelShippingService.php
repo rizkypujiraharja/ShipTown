@@ -20,7 +20,7 @@ class BillingAddressLabelShippingService extends ShippingServiceAbstract
         // we create new shipping label and save it to database, so it can automatically be printed
         $shippingLabel = new ShippingLabel;
         $shippingLabel->order_id = $order->getKey();
-        $shippingLabel->user_id = auth()->id();
+        $shippingLabel->user_id = auth()->guard('api')->id();
         $shippingLabel->carrier = '';
         $shippingLabel->service = 'billing_address_label';
         $shippingLabel->shipping_number = $order->order_number;

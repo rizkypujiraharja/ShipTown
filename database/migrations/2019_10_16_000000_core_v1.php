@@ -112,8 +112,8 @@ return new class extends Migration {
                 $table->index(['causer_id', 'causer_type'], 'causer');
             });
 
-        Schema::create('password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
@@ -1271,8 +1271,6 @@ return new class extends Migration {
             $table->unique('job_class');
         });
 
-        $this->installSpatiePermissions();
-
         DB::statement('
             CREATE OR REPLACE VIEW modules_magento2api_products_prices_comparison_view AS
             SELECT
@@ -1382,134 +1380,5 @@ return new class extends Migration {
                         product_id
                 );
         ');
-    }
-
-    private function installSpatiePermissions(): void
-    {
-        $tableNames = config('permission.table_names');
-        $columnNames = config('permission.column_names');
-
-        if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
-        }
-
-        if (!Schema::hasTable('permissions')) {
-            Schema::create($tableNames['permissions'], function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('name');
-                $table->string('guard_name');
-                $table->timestamps();
-            });
-        }
-
-        if (!Schema::hasTable('roles')) {
-            Schema::create($tableNames['roles'], function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->string('name');
-                $table->string('guard_name');
-                $table->timestamps();
-            });
-        }
-
-        if (!Schema::hasTable('model_has_permissions')) {
-            Schema::create($tableNames['model_has_permissions'],
-                function (Blueprint $table) use ($tableNames, $columnNames) {
-                    $table->unsignedBigInteger('permission_id');
-
-                    $table->string('model_type');
-                    $table->unsignedBigInteger($columnNames['model_morph_key']);
-                    $table->index([$columnNames['model_morph_key'], 'model_type'],
-                        'model_has_permissions_model_id_model_type_index');
-
-                    $table->foreign('permission_id')
-                        ->references('id')
-                        ->on($tableNames['permissions'])
-                        ->onDelete('cascade');
-
-                    $table->primary(
-                        ['permission_id', $columnNames['model_morph_key'], 'model_type'],
-                        'model_has_permissions_permission_model_type_primary'
-                    );
-                });
-        }
-
-        if (!Schema::hasTable('model_has_roles')) {
-            Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames) {
-                $table->unsignedBigInteger('role_id');
-
-                $table->string('model_type');
-                $table->unsignedBigInteger($columnNames['model_morph_key']);
-                $table->index([$columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_model_id_model_type_index');
-
-                $table->foreign('role_id')
-                    ->references('id')
-                    ->on($tableNames['roles'])
-                    ->onDelete('cascade');
-
-                $table->primary(
-                    ['role_id', $columnNames['model_morph_key'], 'model_type'],
-                    'model_has_roles_role_model_type_primary'
-                );
-            });
-        }
-
-        if (!Schema::hasTable('role_has_permissions')) {
-            Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {
-                $table->unsignedBigInteger('permission_id');
-                $table->unsignedBigInteger('role_id');
-
-                $table->foreign('permission_id')
-                    ->references('id')
-                    ->on($tableNames['permissions'])
-                    ->onDelete('cascade');
-
-                $table->foreign('role_id')
-                    ->references('id')
-                    ->on($tableNames['roles'])
-                    ->onDelete('cascade');
-
-                $table->primary(['permission_id', 'role_id'], 'role_has_permissions_permission_id_role_id_primary');
-            });
-        }
-        if (!Schema::hasTable('telescope_entries')) {
-            Schema::create('telescope_entries', function (Blueprint $table) {
-                $table->bigIncrements('sequence');
-                $table->uuid('uuid');
-                $table->uuid('batch_id')->index();
-                $table->string('family_hash')->nullable()->index();
-                $table->boolean('should_display_on_index')->default(true);
-                $table->string('type', 20);
-                $table->longText('content');
-                $table->dateTime('created_at')->nullable()->index();
-
-                $table->unique('uuid');
-                $table->index(['type', 'should_display_on_index']);
-            });
-        }
-
-        if (!Schema::hasTable('telescope_entries_tags')) {
-            Schema::create('telescope_entries_tags', function (Blueprint $table) {
-                $table->uuid('entry_uuid');
-                $table->string('tag')->index();
-
-                $table->index(['entry_uuid', 'tag']);
-
-                $table->foreign('entry_uuid')
-                    ->references('uuid')
-                    ->on('telescope_entries')
-                    ->onDelete('cascade');
-            });
-        }
-
-        if (!Schema::hasTable('telescope_monitoring')) {
-            Schema::create('telescope_monitoring', function (Blueprint $table) {
-                $table->string('tag');
-            });
-        }
-
-        app('cache')
-            ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
-            ->forget(config('permission.cache.key'));
     }
 };

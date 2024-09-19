@@ -23,7 +23,7 @@ class UpdateTest extends TestCase
 
         $response = $this->actingAs($user, 'api')->putJson($this->uri.$discountToUpdate->id, [
             'name' => 'Test Discount',
-            'type' => 'App\\Modules\\QuantityDiscounts\\src\\Jobs\\CalculateSoldPriceForBuyXGetYForZPriceDiscount',
+            'job_class' => 'App\\Modules\\DataCollectorQuantityDiscounts\\src\\Jobs\\BuyXGetYForZPriceDiscount',
             'configuration' => [
                 'quantity_full_price' => 10,
                 'quantity_discounted' => 5,

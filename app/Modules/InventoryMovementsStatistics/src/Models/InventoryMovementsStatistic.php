@@ -44,11 +44,14 @@ class InventoryMovementsStatistic extends Model
         'last28days_min_movement_id',
     ];
 
-    protected $casts = [
-        'last7days_quantity_delta' => 'double',
-        'last14days_quantity_delta' => 'double',
-        'last28days_quantity_delta' => 'double',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'last7days_quantity_delta' => 'double',
+            'last14days_quantity_delta' => 'double',
+            'last28days_quantity_delta' => 'double',
+        ];
+    }
 
     public function inventory(): BelongsTo
     {

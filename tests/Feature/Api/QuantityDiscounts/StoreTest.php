@@ -19,7 +19,7 @@ class StoreTest extends TestCase
 
         $response = $this->actingAs($user, 'api')->postJson($this->uri, [
             'name' => 'Test Discount',
-            'type' => 'App\\Modules\\QuantityDiscounts\\src\\Jobs\\CalculateSoldPriceForBuyXGetYForZPriceDiscount',
+            'job_class' => 'App\\Modules\\DataCollectorQuantityDiscounts\\src\\Jobs\\BuyXGetYForZPriceDiscount',
         ]);
 
         ray($response->json());

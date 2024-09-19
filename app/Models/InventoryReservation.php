@@ -27,9 +27,12 @@ class InventoryReservation extends BaseModel
         'custom_uuid',
     ];
 
-    protected $casts = [
-        'quantity_reserved' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'quantity_reserved' => 'float',
+        ];
+    }
 
     public function inventory(): BelongsTo
     {

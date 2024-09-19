@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\ProductPrice;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
-use Makeable\LaravelFactory\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property MagentoConnection $magentoConnection
@@ -47,21 +47,24 @@ class MagentoProduct extends BaseModel
         'special_prices_raw_import',
     ];
 
-    protected $casts = [
-        'exists_in_magento' => 'boolean',
-        'base_price_sync_required' => 'boolean',
-        'special_price_sync_required' => 'boolean',
-        'magento_sale_price_start_date' => 'datetime',
-        'magento_sale_price_end_date' => 'datetime',
-        'stock_items_fetched_at' => 'datetime',
-        'base_prices_fetched_at' => 'datetime',
-        'special_prices_fetched_at' => 'datetime',
-        'stock_items_raw_import' => 'array',
-        'base_prices_raw_import' => 'array',
-        'special_prices_raw_import' => 'array',
-        'magento_sale_price' => 'float',
-        'magento_price' => 'float',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'exists_in_magento' => 'boolean',
+            'base_price_sync_required' => 'boolean',
+            'special_price_sync_required' => 'boolean',
+            'magento_sale_price_start_date' => 'datetime',
+            'magento_sale_price_end_date' => 'datetime',
+            'stock_items_fetched_at' => 'datetime',
+            'base_prices_fetched_at' => 'datetime',
+            'special_prices_fetched_at' => 'datetime',
+            'stock_items_raw_import' => 'array',
+            'base_prices_raw_import' => 'array',
+            'special_prices_raw_import' => 'array',
+            'magento_sale_price' => 'float',
+            'magento_price' => 'float',
+        ];
+    }
 
     public function product(): BelongsTo
     {

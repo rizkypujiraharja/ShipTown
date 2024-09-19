@@ -34,14 +34,17 @@ class Module extends BaseModel
         'enabled',
     ];
 
-    protected $casts = [
-        'enabled' => 'boolean',
-    ];
-
     protected $appends = [
         'enabled' => false,
         'settings_link' => '',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'enabled' => 'boolean',
+        ];
+    }
 
     public function getNameAttribute()
     {

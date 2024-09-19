@@ -21,7 +21,10 @@ class UserConfiguration extends Model
         'config',
     ];
 
-    protected $casts = [
-        'config' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'config' => 'array',
+        ];
+    }
 }

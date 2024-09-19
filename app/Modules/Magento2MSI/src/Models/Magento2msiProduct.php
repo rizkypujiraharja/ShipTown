@@ -34,10 +34,13 @@ class Magento2msiProduct extends BaseModel
         'updated_at',
     ];
 
-    protected $casts = [
-        'inventory_source_items_fetched_at' => 'datetime',
-        'inventory_source_items' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'inventory_source_items_fetched_at' => 'datetime',
+            'inventory_source_items' => 'array',
+        ];
+    }
 
     public function product(): BelongsTo
     {

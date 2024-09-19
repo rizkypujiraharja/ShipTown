@@ -39,18 +39,17 @@ use App\Observers\WarehouseObserver;
 use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Passport;
-use Laravel\Telescope\Telescope;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        parent::register();
-
-        Passport::ignoreMigrations();
-        Telescope::ignoreMigrations();
-    }
+    /**
+     * The path to your application's "home" route.
+     *
+     * Typically, users are redirected here after authentication.
+     *
+     * @var string
+     */
+    public const HOME = '/home';
 
     /**
      * Bootstrap any application services.

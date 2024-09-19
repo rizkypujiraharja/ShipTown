@@ -71,22 +71,25 @@ class ProductPrice extends BaseModel
         'sale_price_end_date' => '2001-01-01 00:00:00',
     ];
 
-    protected $casts = [
-        'price' => 'float',
-        'sale_price' => 'float',
-        'cost' => 'float',
-        'is_on_sale' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime',
-        'sale_price_start_date' => 'datetime',
-        'sale_price_end_date' => 'datetime',
-    ];
-
     protected $appends = [
         'current_price',
         'is_on_sale',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'price' => 'float',
+            'sale_price' => 'float',
+            'cost' => 'float',
+            'is_on_sale' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'deleted_at' => 'datetime',
+            'sale_price_start_date' => 'datetime',
+            'sale_price_end_date' => 'datetime',
+        ];
+    }
 
     public function getCurrentPriceAttribute(): float
     {
