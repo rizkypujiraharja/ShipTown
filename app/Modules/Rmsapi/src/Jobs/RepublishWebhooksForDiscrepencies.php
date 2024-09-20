@@ -13,7 +13,8 @@ class RepublishWebhooksForDiscrepencies extends UniqueJob
         DB::statement('
             INSERT INTO modules_webhooks_pending_webhooks (model_class, model_id, created_at, updated_at)
             SELECT
-                ? as model_class, modules_rmsapi_products_imports.inventory_id as model_id,
+                ? as model_class,
+                modules_rmsapi_products_imports.inventory_id as model_id,
                 now() as created_at,
                 now() as updated_at
             FROM modules_rmsapi_products_imports
