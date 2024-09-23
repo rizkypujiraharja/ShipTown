@@ -29,6 +29,10 @@ class PacklistOrderController extends Controller
 
         $orderList = $report->toJsonResource();
 
+        if ($orderList['data']->isEmpty()) {
+            $this->respondNotFound('No orders to pack');
+        }
+
         /** @var Order $order */
         $order = $orderList['data'][0];
 

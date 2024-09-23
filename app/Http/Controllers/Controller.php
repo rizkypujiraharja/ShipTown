@@ -15,7 +15,7 @@ class Controller extends BaseController
 
     private int $status_code = 200;
 
-    public function throwPdfResponse(string $pdfString)
+    public function throwPdfResponse(string $pdfString): void
     {
         $headers = [
             'Content-Type' => 'application/pdf',
@@ -25,7 +25,7 @@ class Controller extends BaseController
         response($pdfString, $this->status_code, $headers)->throwResponse();
     }
 
-    public function throwJsonResponse($message)
+    public function throwJsonResponse($message): void
     {
         response()->json(
             ['message' => $message],

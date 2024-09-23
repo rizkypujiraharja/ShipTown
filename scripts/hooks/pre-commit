@@ -14,6 +14,27 @@ then
 fi
 SFILES=${SFILES:-$STAGED_FILES_CMD}
 
+echo "Running PHPUnit tests..."
+for FILE in $SFILES
+do
+    FILE_NAME=$(basename "$FILE" .php)
+    echo "Executing: vendor/bin/phpunit --stop-on-failure --filter \"$FILE_NAME\""
+    vendor/bin/phpunit --stop-on-failure --filter "$FILE_NAME"
+    if [ $? != 0 ]
+    then
+        echo "Fix the error before commit."
+        exit 1
+    fi
+    echo "Executing: php artisan dusk --stop-on-failure --stop-on-error --filter \"$FILE_NAME\""
+    php artisan dusk --stop-on-failure --stop-on-error --filter "$FILE_NAME"
+    if [ $? != 0 ]
+    then
+        echo "Fix the error before commit."
+        exit 1
+    fi
+    FILES="$FILES $PROJECT/$FILE"
+done
+
 echo "Checking PHP Lint..."
 for FILE in $SFILES
 do

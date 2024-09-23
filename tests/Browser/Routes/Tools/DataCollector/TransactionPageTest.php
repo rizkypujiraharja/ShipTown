@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Routes\Tools\DataCollector;
 
+use App\Models\Warehouse;
 use App\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -17,7 +18,9 @@ class TransactionPageTest extends DuskTestCase
     public function testPage(): void
     {
         /** @var User $user */
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'warehouse_id' => Warehouse::factory()->create()->getKey(),
+        ]);
         $user->assignRole('admin');
 
         $this->browse(function (Browser $browser) use ($user) {

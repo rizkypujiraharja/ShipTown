@@ -23,3 +23,5 @@ Makefile
 _ide_helper.php
 _ide_helper_models.php
 .DS_Store
+/.phpunit.cache
+/.phpunit.cache/*

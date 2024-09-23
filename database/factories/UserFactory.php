@@ -22,6 +22,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->firstName().' '.$this->faker->lastName(),
             'warehouse_id' => $warehouse->getKey(),
+            'warehouse_code' => $warehouse->code,
             'email' => $email,
             'email_verified_at' => now(),
             'password' => bcrypt('secret123'), // password

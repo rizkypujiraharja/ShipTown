@@ -17,7 +17,7 @@ class PacklistPageTest extends DuskTestCase
     /**
      * @throws Throwable
      */
-    public function testBasics(): void
+    public function testAccessLevels(): void
     {
         $this->basicUserAccessTest($this->uri, true);
         $this->basicAdminAccessTest($this->uri, true);
@@ -37,10 +37,11 @@ class PacklistPageTest extends DuskTestCase
         $orderStatus = OrderStatus::factory()->create(['name' => 'paid', 'code' => 'paid', 'order_active' => true]);
 
         /** @var Order $order */
-        $order = Order::factory()->create();
+        $order = Order::factory()->create(['status_code' => $orderStatus->code]);
 
-        /** @var OrderProduct $orderProduct */
+        /** @var OrderProduct $orderProduct1 */
         $orderProduct1 = OrderProduct::factory()->create(['order_id' => $order->getKey()]);
+        /** @var OrderProduct $orderProduct2 */
         $orderProduct2 = OrderProduct::factory()->create(['order_id' => $order->getKey()]);
 
         $orderProduct1->product

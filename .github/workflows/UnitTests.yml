@@ -30,7 +30,7 @@ jobs:
       - name: Migrate database
         run: php artisan migrate:fresh --force
       - name: Run PHPUnit Tests
-        run: vendor/bin/phpunit --filter='Tests\\Unit'
+        run: vendor/bin/phpunit --stop-on-failure --stop-on-error --filter='Tests\\Unit'
       - name: Upload Console Logs
         if: failure()
         uses: actions/upload-artifact@v4

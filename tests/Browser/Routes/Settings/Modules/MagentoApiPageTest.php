@@ -6,11 +6,15 @@ use App\Modules\MagentoApi\src\EventServiceProviderBase;
 use App\User;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Throwable;
 
 class MagentoApiPageTest extends DuskTestCase
 {
     private string $uri = '/settings/modules/magento-api';
 
+    /**
+     * @throws Throwable
+     */
     public function testBasics(): void
     {
         EventServiceProviderBase::enableModule();
@@ -20,10 +24,14 @@ class MagentoApiPageTest extends DuskTestCase
         $this->basicGuestAccessTest($this->uri);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function testPage(): void
     {
         EventServiceProviderBase::enableModule();
 
+        /** @var User $user */
         $user = User::factory()->create();
         $user->assignRole('admin');
 
