@@ -17,7 +17,8 @@ class OrderReport extends Report
 
         $this->baseQuery = Order::query()
             ->leftJoin('orders_addresses as order_addresses_shipping', 'orders.shipping_address_id', '=', 'order_addresses_shipping.id')
-            ->leftJoin('orders_addresses as order_addresses_billing', 'orders.billing_address_id', '=', 'order_addresses_billing.id');
+            ->leftJoin('orders_addresses as order_addresses_billing', 'orders.billing_address_id', '=', 'order_addresses_billing.id')
+            ->leftJoin('orders_products_totals', 'orders.id', 'orders_products_totals.order_id');
 
         $this->addField('order_number', 'orders.order_number', 'number', hidden: false);
         $this->addField('status_code', 'orders.status_code', hidden: false);
@@ -30,6 +31,18 @@ class OrderReport extends Report
         $this->addField('total_order', 'orders.total_order', 'float', hidden: false);
         $this->addField('total_paid', 'orders.total_paid', 'float', hidden: false);
         $this->addField('total_outstanding', 'orders.total_outstanding', 'float', hidden: true);
+
+        $this->addField('count_product', 'orders_products_totals.count', 'float', true);
+        $this->addField('quantity_ordered', 'orders_products_totals.quantity_ordered', 'float', true);
+        $this->addField('quantity_split', 'orders_products_totals.quantity_split', 'float', true);
+        $this->addField('total_price', 'orders_products_totals.total_price', 'float', true);
+        $this->addField('quantity_picked', 'orders_products_totals.quantity_picked', 'float', true);
+        $this->addField('quantity_skipped_picking', 'orders_products_totals.quantity_skipped_picking', 'float', true);
+        $this->addField('quantity_not_picked', 'orders_products_totals.quantity_not_picked', 'float', true);
+        $this->addField('quantity_shipped', 'orders_products_totals.quantity_shipped', 'float', true);
+        $this->addField('quantity_to_pick', 'orders_products_totals.quantity_to_pick', 'float', true);
+        $this->addField('quantity_to_ship', 'orders_products_totals.quantity_to_ship', 'float', true);
+        $this->addField('max_updated_at', 'orders_products_totals.max_updated_at', 'datetime', true);
 
         $this->addField('shipping_method_code', 'orders.shipping_method_code', hidden: false);
         $this->addField('shipping_method_name', 'orders.shipping_method_name', hidden: false);
