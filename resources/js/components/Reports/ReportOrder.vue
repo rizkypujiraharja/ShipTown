@@ -425,7 +425,7 @@
             },
 
             showSelection() {
-                this.selected = this.visibleFields.map(f => f.name);
+                this.selected = this.visibleFields.map(f => f?.name);
             },
 
             updateVisibleFieldsAndGo() {

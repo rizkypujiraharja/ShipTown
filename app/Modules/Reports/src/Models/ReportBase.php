@@ -140,6 +140,7 @@ class ReportBase extends Model
         $filters = $filters->merge($this->addLowerThan());
         $filters = $filters->merge($this->addNullFilters());
         $filters = $filters->merge($this->addNotEqualFilters());
+        $filters = $filters->merge($this->addStartsWithFilters());
 
         return $filters->toArray();
     }
@@ -215,7 +216,6 @@ class ReportBase extends Model
             })
             ->each(function ($record, $alias) use (&$allowedFilters) {
                 $filterName = $alias.'_contains';
-
                 if ($record instanceof Expression) {
                     $allowedFilters[] = AllowedFilter::callback($filterName, function ($query, $value) use ($record) {
                         $query->where(new Expression('('.$record->getValue(DB::connection()->getQueryGrammar()).')'), 'LIKE', "%{$value}%");
@@ -472,6 +472,26 @@ class ReportBase extends Model
         return $allowedFilters;
     }
 
+    private function addStartsWithFilters(): array
+    {
+        $allowedFilters = [];
+
+        collect($this->casts)
+            ->filter(function ($type) {
+                return in_array($type, ['string', 'datetime', 'float']);
+            })
+            ->each(function ($type, $alias) use (&$allowedFilters) {
+                $filterName = $alias.'_starts_with';
+
+                $allowedFilters[] = AllowedFilter::callback($filterName, function ($query, $value) use ($type, $alias) {
+
+                    $query->where($this->fields[$alias], 'LIKE', "$value%");
+                });
+            });
+
+        return $allowedFilters;
+    }
+
     protected function getFieldType($field): string
     {
         return match ($this->casts[$field] ?? null) {
@@ -483,7 +503,7 @@ class ReportBase extends Model
     protected function getFieldTypeOperators($field): array
     {
         return match ($this->getFieldType($field)) {
-            'string' => ['equals', 'not equal', 'btwn', 'contains', 'greater than', 'lower than'],
+            'string' => ['equals', 'not equal', 'btwn', 'contains', 'greater than', 'lower than', 'starts with'],
             'numeric' => ['equals', 'not equal', 'btwn', 'greater than', 'lower than'],
             'date' => ['btwn'],
             'datetime' => ['btwn'],
