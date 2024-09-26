@@ -12,6 +12,9 @@
         <testsuite name="App">
             <directory suffix="Test.php">./tests/App</directory>
         </testsuite>
+        <testsuite name="Console">
+            <directory suffix="Test.php">./tests/Console</directory>
+        </testsuite>
         <testsuite name="Coverage">
             <directory suffix="Test.php">./tests/Coverage</directory>
         </testsuite>

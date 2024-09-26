@@ -64,6 +64,11 @@ class AppInstall extends Command
             self::ensureAppKeysGenerated();
             $this->preconfigureDatabase();
             $configuration->update(['database_version' => '2.1.0']);
+            $this->info('Application installed successfully');
+        } else {
+            $this->info('Application already installed');
+
+            return 0;
         }
 
         AfterInstallEvent::dispatch();
