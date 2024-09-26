@@ -19,6 +19,12 @@ class InventoryReport extends Report
             ->leftJoin('products_prices as product_prices', function ($join) {
                 $join->on('inventory.product_id', '=', 'product_prices.product_id')
                     ->on('inventory.warehouse_id', '=', 'product_prices.warehouse_id');
+            })
+            ->leftJoin('inventory_movements_statistics', function ($join) {
+                $join->on('inventory.id', '=', 'inventory_movements_statistics.inventory_id')
+                    ->on('inventory.product_id', '=', 'inventory_movements_statistics.product_id')
+                    ->on('inventory.warehouse_code', '=', 'inventory_movements_statistics.warehouse_code')
+                    ->where('inventory_movements_statistics.type', '=', 'sale');
             });
 
         $this->addField('product_sku', 'product.sku', hidden: false);
@@ -67,6 +73,10 @@ class InventoryReport extends Report
         $this->addField('warehouse_id', 'inventory.warehouse_id', 'integer');
 
         $this->addField('warehouse_code', 'inventory.warehouse_code', hidden: false);
+
+        $this->addField('last_7_days_sales', DB::raw('COALESCE(inventory_movements_statistics.last7days_quantity_delta, 0) * -1'), hidden: false);
+        $this->addField('last_14_days_sales', DB::raw('COALESCE(inventory_movements_statistics.last14days_quantity_delta, 0) * -1'), hidden: false);
+        $this->addField('last_28_days_sales', DB::raw('COALESCE(inventory_movements_statistics.last28days_quantity_delta, 0) * -1'), hidden: false);
 
         $this->addFilter(
             AllowedFilter::callback('has_tags', function ($query, $value) {
