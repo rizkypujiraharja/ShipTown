@@ -63,7 +63,6 @@ class Inventory extends BaseModel
     protected $table = 'inventory';
 
     protected static $logAttributes = [
-        'quantity',
         'quantity_reserved',
         'restock_level',
         'reorder_point',

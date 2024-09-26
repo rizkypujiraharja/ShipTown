@@ -8,8 +8,12 @@ use App\Modules\Webhooks\src\Models\PendingWebhook;
 
 class InventoryUpdatedEventListener
 {
-    public function handle(InventoryUpdatedEvent $event)
+    public function handle(InventoryUpdatedEvent $event): void
     {
+        if ($event->inventory->recount_required) {
+            return;
+        }
+
         PendingWebhook::query()->firstOrCreate([
             'model_class' => Inventory::class,
             'model_id' => $event->inventory->getKey(),
