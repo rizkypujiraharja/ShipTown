@@ -256,7 +256,7 @@ class Order extends BaseModel
 
     public function getAgeInDaysAttribute(): int
     {
-        return (int) Carbon::now()->ceilDay()->diffInDays($this->order_placed_at);
+        return (int) $this->order_placed_at->ceilDay()->diffInDays(now());
     }
 
     public function scopePackedBetween(mixed $query, string $fromDateTime, string $toDateTime): mixed

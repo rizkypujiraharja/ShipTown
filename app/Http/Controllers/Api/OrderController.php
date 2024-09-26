@@ -31,7 +31,10 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request): JsonResponse
     {
         $order = Order::query()->updateOrCreate(
-            ['order_number' => $request->validated()['order_number']],
+            [
+                'order_number' => $request->validated()['order_number'],
+                'order_placed_at' => $request->validated('order_placed_at', now()),
+            ],
             $request->validated()
         );
 
