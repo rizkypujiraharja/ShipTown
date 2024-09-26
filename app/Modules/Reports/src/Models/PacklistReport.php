@@ -2,9 +2,7 @@
 
 namespace App\Modules\Reports\src\Models;
 
-use App\Models\Order;
 use App\Models\OrderProduct;
-use Illuminate\Support\Facades\DB;
 
 class PacklistReport extends Report
 {

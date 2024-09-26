@@ -2,6 +2,4 @@
 
 namespace App\Modules\Webhooks\src\Models;
 
-class PendingWebhook extends Webhook
-{
-}
+class PendingWebhook extends Webhook {}

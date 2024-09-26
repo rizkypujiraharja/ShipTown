@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             Modules\Magento2MSI\ConnectionSeeder::class,
             Modules\Magento2API\ConnectionSeeder::class,
 
-                        RestockingReportSeeder::class,
+            RestockingReportSeeder::class,
             //            DataCollectionsSeeder::class,
             //            RmsapiConnectionSeeder::class,
             //            AutomationsSeeder::class,

@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class AppGenerateJobsTests extends Command
 {
@@ -63,10 +62,10 @@ class AppGenerateJobsTests extends Command
     private function getTestFileName($file): string
     {
         $directory = \File::dirname($file);
-        $directory = str_replace(app()->basePath() . '/', '', $directory);
+        $directory = str_replace(app()->basePath().'/', '', $directory);
         $directory = \Str::ucfirst($directory);
 
-        $fileName = $directory . '/' . basename($file, '.php') . 'Test';
+        $fileName = $directory.'/'.basename($file, '.php').'Test';
 
         return $fileName;
     }

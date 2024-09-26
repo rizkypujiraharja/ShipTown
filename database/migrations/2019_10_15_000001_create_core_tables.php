@@ -4,10 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
-        if (!Schema::hasTable('users')) {
+        if (! Schema::hasTable('users')) {
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
                 $table->integer('printer_id')->nullable();
@@ -28,7 +29,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('sessions')) {
+        if (! Schema::hasTable('sessions')) {
             Schema::create('sessions', function (Blueprint $table) {
                 $table->string('id')->unique();
                 $table->foreignId('user_id')->nullable();
@@ -45,7 +46,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('navigation_menu')) {
+        if (! Schema::hasTable('navigation_menu')) {
             Schema::create('navigation_menu', function (Blueprint $table) {
                 $table->id();
                 $table->string('name', 100);
@@ -121,7 +122,7 @@ return new class extends Migration {
                         $columnNames['team_foreign_key'],
                         $pivotPermission,
                         $columnNames['model_morph_key'],
-                        'model_type'
+                        'model_type',
                     ],
                         'model_has_permissions_permission_model_type_primary');
                 } else {
@@ -151,7 +152,7 @@ return new class extends Migration {
                         $columnNames['team_foreign_key'],
                         $pivotRole,
                         $columnNames['model_morph_key'],
-                        'model_type'
+                        'model_type',
                     ],
                         'model_has_roles_role_model_type_primary');
                 } else {

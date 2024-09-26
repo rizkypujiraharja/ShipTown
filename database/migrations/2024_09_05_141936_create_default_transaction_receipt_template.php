@@ -30,7 +30,7 @@ Date: {{transaction.created_at}}
 <esc-left>
 Discount: <esc-tab>${{transaction.discount}}</esc-tab>
 Total: <esc-tab>${{transaction.total}}</esc-tab>
-</esc-left>'
+</esc-left>',
         ]);
     }
 };

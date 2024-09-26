@@ -22,7 +22,7 @@ class InventoryDashboardReport extends Report
         $this->report_name = 'Restocking Dashboard';
 
         if (request('title')) {
-            $this->report_name = request('title') . ' (' . $this->report_name . ')';
+            $this->report_name = request('title').' ('.$this->report_name.')';
         }
 
         $this->fields = [
@@ -33,9 +33,9 @@ class InventoryDashboardReport extends Report
             'wh_products_out_of_stock' => DB::raw('count(CASE WHEN inventory.quantity_available = 0 AND inventory.restock_level > 0 THEN 1 END)'),
             'wh_products_required' => DB::raw('count(CASE WHEN inventory.quantity_required > 0 THEN 1 END)'),
             'wh_products_incoming' => DB::raw('count(CASE WHEN inventory.quantity_incoming > 0 THEN 1 END)'),
-            'wh_products_stock_level_ok' => DB::raw('count(CASE ' .
-                'WHEN (inventory.quantity_required = 0 AND inventory.restock_level > 0) ' .
-                'THEN 1 ' .
+            'wh_products_stock_level_ok' => DB::raw('count(CASE '.
+                'WHEN (inventory.quantity_required = 0 AND inventory.restock_level > 0) '.
+                'THEN 1 '.
                 'END)'),
         ];
 

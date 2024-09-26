@@ -6,7 +6,7 @@ use App\Modules\Webhooks\src\Services\WebhooksService;
 
 class DispatchEveryMinuteJobsListener
 {
-    public function handle()
+    public function handle(): void
     {
         WebhooksService::dispatchJobs();
     }

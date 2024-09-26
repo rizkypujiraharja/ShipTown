@@ -18,7 +18,9 @@ class StoreTest extends TestCase
     use RefreshDatabase;
 
     private string $uri = '/api/transaction/receipt-print';
+
     private User $adminUser;
+
     private DataCollection $transaction;
 
     protected function setUp(): void
@@ -28,8 +30,8 @@ class StoreTest extends TestCase
         $this->adminUser = User::factory()->create();
         $this->adminUser->assignRole(Role::findOrCreate('admin', 'api'));
 
-//        $shippingAddress = OrderAddress::factory()->create(['country_name' => 'Ireland', 'country_code' => 'IE']);
-//        $billingAddress = OrderAddress::factory()->create(['country_name' => 'Ireland', 'country_code' => 'IE']);
+        //        $shippingAddress = OrderAddress::factory()->create(['country_name' => 'Ireland', 'country_code' => 'IE']);
+        //        $billingAddress = OrderAddress::factory()->create(['country_name' => 'Ireland', 'country_code' => 'IE']);
 
         /** @var Product $product */
         $product = Product::factory()->create();
@@ -48,8 +50,8 @@ class StoreTest extends TestCase
             'type' => \App\Models\DataCollectionTransaction::class,
             'warehouse_id' => $inventory->warehouse_id,
             'warehouse_code' => $inventory->warehouse_code,
-//            'shipping_address_id' => $shippingAddress->id,
-//            'billing_address_id' => $billingAddress->id,
+            //            'shipping_address_id' => $shippingAddress->id,
+            //            'billing_address_id' => $billingAddress->id,
         ]);
 
         DataCollectionRecord::factory()->create([

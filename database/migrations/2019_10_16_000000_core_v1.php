@@ -5,10 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
-        if (!Schema::hasTable('oauth_auth_codes')) {
+        if (! Schema::hasTable('oauth_auth_codes')) {
             Schema::create('oauth_auth_codes', function (Blueprint $table) {
                 $table->string('id', 100)->primary();
                 $table->foreignId('user_id')->index();
@@ -19,7 +20,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('oauth_access_tokens')) {
+        if (! Schema::hasTable('oauth_access_tokens')) {
             Schema::create('oauth_access_tokens', function (Blueprint $table) {
                 $table->string('id', 100)->primary();
                 $table->foreignId('user_id')->nullable()->index();
@@ -32,7 +33,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('oauth_refresh_tokens')) {
+        if (! Schema::hasTable('oauth_refresh_tokens')) {
             Schema::create('oauth_refresh_tokens', function (Blueprint $table) {
                 $table->string('id', 100)->primary();
                 $table->string('access_token_id', 100)->index();
@@ -41,7 +42,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('oauth_clients')) {
+        if (! Schema::hasTable('oauth_clients')) {
             Schema::create('oauth_clients', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('user_id')->nullable()->index();
@@ -56,7 +57,7 @@ return new class extends Migration {
             });
         }
 
-        if (!Schema::hasTable('oauth_personal_access_clients')) {
+        if (! Schema::hasTable('oauth_personal_access_clients')) {
             Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('client_id');
@@ -235,11 +236,11 @@ return new class extends Migration {
             $table->decimal('quantity_incoming', 20)->default(0)->index();
 
             $table->decimal('quantity_required', 20)
-                ->storedAs('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point ' .
-                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)' .
+                ->storedAs('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point '.
+                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)'.
                     'ELSE 0 END')
-                ->comment('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point ' .
-                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)' .
+                ->comment('CASE WHEN (quantity - quantity_reserved + quantity_incoming) BETWEEN 0 AND reorder_point '.
+                    'THEN restock_level - (quantity - quantity_reserved + quantity_incoming)'.
                     'ELSE 0 END')->index();
 
             $table->decimal('reorder_point', 20)->default(0)->index();
@@ -1165,14 +1166,14 @@ return new class extends Migration {
                 ->on('inventory');
         });
 
-        if (!Schema::hasColumn(config('activitylog.table_name'), 'event')) {
+        if (! Schema::hasColumn(config('activitylog.table_name'), 'event')) {
             Schema::connection(config('activitylog.database_connection'))
                 ->table(config('activitylog.table_name'), function (Blueprint $table) {
                     $table->string('event')->nullable()->after('subject_type');
                 });
         }
 
-        if (!Schema::hasColumn(config('activitylog.table_name'), 'batch_uuid')) {
+        if (! Schema::hasColumn(config('activitylog.table_name'), 'batch_uuid')) {
             Schema::connection(config('activitylog.database_connection'))
                 ->table(config('activitylog.table_name'), function (Blueprint $table) {
                     $table->uuid('batch_uuid')->nullable()->after('properties');

@@ -24,7 +24,7 @@ class ProductsManySeeder extends Seeder
         while ($i > 0) {
             try {
                 $rand = \Str::uuid();
-                $records[] = ['sku' => $rand, 'name' => 'test_' . $rand];
+                $records[] = ['sku' => $rand, 'name' => 'test_'.$rand];
                 $i--;
             } catch (\Exception $e) {
                 report($e);
@@ -32,6 +32,7 @@ class ProductsManySeeder extends Seeder
         }
 
         DB::table('products')->insert($records);
+
         return $records;
     }
 }

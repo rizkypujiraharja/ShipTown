@@ -7,7 +7,7 @@ use App\Modules\OrderTotals\src\Services\OrderTotalsService;
 
 class OrderCreatedEventListener
 {
-    public function handle(OrderCreatedEvent $event)
+    public function handle(OrderCreatedEvent $event): void
     {
         OrderTotalsService::updateTotals($event->order->id);
     }

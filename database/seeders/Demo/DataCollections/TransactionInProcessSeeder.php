@@ -16,7 +16,6 @@ class TransactionInProcessSeeder extends Seeder
             'custom_uuid' => 'TRANSACTION_IN_PROGRESS_FOR_USER_1_Artur Hanusek',
         ]);
 
-
         DataCollectionRecord::factory()
             ->count(rand(3, 5))
             ->create([

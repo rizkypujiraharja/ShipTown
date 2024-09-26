@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\MailTemplate;
 
-use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class UpdateRequest extends FormRequest
 {

@@ -23,8 +23,8 @@ class JobFailedListener
 
         Log::info('Job failed', [
             'job' => $jobName,
-            'duration' => (int)now()->diffInSeconds($jobStartTime),
-            'exception' => $event->exception
+            'duration' => (int) now()->diffInSeconds($jobStartTime),
+            'exception' => $event->exception,
         ]);
     }
 }

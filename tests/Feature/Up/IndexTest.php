@@ -3,17 +3,10 @@
 namespace Tests\Feature\Up;
 
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-/**
- *
- */
 class IndexTest extends TestCase
 {
-    /**
-     * @var string
-     */
     protected string $uri = '/up';
 
     protected mixed $user;

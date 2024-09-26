@@ -7,29 +7,14 @@ use App\Models\MailTemplate;
 use App\User;
 use Tests\TestCase;
 
-/**
- *
- */
 class IndexTest extends TestCase
 {
-    /**
-     * @var string
-     */
     protected string $uri = 'documents';
 
-    /**
-     * @var User
-     */
     protected User $user;
 
-    /**
-     * @var MailTemplate
-     */
     protected MailTemplate $mailTemplate;
 
-    /**
-     * @var DataCollection
-     */
     protected DataCollection $dataCollection;
 
     protected function setUp(): void
@@ -59,11 +44,11 @@ class IndexTest extends TestCase
     {
         $this->actingAs($this->user, 'web');
 
-        $response = $this->get($this->uri . '?' . http_build_query([
-                'template_code' => $this->mailTemplate->code,
-                'data_collection_id' => $this->dataCollection->id,
-                'output_format' => 'pdf',
-            ]));
+        $response = $this->get($this->uri.'?'.http_build_query([
+            'template_code' => $this->mailTemplate->code,
+            'data_collection_id' => $this->dataCollection->id,
+            'output_format' => 'pdf',
+        ]));
         ray($response);
 
         $response->assertSuccessful();
@@ -76,11 +61,11 @@ class IndexTest extends TestCase
 
         $this->actingAs($this->user, 'web');
 
-        $response = $this->get($this->uri . '?' . http_build_query([
-                'template_code' => $this->mailTemplate->code,
-                'data_collection_id' => $this->dataCollection->id,
-                'output_format' => 'pdf',
-            ]));
+        $response = $this->get($this->uri.'?'.http_build_query([
+            'template_code' => $this->mailTemplate->code,
+            'data_collection_id' => $this->dataCollection->id,
+            'output_format' => 'pdf',
+        ]));
 
         $response->assertSuccessful();
     }

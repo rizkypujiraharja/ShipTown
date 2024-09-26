@@ -100,10 +100,5 @@ class CsvImportController extends Controller
         return JsonResource::make(['success' => true]);
     }
 
-    /**
-     * @param $data
-     */
-    public function fromArray(string $tempTableName, \Closure $callback, $data): void
-    {
-    }
+    public function fromArray(string $tempTableName, \Closure $callback, $data): void {}
 }

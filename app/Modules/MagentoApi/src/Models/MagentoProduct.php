@@ -5,9 +5,9 @@ namespace App\Modules\MagentoApi\src\Models;
 use App\BaseModel;
 use App\Models\Product;
 use App\Models\ProductPrice;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property MagentoConnection $magentoConnection

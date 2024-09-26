@@ -30,7 +30,7 @@ class UpdateTest extends TestCase
         /** @var OrderAddress $billingAddress */
         $billingAddress = OrderAddress::factory()->create(['country_name' => 'Ireland', 'country_code' => 'IE']);
 
-        $response = $this->actingAs($user, 'api')->putJson($this->uri . $dataCollectionToUpdate->id, [
+        $response = $this->actingAs($user, 'api')->putJson($this->uri.$dataCollectionToUpdate->id, [
             'shipping_address_id' => $shippingAddress->id,
             'billing_address_id' => $billingAddress->id,
         ]);
@@ -43,7 +43,7 @@ class UpdateTest extends TestCase
             'data_collections',
             [
                 'id' => $dataCollectionToUpdate->id,
-                'name' => 'Test Transaction'
+                'name' => 'Test Transaction',
             ]
         );
     }

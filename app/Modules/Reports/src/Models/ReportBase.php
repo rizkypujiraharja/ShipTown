@@ -483,7 +483,7 @@ class ReportBase extends Model
             ->each(function ($type, $alias) use (&$allowedFilters) {
                 $filterName = $alias.'_starts_with';
 
-                $allowedFilters[] = AllowedFilter::callback($filterName, function ($query, $value) use ($type, $alias) {
+                $allowedFilters[] = AllowedFilter::callback($filterName, function ($query, $value) use ($alias) {
 
                     $query->where($this->fields[$alias], 'LIKE', "$value%");
                 });

@@ -22,6 +22,7 @@ class OrderAddressController extends Controller
     public function store(OrderAddressStoreRequest $request)
     {
         $address = OrderAddress::create($request->validated());
+
         return OrderAddressResource::make($address);
     }
 

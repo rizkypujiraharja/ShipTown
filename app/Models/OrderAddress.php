@@ -164,7 +164,7 @@ class OrderAddress extends BaseModel
 
     public function getFullNameAttribute(): string
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     protected function setFullNameAttribute(string $value): void
@@ -182,14 +182,14 @@ class OrderAddress extends BaseModel
     public function scopeWhereHasText(mixed $query, string $text): mixed
     {
         return $query->where('company', $text)
-            ->orWhere('company', 'like', '%' . $text . '%')
+            ->orWhere('company', 'like', '%'.$text.'%')
             ->orWhere('address1', $text)
-            ->orWhere('address1', 'like', '%' . $text . '%')
+            ->orWhere('address1', 'like', '%'.$text.'%')
             ->orWhere('address2', $text)
-            ->orWhere('address2', 'like', '%' . $text . '%')
+            ->orWhere('address2', 'like', '%'.$text.'%')
             ->orWhere('postcode', $text)
-            ->orWhere('postcode', 'like', '%' . $text . '%')
+            ->orWhere('postcode', 'like', '%'.$text.'%')
             ->orWhere('city', $text)
-            ->orWhere('city', 'like', '%' . $text . '%');
+            ->orWhere('city', 'like', '%'.$text.'%');
     }
 }

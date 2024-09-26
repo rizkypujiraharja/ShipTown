@@ -89,7 +89,7 @@ class TransactionController extends Controller
 
         $template = $this->parseReceiptTemplate($html);
 
-        $printJob = new PrintJob();
+        $printJob = new PrintJob;
         $printJob->printer_id = $request->printer_id;
         $printJob->title = "transaction $transaction->id receipt";
         $printJob->content = base64_encode($template);
@@ -103,6 +103,7 @@ class TransactionController extends Controller
     {
         return $transaction->records->map(function ($record) {
             $product = $record->product;
+
             return [
                 'sku' => $product->sku,
                 'name' => $product->name,
@@ -117,18 +118,18 @@ class TransactionController extends Controller
         $esc = chr(27);
 
         $codes = [
-            'left' => $esc . "a" . chr(0),
-            'center' => $esc . "a" . chr(1),
-            'right' => $esc . "a" . chr(2),
-            'font-large' => chr(29) . "!" . chr(68),
-            'font-big' => chr(29) . "!" . chr(34),
-            'font-normal' => chr(29) . "!" . chr(0),
+            'left' => $esc.'a'.chr(0),
+            'center' => $esc.'a'.chr(1),
+            'right' => $esc.'a'.chr(2),
+            'font-large' => chr(29).'!'.chr(68),
+            'font-big' => chr(29).'!'.chr(34),
+            'font-normal' => chr(29).'!'.chr(0),
             'br' => chr(10),
-            'cut' => chr(29) . "V" . chr(1),
-            'bold' => $esc . "E" . chr(1),
-            'bold-off' => $esc . "E" . chr(0),
+            'cut' => chr(29).'V'.chr(1),
+            'bold' => $esc.'E'.chr(1),
+            'bold-off' => $esc.'E'.chr(0),
             'tab' => chr(9),
-            'dashed-line' => $esc . "a" . chr(1) . '-------------------------' . $esc . "a" . chr(0),
+            'dashed-line' => $esc.'a'.chr(1).'-------------------------'.$esc.'a'.chr(0),
         ];
 
         $tagsWithCodes = [
@@ -143,7 +144,7 @@ class TransactionController extends Controller
             'font-big' => $codes['font-big'],
             'font-normal' => $codes['font-normal'],
             'tab' => $codes['tab'],
-            'dashed-line' => $codes['dashed-line']
+            'dashed-line' => $codes['dashed-line'],
         ];
 
         $tagsWithNonEmptyEnd = [
@@ -151,7 +152,7 @@ class TransactionController extends Controller
             'right' => $codes['left'],
             'bold' => $codes['bold-off'],
             'font-large' => $codes['font-normal'],
-            'font-big' => $codes['font-normal']
+            'font-big' => $codes['font-normal'],
         ];
 
         foreach ($tagsWithCodes as $tag => $code) {
@@ -173,7 +174,7 @@ class TransactionController extends Controller
             foreach ($matches as $match) {
                 $columns[] = [
                     'content' => $match[1],
-                    'attributes' => $this->parseAttributes($match[0])
+                    'attributes' => $this->parseAttributes($match[0]),
                 ];
             }
 
@@ -181,16 +182,17 @@ class TransactionController extends Controller
             $template = str_replace($tableContent, $parsedTable, $template);
         }
 
-        $parsedTemplate = $esc . "@";
+        $parsedTemplate = $esc.'@';
         $parsedTemplate .= $template;
-        $parsedTemplate .= $esc . 'd' . chr(5);
-        $parsedTemplate .= $esc . "i";
+        $parsedTemplate .= $esc.'d'.chr(5);
+        $parsedTemplate .= $esc.'i';
         $pinValue = 0 + 48; // Character '0' or '1'.
         $onValue = intdiv(120, 2);
         $offValue = intdiv(240, 2);
-        $parsedTemplate .= $esc . "p" . chr($pinValue) . chr($onValue) . chr($offValue);
+        $parsedTemplate .= $esc.'p'.chr($pinValue).chr($onValue).chr($offValue);
 
         ray($parsedTemplate);
+
         return $parsedTemplate;
     }
 
@@ -201,6 +203,7 @@ class TransactionController extends Controller
         foreach ($matches as $match) {
             $attributes[$match[1]] = $match[2];
         }
+
         return $attributes;
     }
 
@@ -246,6 +249,6 @@ class TransactionController extends Controller
             $allLines[] = $line;
         }
 
-        return implode("\n", $allLines) . "\n";
+        return implode("\n", $allLines)."\n";
     }
 }

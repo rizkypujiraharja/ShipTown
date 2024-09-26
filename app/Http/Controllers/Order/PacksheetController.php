@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Order;
 
-use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PacksheetShowRequest;
+use Illuminate\View\View;
 
 class PacksheetController extends Controller
 {

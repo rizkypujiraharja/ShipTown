@@ -23,7 +23,7 @@ class DataCollectorService
 {
     public static function recalculate(DataCollection $dataCollection): void
     {
-        $lockKey = 'recalculating_data_collection_lock_' . $dataCollection->id;
+        $lockKey = 'recalculating_data_collection_lock_'.$dataCollection->id;
 
         Cache::lock($lockKey, 5)->get(function () use ($dataCollection) {
             DataCollectionRecalculateRequestEvent::dispatch($dataCollection);
@@ -38,7 +38,7 @@ class DataCollectorService
                 'currently_running_task' => TransferInJob::class,
             ]);
 
-            if (!$dataCollection->records()
+            if (! $dataCollection->records()
                 ->where('quantity_to_scan', '>', 0)
                 ->exists()) {
                 $dataCollection->delete();
@@ -55,7 +55,7 @@ class DataCollectorService
                 'currently_running_task' => TransferOutJob::class,
             ]);
 
-            if (!$dataCollection->records()
+            if (! $dataCollection->records()
                 ->where('quantity_to_scan', '>', 0)
                 ->exists()) {
                 $dataCollection->delete();
@@ -204,7 +204,7 @@ class DataCollectorService
 
             InventoryService::transferIn($inventory, $record->quantity_scanned, [
                 'occurred_at' => $record->dataCollection->deleted_at ?? now()->utc()->toDateTimeLocalString(),
-                'description' => Str::substr('Data Collection - ' . $record->dataCollection->name, 0, 50),
+                'description' => Str::substr('Data Collection - '.$record->dataCollection->name, 0, 50),
                 'custom_unique_reference_id' => $custom_unique_reference_id,
             ]);
 
@@ -239,7 +239,7 @@ class DataCollectorService
             ]);
 
             InventoryService::transferOut($inventory, $record->quantity_scanned * -1, [
-                'description' => Str::substr('Data Collection - ' . $record->dataCollection->name, 0, 50),
+                'description' => Str::substr('Data Collection - '.$record->dataCollection->name, 0, 50),
                 'custom_unique_reference_id' => $custom_unique_reference_id,
             ]);
 

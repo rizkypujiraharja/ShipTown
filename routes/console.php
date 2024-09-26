@@ -15,7 +15,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-
 Schedule::job(new DispatchEveryMinuteEventJob)->everyMinute();
 Schedule::job(new DispatchEveryFiveMinutesEventJob)->everyFiveMinutes();
 Schedule::job(new DispatchEveryTenMinutesEventJob)->everyTenMinutes();

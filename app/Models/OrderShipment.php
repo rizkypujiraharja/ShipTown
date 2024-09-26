@@ -91,12 +91,12 @@ class OrderShipment extends BaseModel
 
     public function getAgeInDaysAttribute(): int
     {
-        return (int)Carbon::now()->ceilDay()->diffInDays($this->created_at);
+        return (int) Carbon::now()->ceilDay()->diffInDays($this->created_at);
     }
 
     public function scopeWhereAgeInDaysBetween($query, $ageInDaysFrom, $ageInDaysTo)
     {
-        return $query->whereRaw('DATEDIFF(now(), `' . $this->getConnection()->getTablePrefix() . $this->getTable() . "`.`created_at`) BETWEEN $ageInDaysFrom AND $ageInDaysTo");
+        return $query->whereRaw('DATEDIFF(now(), `'.$this->getConnection()->getTablePrefix().$this->getTable()."`.`created_at`) BETWEEN $ageInDaysFrom AND $ageInDaysTo");
     }
 
     public static function getSpatieQueryBuilder(): QueryBuilder

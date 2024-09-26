@@ -3,6 +3,7 @@
 use App\Http\Middleware\AddHeaderAccessToken;
 use App\Http\Middleware\TwoFactor;
 use Aws\Laravel\AwsServiceProvider;
+use Barryvdh\DomPDF\ServiceProvider as DomPDFServiceProvider;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Foundation\Application;
@@ -15,7 +16,6 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Laravel\Passport\Http\Middleware\CreateFreshApiToken;
 use Milon\Barcode\BarcodeServiceProvider;
 use Sentry\Laravel\ServiceProvider as SentryServiceProvider;
-use Barryvdh\DomPDF\ServiceProvider as DomPDFServiceProvider;
 use Spatie\Permission\Middleware\RoleMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -26,9 +26,9 @@ return Application::configure(basePath: dirname(__DIR__))
         BarcodeServiceProvider::class,
     ])
     ->withRouting(
-        web: __DIR__ . '/../routes/web.php',
-        api: __DIR__ . '/../routes/api.php',
-        commands: __DIR__ . '/../routes/console.php',
+        web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
         // channels: __DIR__.'/../routes/channels.php',
         health: '/up',
     )

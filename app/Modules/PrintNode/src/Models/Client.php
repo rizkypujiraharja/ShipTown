@@ -3,9 +3,9 @@
 namespace App\Modules\PrintNode\src\Models;
 
 use Eloquent;
+use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
@@ -63,7 +63,7 @@ class Client extends Model
 
     public function fullUrl(string $uri): string
     {
-        return 'https://api.printnode.com/' . $uri;
+        return 'https://api.printnode.com/'.$uri;
     }
 
     public function getRequest(string $uri): ResponseInterface
@@ -87,7 +87,7 @@ class Client extends Model
     public function generateHeaders(): array
     {
         return [
-            'Authorization' => 'Basic ' . base64_encode($this->api_key),
+            'Authorization' => 'Basic '.base64_encode($this->api_key),
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];

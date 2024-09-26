@@ -3,15 +3,15 @@
 namespace App\Console\Commands;
 
 use App\Events\AfterInstallEvent;
+use App\Mail\OrderMail;
 use App\Mail\ShipmentConfirmationMail;
 use App\Mail\TransactionEmailReceiptMail;
-use App\Modules;
-use App\Mail\OrderMail;
 use App\Models\Configuration;
 use App\Models\MailTemplate;
 use App\Models\NavigationMenu;
 use App\Models\OrderStatus;
 use App\Models\Warehouse;
+use App\Modules;
 use App\Modules\Automations\src\Actions\Order\SetStatusCodeAction;
 use App\Modules\Automations\src\Conditions\Order\HasAnyShipmentCondition;
 use App\Modules\Automations\src\Conditions\Order\IsFullyPackedCondition;
@@ -82,8 +82,8 @@ class AppInstall extends Command
 
         if (file_exists($path)) {
             file_put_contents($path, str_replace(
-                $key . '=' . env($key),
-                $key . '=' . $value,
+                $key.'='.env($key),
+                $key.'='.$value,
                 file_get_contents($path)
             ));
         }
@@ -1206,7 +1206,7 @@ class AppInstall extends Command
             </table>
         </body>
         </html>
-        '
+        ',
         ]);
     }
 

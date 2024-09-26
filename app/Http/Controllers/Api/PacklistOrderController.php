@@ -25,7 +25,7 @@ class PacklistOrderController extends Controller
                 $order->update(['packer_user_id' => null]);
             });
 
-        $report = new PacklistReport();
+        $report = new PacklistReport;
 
         $orderList = $report->toJsonResource();
 

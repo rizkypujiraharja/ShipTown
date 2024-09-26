@@ -50,7 +50,7 @@ class ReportsServiceProvider extends BaseModuleServiceProvider
         //        );
 
         $this->loadViewsFrom(
-            __DIR__ . '/../resources/views',
+            __DIR__.'/../resources/views',
             $module_filename
         );
 

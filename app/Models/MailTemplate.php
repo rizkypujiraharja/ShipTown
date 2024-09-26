@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Barryvdh\LaravelIdeHelper\Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MailTemplates\Models\MailTemplate as SpatieMailTemplate;
 
 /**

@@ -3,9 +3,9 @@
 namespace App\Traits;
 
 use ArrayAccess;
-use Illuminate\Support\Collection;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Tags\HasTags;
@@ -59,7 +59,6 @@ trait HasTagsTrait
     }
 
     /**
-     *
      * @throws Exception
      */
     public function attachTags(array $tags, ?string $type = null): self

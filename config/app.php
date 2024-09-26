@@ -26,7 +26,6 @@ return [
      */
     'api2cart_api_key' => env('API2CART_API_KEY', ''),
 
-
     'aliases' => Facade::defaultAliases()->merge([
         'AWS' => Aws\Laravel\AwsFacade::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,

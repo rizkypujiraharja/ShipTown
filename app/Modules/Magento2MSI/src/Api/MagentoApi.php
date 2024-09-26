@@ -202,21 +202,21 @@ class MagentoApi
 
     public static function postProductsBaseBulkPrices(string $api_access_token, string $base_url, array $attributes): ?Response
     {
-        return Client::post($api_access_token, $base_url . '/rest/all/V1/products/base-prices', [
+        return Client::post($api_access_token, $base_url.'/rest/all/V1/products/base-prices', [
             'prices' => $attributes,
         ]);
     }
 
     public static function fetchBasePricesBulk(string $api_access_token, string $base_url, array $attributes): ?Response
     {
-        return Client::post($api_access_token, $base_url . '/rest/all/V1/products/base-prices-information', [
-            'skus' => $attributes
+        return Client::post($api_access_token, $base_url.'/rest/all/V1/products/base-prices-information', [
+            'skus' => $attributes,
         ]);
     }
 
     public static function fetchSpecialPricesBulk(string $api_access_token, string $base_url, array $attributes): ?Response
     {
-        return Client::post($api_access_token, $base_url . '/rest/all/V1/products/special-price-information', [
+        return Client::post($api_access_token, $base_url.'/rest/all/V1/products/special-price-information', [
             'skus' => $attributes,
         ]);
     }

@@ -36,9 +36,9 @@ class PrintReceiptTest extends TestCase
             'warehouse_code' => $user->warehouse_code,
         ]);
 
-        DataCollectionRecord::factory(rand(2,5))
+        DataCollectionRecord::factory(rand(2, 5))
             ->create([
-            'data_collection_id' => $dataCollectionToUpdate->id,
+                'data_collection_id' => $dataCollectionToUpdate->id,
                 'warehouse_id' => $user->warehouse_id,
                 'warehouse_code' => $user->warehouse_code,
             ]);
@@ -58,7 +58,7 @@ class PrintReceiptTest extends TestCase
             'data_collections',
             [
                 'id' => $dataCollectionToUpdate->id,
-                'name' => 'Test Transaction'
+                'name' => 'Test Transaction',
             ]
         );
     }

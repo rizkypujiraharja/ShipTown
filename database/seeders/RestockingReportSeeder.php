@@ -15,7 +15,7 @@ class RestockingReportSeeder extends Seeder
     {
         /** @var Warehouse $destination_warehouse */
         /** @var Warehouse $source_warehouse */
-        $source_warehouse =  Warehouse::withAnyTagsOfAnyType('fulfilment')->first() ?? Warehouse::factory()->create()->attachTag('fulfilment');
+        $source_warehouse = Warehouse::withAnyTagsOfAnyType('fulfilment')->first() ?? Warehouse::factory()->create()->attachTag('fulfilment');
 
         /** @var Warehouse $destination_warehouse */
         $destination_warehouse = Warehouse::whereCode('DUB')->first() ?? Warehouse::factory()->create(['code' => 'DUB']);
@@ -25,7 +25,7 @@ class RestockingReportSeeder extends Seeder
         $productPrices = ProductPrice::query()
             ->whereIn('product_id', $products->pluck('id'))
             ->get()
-            ->each(fn(ProductPrice $productPrice) => $productPrice->update([
+            ->each(fn (ProductPrice $productPrice) => $productPrice->update([
                 'price' => rand(40, 100),
                 'cost' => rand(5, 30),
             ]));
@@ -53,7 +53,7 @@ class RestockingReportSeeder extends Seeder
         Inventory::query()
             ->where(['warehouse_code' => $destination_warehouse->code])
             ->whereIn('product_id', $products->pluck('id'))
-            ->eachById(fn(Inventory $inventory) => $inventory->update([
+            ->eachById(fn (Inventory $inventory) => $inventory->update([
                 'reorder_point' => rand(50, 70),
                 'restock_level' => rand(70, 90),
             ]));

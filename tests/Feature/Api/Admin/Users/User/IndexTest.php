@@ -3,7 +3,6 @@
 namespace Tests\Feature\Api\Admin\Users\User;
 
 use App\User;
-use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class IndexTest extends TestCase

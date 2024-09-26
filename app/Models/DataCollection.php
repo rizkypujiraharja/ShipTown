@@ -15,7 +15,6 @@ use Illuminate\Support\Carbon;
  *
  * @property-read OrderAddress|null $shippingAddress
  * @property-read OrderAddress|null $billingAddress
- *
  * @property int $id
  * @property int $warehouse_code
  * @property int $warehouse_id
@@ -105,9 +104,6 @@ class DataCollection extends BaseModel
         return $this->belongsTo(OrderAddress::class);
     }
 
-    /**
-     * @return HasMany|DataCollectionComment
-     */
     public function comments(): HasMany|DataCollectionComment
     {
         return $this->hasMany(DataCollectionComment::class)->orderByDesc('id');

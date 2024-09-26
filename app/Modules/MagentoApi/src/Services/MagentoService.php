@@ -6,7 +6,6 @@ use App\Modules\Magento2MSI\src\Api\Client;
 use App\Modules\Magento2MSI\src\Api\MagentoApi;
 use App\Modules\MagentoApi\src\Exceptions\UnauthorizedException;
 use App\Modules\MagentoApi\src\Models\MagentoProduct;
-use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 

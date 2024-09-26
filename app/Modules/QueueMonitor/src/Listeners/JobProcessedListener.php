@@ -21,6 +21,6 @@ class JobProcessedListener
 
         $jobStartTime = Cache::pull($key);
 
-        Log::info('Job processed', ['job' => $jobName, 'duration' => (int)now()->diffInSeconds($jobStartTime)]);
+        Log::info('Job processed', ['job' => $jobName, 'duration' => (int) now()->diffInSeconds($jobStartTime)]);
     }
 }

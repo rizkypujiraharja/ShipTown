@@ -20,7 +20,9 @@ class StoreTest extends TestCase
     use RefreshDatabase;
 
     private string $uri = '/api/transaction/receipt';
+
     private User $adminUser;
+
     private DataCollection $transaction;
 
     protected function setUp(): void

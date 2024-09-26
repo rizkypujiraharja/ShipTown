@@ -88,7 +88,7 @@ class DpdUkService
                     'networkCode' => '1^12',
                     'numberOfParcels' => 1,
                     'totalWeight' => 10,
-                    'shippingRef1' => '#' . $order->order_number,
+                    'shippingRef1' => '#'.$order->order_number,
                     'shippingRef2' => '',
                     'shippingRef3' => '',
                     'customsValue' => null,
@@ -112,10 +112,10 @@ class DpdUkService
     private function generateTrackingUrl(ShippingLabel $orderShipment): string
     {
         $baseUlr = 'https://track.dpd.co.uk/search';
-        $referenceParam = 'reference=' . $orderShipment->shipping_number;
-        $postcodeParam = 'postcode=' . $orderShipment->order()->first()->shippingAddress->postcode;
+        $referenceParam = 'reference='.$orderShipment->shipping_number;
+        $postcodeParam = 'postcode='.$orderShipment->order()->first()->shippingAddress->postcode;
 
-        return $baseUlr . '?' . $referenceParam . '&' . $postcodeParam;
+        return $baseUlr.'?'.$referenceParam.'&'.$postcodeParam;
     }
 
     /**
